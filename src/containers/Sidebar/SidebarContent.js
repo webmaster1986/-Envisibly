@@ -58,7 +58,7 @@ class SidebarContent extends Component {
                 <Link to="/sample"><i className="icon icon-calendar"/>
                   <IntlMessages id="Calender"/></Link>
               </Menu.Item>
-              <Menu.Item key="file">
+              {/*<Menu.Item key="file">
                 <Link to="/sample"><i className="icon icon-files"/>
                   <IntlMessages id="Files"/></Link>
               </Menu.Item>
@@ -69,7 +69,7 @@ class SidebarContent extends Component {
               <Menu.Item key="notification">
                 <Link to="/sample"><i className="icon icon-notification"/>
                   <IntlMessages id="Notification"/></Link>
-              </Menu.Item>
+              </Menu.Item>*/}
             </Menu>
           </CustomScrollbars>
         </div>

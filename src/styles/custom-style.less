@@ -62,4 +62,23 @@ body {
     border: 1px solid @color-primary;
   }
 
+  .am-tab-bar-bar{
+    border-top: none !important;
+
+    .icon, .anticon {
+      font-size: 25px;
+    }
+
+  }
+
+
+  .mobile-view {
+    .ant-layout-footer {
+      border-top: none;
+    }
+    .am-tab-bar-bar::before{
+      content: none !important;
+    }
+  }
+
 }

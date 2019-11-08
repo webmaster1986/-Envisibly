@@ -7,6 +7,7 @@ import HorizontalDark from "../Topbar/HorizontalDark/index";
 import InsideHeader from "../Topbar/InsideHeader/index";
 import AboveHeader from "../Topbar/AboveHeader/index";
 import BelowHeader from "../Topbar/BelowHeader/index";
+import TabBarBottom from "../Sidebar/TabBarBottom";
 
 import Topbar from "../Topbar/index";
 import {footerText} from "util/config";
@@ -96,9 +97,10 @@ export class MainApp extends Component {
 
   render() {
     const {match, width, navStyle} = this.props;
+    const mobileView = this.props.width <= 991;
 
     return (
-      <Layout className="gx-app-layout">
+      <Layout className={`gx-app-layout ${mobileView ? 'mobile-view' : ''}`}>
         {this.getSidebar(navStyle, width)}
         <Layout>
           {this.getNavStyles(navStyle)}
@@ -106,7 +108,7 @@ export class MainApp extends Component {
             <App match={match}/>
             <Footer>
               <div className="gx-layout-footer-content">
-                {footerText}
+               {mobileView ?  <TabBarBottom/> : footerText}
               </div>
             </Footer>
           </Content>
