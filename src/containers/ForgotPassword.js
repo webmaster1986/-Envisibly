@@ -42,7 +42,7 @@ class ForgotPassword extends React.Component {
                   )}
                 </FormItem>
                 <FormItem>
-                  <Button type="primary" className="gx-mb-0" onClick={this.onResetPassword}>
+                  <Button type="danger" className="gx-mb-0" onClick={this.onResetPassword}>
                     Send
                   </Button>
                 </FormItem>

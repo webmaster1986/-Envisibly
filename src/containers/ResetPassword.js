@@ -40,7 +40,7 @@ class ResetPassword extends React.Component {
                   )}
                 </FormItem>
                 <FormItem>
-                  <Button type="primary" className="gx-mb-0">
+                  <Button type="danger" className="gx-mb-0">
                     Send
                   </Button>
                 </FormItem>

@@ -1,6 +1,7 @@
 import React,{Component} from "react"
 import {Row, Col, Form, Input, Select, Modal, Button} from 'antd'
 import SweetAlert from "react-bootstrap-sweetalert";
+import MaskedInput from "antd-mask-input";
 
 const { Option } = Select;
 
@@ -24,97 +25,74 @@ class ConfirmAndFinish extends Component {
       </SweetAlert>
     )
   }
-
   render() {
     const { getFieldDecorator } = this.props.form;
-    const formItemLayout = {
-      labelCol: {
-        md: {
-          span: 4
-        },
-        xl: {
-          span: 4
-        }
-      },
-      wrapperCol: {
-        md: {
-          span: 20
-        },
-        xl: {
-          span: 20
-        }
-      },
-      labelAlign: 'right'
-    };
     return(
       <div>
         {this.modal()}
         <Row>
           <Col md={24} sm={24} lg={24} xl={24} xs={24}>
-            <div className="text-center mt-10">
+            <div className="text-center mt-20">
               <h4>CONFIRM & FINISH</h4>
               <p className="mt-30">Please take a moment to verify your phone number </p>
               <a>Your phone # will not be shared & only used to manage your account</a>
             </div>
-            <Row>
-              <Col md={12} sm={24} lg={24} xl={12} xs={24}>
-                <Form {...formItemLayout} className="mt-20">
-                  <Row>
-                    <Col md={24} sm={24} lg={44} xl={24} xs={24}>
-                      <Form.Item label="Name">
+                <Form className="mt-20">
+                  <Row className="align-items-center">
+                    <Col md={5} sm={24} lg={24} xl={5} xs={24}>
+                      <p>Name :</p>
+                    </Col>
+                    <Col md={10} sm={24} lg={24} xl={10} xs={24}>
+                      <Form.Item>
                         {getFieldDecorator('Name', {
-                          rules: [{ required: true, message: 'Please input your First Name!' }],
+                          rules: [{ required: true, message: 'Please input your Name!' }],
                         })(
-                          <Input autoFocus={true} placeholder="Borrower First Name"/>
+                          <Input autoFocus={true} placeholder="Name"/>
                         )}
                       </Form.Item>
                     </Col>
-                  </Row>
-                </Form>
-              </Col>
-              <Col md={12} sm={24} lg={24} xl={12} xs={24}>
-                <Form {...formItemLayout} className="mt-20">
-                  <Row>
-                    <Col md={24} sm={24} lg={44} xl={24} xs={24}>
+                    <Col md={1} sm={24} lg={24} xl={1} xs={24}/>
+                    <Col md={4} sm={24} lg={24} xl={4} xs={24}>
                       <Form.Item>
-                        <Button type="primary">SEND CODE</Button>
+                        <Button type="primary" style={{marginBottom: 0}}>SEND CODE</Button>
                       </Form.Item>
                     </Col>
                   </Row>
-                </Form>
-              </Col>
-            </Row>
-            <a className="ml-100">Mobile or landline ok</a>
-            <Row>
-              <Col md={12} sm={24} lg={24} xl={12} xs={24}>
-                <Form {...formItemLayout} className="mt-20">
-                  <Row>
-                    <Col md={24} sm={24} lg={44} xl={24} xs={24}>
-                      <Form.Item label="Input Code">
+                  <Row className="align-items-center">
+                    <Col md={5} sm={24} lg={24} xl={5} xs={24}/>
+                    <Col md={10} sm={24} lg={24} xl={10} xs={24} className="pl-0">
+                      <div className="mt-10 mb-10">
+                        <a >Mobile or landline ok</a>
+                      </div>
+
+                    </Col>
+                  </Row>
+                  <Row className="align-items-center">
+                    <Col md={5} sm={24} lg={24} xl={5} xs={24}>
+                      <p>Input Code :</p>
+                    </Col>
+                    <Col md={10} sm={24} lg={24} xl={10} xs={24} className="input-code">
+                      <Form.Item>
                         {getFieldDecorator('Input Code', {
-                          rules: [{ required: true, message: 'Please input your First Name!' }],
+                          rules: [{ required: true, message: 'Please input your Input Code!' }],
                         })(
-                          <Input autoFocus={true} placeholder="Borrower First Name"/>
+                          <MaskedInput mask="1 1 1 1 1 1" className="border-none "/>
                         )}
                       </Form.Item>
                     </Col>
                   </Row>
-                </Form>
-              </Col>
-              <Col md={12} sm={24} lg={24} xl={12} xs={24}>
-                <Form {...formItemLayout} className="mt-20">
-                  <Row>
-                    <Col md={24} sm={24} lg={44} xl={24} xs={24}>
+                  <Row className="align-items-center">
+                    <Col md={24} sm={24} lg={24} xl={24} xs={24}>
                       <Form.Item>
-                        <Button type="primary" onClick={this.showModal}>CONFIRM & FINISH</Button>
+                        <div className="text-center mt-30">
+                          <Button type="danger" onClick={this.showModal}>CONFIRM & FINISH</Button>
+                        </div>
                       </Form.Item>
                     </Col>
                   </Row>
                 </Form>
               </Col>
             </Row>
-          </Col>
-        </Row>
       </div>
     )
   }

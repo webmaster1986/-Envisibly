@@ -43,8 +43,7 @@ class SignIn extends React.Component {
 
   render() {
     const {getFieldDecorator} = this.props.form;
-    const {showMessage, loader, alertMessage} = this.props;
-
+    const { loader,} = this.props;
     return (
       <div className="gx-app-login-wrap">
         <div className="gx-app-login-container ">
@@ -81,13 +80,13 @@ class SignIn extends React.Component {
                   <span className="gx-signup-form-forgot gx-link pull-right"><Link to={"/forgot-password"}>Forgot Password</Link></span>
                 </FormItem>
                 <FormItem className="text-center">
-                  <Button type="primary" className="gx-mb-0" htmlType="submit">
+                  <Button type="danger" className="gx-mb-0" htmlType="submit">
                     Sign In
                   </Button>
                 </FormItem>
-                <FormItem>
+               {/* <FormItem>
                   <span>Not Registered? &nbsp;<Link to="/registration">Register Here</Link></span>
-                </FormItem>
+                </FormItem>*/}
               </Form>
             </div>
             {loader ?

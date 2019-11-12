@@ -1,70 +1,62 @@
 import React,{Component} from "react"
 import {Row, Col, Form, Input, Select, Checkbox, Radio} from 'antd'
+import MaskedInput from "antd-mask-input";
 const { Option } = Select;
 
 class Property extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
-    const formItemLayout = {
-      labelCol: {
-        md: {
-          span: 3
-        },
-        xl: {
-          span: 3
-        }
-      },
-      wrapperCol: {
-        md: {
-          span: 21
-        },
-        xl: {
-          span: 21
-        }
-      },
-      labelAlign: 'right'
-    };
     return(
       <div>
-        <Row>
-          <Col md={24} sm={24} lg={24} xl={24} xs={24}>
-            <h4 className="text-center mt-10">BORROWER INFORMATION</h4>
-            <Form {...formItemLayout}>
-              <Row>
-                <Col md={24} sm={24} lg={44} xl={24} xs={24}>
-                  <Form.Item label="Select One">
+            <h4 className="text-center mt-20 mb-20">PROPERTY INFORMATION</h4>
+            <Form>
+              <Row className="align-items-center">
+                <Col md={5} sm={24} lg={24} xl={5} xs={24}>
+                  <p>Select One :</p>
+                </Col>
+                <Col md={19} sm={24} lg={24} xl={19} xs={24}>
+                  <Form.Item>
                       <Radio.Group>
-                        <Radio.Button value="CONSUMER">CONSUMER</Radio.Button>
-                        <Radio.Button value="LENDER">LENDER</Radio.Button>
+                        <Radio.Button value="Refinance">Refinance</Radio.Button>
+                        <Radio.Button value="Purchase">Purchase</Radio.Button>
                       </Radio.Group>
                   </Form.Item>
                 </Col>
               </Row>
-              <Row>
-                <Col md={24} sm={24} lg={44} xl={24} xs={24}>
-                  <Form.Item label="ZIP Code:">
+              <Row className="align-items-center">
+                <Col md={5} sm={24} lg={24} xl={5} xs={24}>
+                  <p>ZIP Code :</p>
+                </Col>
+                <Col md={19} sm={24} lg={24} xl={19} xs={24}>
+                  <Form.Item>
                     {getFieldDecorator('ZIPCode', {
-                      rules: [{ required: true, type: "number",  message: 'Please input your ZIP Code!' }],
+                      rules: [{ required: true, message: 'Please input your ZIP Code!' }],
                     })(
-                      <Input autoFocus={true} placeholder="Borrower ZIP Code"/>
+                      <MaskedInput mask="11111" placeholder="Borrower ZIP Code" />
                     )}
                   </Form.Item>
                 </Col>
               </Row>
-              <Row>
-                <Col md={24} sm={24} lg={44} xl={24} xs={24}>
-                  <Form.Item label="Loan Amount">
-                    {getFieldDecorator('ZIPCode', {
-                      rules: [{ required: true, type: "number",  message: 'Please input your ZIP Code!' }],
+              <Row className="align-items-center">
+                <Col md={5} sm={24} lg={24} xl={5} xs={24}>
+                  <p>Loan Amount :</p>
+                </Col>
+                <Col md={19} sm={24} lg={24} xl={19} xs={24}>
+                  <Form.Item>
+                    {getFieldDecorator('LoanAmount', {
+                      rules: [{ required: true,  message: 'Please input your Loan Amount!' }],
                     })(
-                      <Input autoFocus={true} placeholder="Borrower ZIP Code"/>
+                      <MaskedInput mask="123" placeholder="Loan Amount Requested" />
                     )}
                   </Form.Item>
                 </Col>
               </Row>
-              <Row>
-                <Col md={24} sm={24} lg={44} xl={24} xs={24}>
-                  <Form.Item label="Credit Quality:">
+              <Row className="align-items-center">
+                <Col md={5} sm={24} lg={24} xl={5} xs={24}>
+                  <p>Credit Quality :</p>
+                </Col>
+                <Col md={19} sm={24} lg={24} xl={19} xs={24}>
+                  <Form.Item>
                     {getFieldDecorator('CreditQuality', {
                       rules: [{ required: true,  message: 'Please input your Credit Quality!' }],
                     })(
@@ -77,25 +69,25 @@ class Property extends Component {
                   </Form.Item>
                 </Col>
               </Row>
-              <Row>
-                <Col md={24} sm={24} lg={44} xl={24} xs={24}>
-                  <Form.Item label="Mortgage Types:">
-                    {getFieldDecorator('Spoken Language', {
-                      rules: [{ required: true,  message: 'Please input your Spoken Language!' }],
+              <Row className="align-items-center">
+                <Col md={5} sm={24} lg={24} xl={5} xs={24}>
+                  <p>Mortgage Types :</p>
+                </Col>
+                <Col md={19} sm={24} lg={24} xl={19} xs={24}>
+                  <Form.Item>
+                    {getFieldDecorator('Mortgage Types', {
+                      rules: [{ required: true,  message: 'Please input your Mortgage Types!' }],
                     })(
-                      <Select  mode="multiple" placeholder="Preferred Spoken Language">
+                      <Select  mode="multiple" placeholder="Select All That May Apply">
                         <Option value="1">Option 1</Option>
                         <Option value="2">Option 2</Option>
                         <Option value="3">Option 3</Option>
                       </Select>
                     )}
-
                   </Form.Item>
                 </Col>
               </Row>
             </Form>
-          </Col>
-        </Row>
       </div>
     )
   }

@@ -1,12 +1,12 @@
 import React,{Component} from "react";
-import {Card, Col, Row, Switch, Badge} from 'antd'
-import UserCell from "../../components/chat/ContactList/UserCell";
+import {Card, Col, Row, Switch, Badge, Avatar} from 'antd'
 import {Link} from "react-router-dom";
+import "./dashboard.less"
 
 class Dashboard extends Component {
   render() {
     return (
-      <div>
+      <div className="dashboard">
       <Row>
         <Col md={12} sm={24} lg={12} xl={12} xs={24}>
           <Card className='gx-card-widget'>
@@ -101,12 +101,80 @@ class Dashboard extends Component {
         </Col>
         <Col md={12} sm={24} lg={12} xl={12} xs={24}>
           <Card className='gx-card-widget'>
-            <h2 className="h4 gx-mb-3">MESSAGES</h2>
+            <h2 className="h4 gx-mb-3 text-center">MESSAGES</h2>
+            <Row>
+              <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+                <ul className="gx-sub-popover">
+                  <li className="gx-media">
+                    <div className="gx-user-thumb gx-mr-3">
+                      <Avatar className="gx-size-40" alt={"https://via.placeholder.com/150x150"} src={"https://via.placeholder.com/150x150"}/>
+                    </div>
+                    <div className="gx-media-body">
+                      <div className="gx-flex-row gx-justify-content-between gx-align-items-center">
+                        <h5 className="gx-text-capitalize gx-user-name gx-mb-0"><span className="gx-link">Domnic Brown</span></h5>
+                        <span className="gx-meta-date"><a>READ</a><i className="icon icon-trash custom-icon"/></span>
+                      </div>
+                      <p className="gx-fs-sm">There are many variations of passages of...</p>
+                    </div>
+                  </li>
+                </ul>
+              </Col>
+              <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+                <ul className="gx-sub-popover">
+                  <li className="gx-media">
+                    <div className="gx-user-thumb gx-mr-3">
+                      <Avatar className="gx-size-40" alt={"https://via.placeholder.com/150x150"} src={"https://via.placeholder.com/150x150"}/>
+                    </div>
+                    <div className="gx-media-body">
+                      <div className="gx-flex-row gx-justify-content-between gx-align-items-center">
+                        <h5 className="gx-text-capitalize gx-user-name gx-mb-0"><span className="gx-link">Domnic Brown</span></h5>
+                        <span className="gx-meta-date"><a>READ</a><i className="icon icon-trash custom-icon"/></span>
+                      </div>
+                      <p className="gx-fs-sm">There are many variations of passages of...</p>
+                    </div>
+                  </li>
+                </ul>
+              </Col>
+              <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+                <ul className="gx-sub-popover">
+                  <li className="gx-media">
+                    <div className="gx-user-thumb gx-mr-3">
+                      <Avatar className="gx-size-40" alt={"https://via.placeholder.com/150x150"} src={"https://via.placeholder.com/150x150"}/>
+                    </div>
+                    <div className="gx-media-body">
+                      <div className="gx-flex-row gx-justify-content-between gx-align-items-center">
+                        <h5 className="gx-text-capitalize gx-user-name gx-mb-0"><span className="gx-link">Domnic Brown</span></h5>
+                        <span className="gx-meta-date"><a>READ</a><i className="icon icon-trash custom-icon"/></span>
+                      </div>
+                      <p className="gx-fs-sm">There are many variations of passages of...</p>
+                    </div>
+                  </li>
+                </ul>
+              </Col>
+              <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+                <ul className="gx-sub-popover">
+                  <li className="gx-media">
+                    <div className="gx-user-thumb gx-mr-3">
+                      <Avatar className="gx-size-40" alt={"https://via.placeholder.com/150x150"} src={"https://via.placeholder.com/150x150"}/>
+                    </div>
+                    <div className="gx-media-body">
+                      <div className="gx-flex-row gx-justify-content-between gx-align-items-center">
+                        <h5 className="gx-text-capitalize gx-user-name gx-mb-0"><span className="gx-link">Domnic Brown</span></h5>
+                        <span className="gx-meta-date"><a>READ</a><i className="icon icon-trash custom-icon"/></span>
+                      </div>
+                      <p className="gx-fs-sm">There are many variations of passages of...</p>
+                    </div>
+                  </li>
+                </ul>
+              </Col>
+            </Row>
           </Card>
         </Col>
         <Col md={12} sm={24} lg={12} xl={12} xs={24}>
             <Card className='gx-card-widget'>
-              <h2 className="h4 gx-mb-3">CALENDER</h2>
+              <h2 className="h4 gx-mb-3 text-center">CALENDER</h2>
+
+
             </Card>
         </Col>
       </Row>

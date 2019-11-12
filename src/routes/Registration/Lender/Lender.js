@@ -1,10 +1,11 @@
 import React from "react";
-import {Button, Checkbox, Form, Icon, Input, Radio, Row, Col, Steps, message} from "antd";
-import Borrower from "./Steps/Borrower";
-import Property from "./Steps/Property";
+import {Button, Row, Col, Steps} from "antd";
+import LenderFirstStep from './Steps/LenderFirstStep'
+import Company from './Steps/Company'
 import ConfirmAndFinish from "./Steps/ConfirmAndFinish";
 const { Step } = Steps;
-class Consumer extends React.Component {
+
+class Lender extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,22 +34,22 @@ class Consumer extends React.Component {
               <Row className="mt-20">
                 <Col md={24} sm={24} lg={24} xl={24} xs={24}>
                   <Steps current={current} >
-                      <Step key="Borrower" title="Borrower"/>
-                      <Step key="Property" title="Property"/>
-                      <Step key="ConfirmAndFinish" title="Confirm & Finish"/>
+                    <Step key="Lender" title="Lender"/>
+                    <Step key="Company" title="Company"/>
+                    <Step key="ConfirmAndFinish" title="Confirm & Finish"/>
                   </Steps>
                   <div className="steps-content">
-                    {current === 0 && <Borrower/>}
-                    {current === 1 && <Property/>}
-                    {current === 2 && <ConfirmAndFinish/>}
+                    {current === 0 && <LenderFirstStep/>}
+                    {current === 1 && <Company/>}
+                    {current === 2 && <><Company/><ConfirmAndFinish/></>}
                   </div>
                   <div className="steps-action mt-10">
                     <div className="pull-right">
-                    {current >= -1 && current < 2 &&
-                    <Button className="float-right" type="primary" onClick={() => this.next()}>
-                      Next
-                    </Button>
-                    }
+                      {current >= -1 && current < 2 &&
+                      <Button className="float-right" type="primary" onClick={() => this.next()}>
+                        Next
+                      </Button>
+                      }
                     </div>
                     {current > 0 && (
                       <Button type="primary" onClick={() => this.prev()}>
@@ -58,6 +59,7 @@ class Consumer extends React.Component {
                   </div>
                 </Col>
               </Row>
+
             </div>
           </div>
         </div>
@@ -67,4 +69,4 @@ class Consumer extends React.Component {
   }
 }
 
-export default Consumer;
+export default Lender;

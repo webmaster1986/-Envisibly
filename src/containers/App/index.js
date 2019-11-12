@@ -27,6 +27,8 @@ import ForgotPassword from "../ForgotPassword";
 import ResetPassword from "../ResetPassword";
 import Registration from "../../routes/Registration/Registration";
 import Consumer from "../../routes/Registration/Consumer/Consumer";
+import Lender from "../../routes/Registration/Lender/Lender";
+
 
 const RestrictedRoute = ({component: Component, authUser, ...rest}) =>
   <Route
@@ -122,8 +124,8 @@ class App extends Component {
           <Switch>
             <Route exact path='/signin' component={SignIn}/>
             <Route exact path='/signup' component={SignUp}/>
-            <Route exact path='/registration' component={Registration}/>
-            <Route exact path='/registration/consumer' component={Consumer}/>
+            <Route exact path='/signup-lender' component={Lender}/>
+            <Route exact path='/signup-consumer' component={Consumer}/>
             <Route exact path='/forgot-password' component={ForgotPassword}/>
             <Route exact path='/reset-password' component={ResetPassword}/>
             <RestrictedRoute path={`${match.url}`} authUser={authUser}
