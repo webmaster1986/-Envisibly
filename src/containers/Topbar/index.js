@@ -6,14 +6,12 @@ import AppNotification from "../../components/AppNotification";
 import MailNotification from "../../components/MailNotification";
 import Auxiliary from "util/Auxiliary";
 import {Switch} from "antd";
-
-
 import {
   NAV_STYLE_DRAWER,
   NAV_STYLE_FIXED,
   NAV_STYLE_MINI_SIDEBAR,
   TAB_SIZE, THEME_TYPE_DARK,
-  THEME_TYPE_LITE, THEME_TYPE_SEMI_DARK
+  THEME_TYPE_LITE,
 } from "../../constants/ThemeSetting";
 import {userSignOut} from "appRedux/actions/Auth";
 import {connect} from "react-redux";
@@ -27,7 +25,7 @@ class Topbar extends Component {
   };
 
   onThemeTypeChange = (isDark) => {
-    this.props.setThemeType(isDark ? THEME_TYPE_DARK : THEME_TYPE_SEMI_DARK);
+    this.props.setThemeType(isDark ? THEME_TYPE_DARK : THEME_TYPE_LITE);
   };
 
   render() {

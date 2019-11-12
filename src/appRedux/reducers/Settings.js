@@ -8,7 +8,8 @@ import {
   THEME_COLOR_SELECTION,
   THEME_COLOR_SELECTION_PRESET,
   THEME_TYPE,
-  THEME_TYPE_SEMI_DARK
+  THEME_TYPE_SEMI_DARK,
+  THEME_TYPE_LITE
 } from "../../constants/ThemeSetting";
 
 const initialSettings = {
@@ -16,7 +17,7 @@ const initialSettings = {
 //  navStyle: NAV_STYLE_FIXED,
   navStyle: NAV_STYLE_MINI_SIDEBAR,
   layoutType: LAYOUT_TYPE_FULL,
-  themeType: THEME_TYPE_SEMI_DARK,
+  themeType: THEME_TYPE_LITE,
   colorSelection: THEME_COLOR_SELECTION_PRESET,
 
   pathname: '',
