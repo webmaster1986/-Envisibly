@@ -1,5 +1,5 @@
 import React,{Component} from "react"
-import {Row, Col, Form, Input, Select, Modal, Button} from 'antd'
+import {Row, Col, Form, Input, Select, Button} from 'antd'
 import SweetAlert from "react-bootstrap-sweetalert";
 import MaskedInput from "antd-mask-input";
 
@@ -29,9 +29,9 @@ class ConfirmAndFinish extends Component {
     const { getFieldDecorator } = this.props.form;
     return(
       <div>
-        {this.modal()}
         <Row>
           <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+            {this.modal()}
             <div className="text-center mt-20">
               <h4>CONFIRM & FINISH</h4>
               <p className="mt-30">Please take a moment to verify your phone number </p>

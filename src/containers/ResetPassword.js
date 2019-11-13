@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Checkbox, Form, Icon, Input, message} from "antd";
+import {Button,  Form, Input,} from "antd";
 import {connect} from "react-redux";
 import {
   showAuthLoader

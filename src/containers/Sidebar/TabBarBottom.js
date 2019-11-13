@@ -19,12 +19,22 @@ class TabBarBottom extends React.Component {
       <Menu>
         <Menu.Item>
           <a rel="noopener noreferrer">
+            <Link to="/contacts">Calendar</Link>
+          </a>
+        </Menu.Item>
+        <Menu.Item>
+          <a  rel="noopener noreferrer">
+            To Do
+          </a>
+        </Menu.Item>
+        <Menu.Item>
+          <a  rel="noopener noreferrer">
             About Us
           </a>
         </Menu.Item>
         <Menu.Item>
           <a  rel="noopener noreferrer">
-           Contact Us
+            Contact Us
           </a>
         </Menu.Item>
       </Menu>
@@ -56,13 +66,13 @@ class TabBarBottom extends React.Component {
           </TabBar.Item>
           <TabBar.Item
             title="Contacts"
-            key="user"
-            icon={<Link to="/user"><i className="icon icon-user" style={{width: '22px', height: '22px'}}/></Link>}
-            selectedIcon={<Link to="/user"><i className="icon icon-user" style={{width: '22px', height: '22px'}}/></Link>}
-            selected={this.state.selectedTab === 'user'}
+            key="contacts"
+            icon={<Link to="/contacts"><i className="icon icon-user" style={{width: '22px', height: '22px'}}/></Link>}
+            selectedIcon={<Link to="/contacts"><i className="icon icon-user" style={{width: '22px', height: '22px'}}/></Link>}
+            selected={this.state.selectedTab === 'contacts'}
             onPress={() => {
               this.setState({
-                selectedTab: 'user',
+                selectedTab: 'contacts',
               });
             }}
             data-seed="logId"
@@ -72,8 +82,8 @@ class TabBarBottom extends React.Component {
           <TabBar.Item
             title="Messages"
             key="messages"
-            icon={<Link to="/dashboard"><i className="icon icon-email" style={{width: '22px', height: '22px'}}/></Link>}
-            selectedIcon={<Link to="/dashboard"><i className="icon icon-email" style={{width: '22px', height: '22px'}}/></Link>}
+            icon={<Link to="/messages"><i className="icon icon-email" style={{width: '22px', height: '22px'}}/></Link>}
+            selectedIcon={<Link to="/messages"><i className="icon icon-email" style={{width: '22px', height: '22px'}}/></Link>}
             selected={this.state.selectedTab === 'messages'}
             onPress={() => {
               this.setState({
@@ -84,12 +94,12 @@ class TabBarBottom extends React.Component {
           >
 
           </TabBar.Item>
-          <TabBar.Item
+          {/*<TabBar.Item
             title="Calendar"
-            key="calendar"
-            icon={<Link to="/dashboard"><i className="icon icon-calendar" style={{width: '22px', height: '22px'}}/></Link>}
-            selectedIcon={<Link to="/user"><i className="icon icon-calendar" style={{width: '22px', height: '22px'}}/></Link>}
-            selected={this.state.selectedTab === 'calendar'}
+            key="calender"
+            icon={<Link to="/calender"><i className="icon icon-calendar" style={{width: '22px', height: '22px'}}/></Link>}
+            selectedIcon={<Link to="/calender"><i className="icon icon-calendar" style={{width: '22px', height: '22px'}}/></Link>}
+            selected={this.state.selectedTab === 'calender'}
             onPress={() => {
               this.setState({
                 selectedTab: 'calendar',
@@ -97,7 +107,7 @@ class TabBarBottom extends React.Component {
             }}
             data-seed="logId"
           >
-          </TabBar.Item>
+          </TabBar.Item>*/}
           <TabBar.Item
             title="More"
             key="more"

@@ -46,16 +46,16 @@ class SidebarContent extends Component {
                 <Link to="/dashboard"><i className="icon icon-widgets"/>
                   <IntlMessages id="Dashboard"/></Link>
               </Menu.Item>
-              <Menu.Item key="user">
-                <Link to="/user"><i className="icon icon-user"/>
-                  <IntlMessages id="User"/></Link>
+              <Menu.Item key="contacts">
+                <Link to="/contacts"><i className="icon icon-user"/>
+                  <IntlMessages id="Contacts"/></Link>
               </Menu.Item>
-              <Menu.Item key="email">
-                <Link to="/sample"><i className="icon icon-email"/>
-                  <IntlMessages id="Email"/></Link>
+              <Menu.Item key="Messages">
+                <Link to="/messages"><i className="icon icon-email"/>
+                  <IntlMessages id="Messages"/></Link>
               </Menu.Item>
               <Menu.Item key="calender">
-                <Link to="/sample"><i className="icon icon-calendar"/>
+                <Link to="/calender"><i className="icon icon-calendar"/>
                   <IntlMessages id="Calender"/></Link>
               </Menu.Item>
               {/*<Menu.Item key="file">

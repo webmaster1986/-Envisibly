@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import {Layout, Popover, Radio} from "antd";
-import {Link} from "react-router-dom";
+import {Layout, Popover} from "antd";
 import {switchLanguage, toggleCollapsedSideNav, setThemeType} from "../../appRedux/actions/Setting";
 import AppNotification from "../../components/AppNotification";
 import MailNotification from "../../components/MailNotification";

@@ -1,8 +1,6 @@
 import React,{Component} from "react"
-import {Row, Col, Form, Input, Select, Modal, Button} from 'antd'
 import SweetAlert from "react-bootstrap-sweetalert";
-
-const { Option } = Select;
+import {Col, Row} from "antd";
 
 class ConfirmAndFinish extends Component {
 
@@ -35,7 +33,11 @@ class ConfirmAndFinish extends Component {
   render() {
     return(
       <div>
-        {this.modal()}
+        <Row>
+          <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+            {this.modal()}
+          </Col>
+        </Row>
       </div>
     )
   }

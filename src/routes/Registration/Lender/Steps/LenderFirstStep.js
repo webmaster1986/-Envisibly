@@ -5,25 +5,6 @@ import MaskedInput from "antd-mask-input";
 class LenderFirstStep extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
-    const formItemLayout2 = {
-      labelCol: {
-        md: {
-          span: 4
-        },
-        xl: {
-          span: 4
-        },
-      },
-      wrapperCol: {
-        md: {
-          span: 20
-        },
-        xl: {
-          span: 20
-        },
-      },
-      labelAlign: 'right'
-    };
     return(
       <div>
             <h4 className="text-center mt-20 mb-20">LENDER INFORMATION</h4>

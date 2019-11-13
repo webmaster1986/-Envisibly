@@ -1,5 +1,5 @@
 import React,{Component} from "react"
-import {Row, Col, Form, Input, Select, Checkbox, Radio} from 'antd'
+import {Row, Col, Form, Select, Radio} from 'antd'
 import MaskedInput from "antd-mask-input";
 const { Option } = Select;
 

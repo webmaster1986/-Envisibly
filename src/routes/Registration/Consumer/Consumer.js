@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Checkbox, Form, Icon, Input, Radio, Row, Col, Steps, message} from "antd";
+import {Button, Row, Col, Steps,} from "antd";
 import Borrower from "./Steps/Borrower";
 import Property from "./Steps/Property";
 import ConfirmAndFinish from "./Steps/ConfirmAndFinish";

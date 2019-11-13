@@ -1,7 +1,5 @@
 import React from "react";
-import {Button, Checkbox, Form, Icon, Input, Radio} from "antd";
-import {Link} from "react-router-dom";
-
+import {Button,  Radio} from "antd";
 import {connect} from "react-redux";
 import {
   hideMessage,
