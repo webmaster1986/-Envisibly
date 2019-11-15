@@ -3,8 +3,10 @@ import {Row, Col, Form, Input,} from 'antd'
 import MaskedInput from "antd-mask-input";
 
 class LenderFirstStep extends Component {
+
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { onChange, LoanOfficerPhoneNumber} = this.props;
     return(
       <div>
             <h4 className="text-center mt-20 mb-20">LENDER INFORMATION</h4>
@@ -43,10 +45,10 @@ class LenderFirstStep extends Component {
                 </Col>
                 <Col md={19} sm={24} lg={24} xl={19} xs={24}>
                   <Form.Item>
-                    {getFieldDecorator('Phone', {
+                    {getFieldDecorator('LoanOfficerPhoneNumber', {
                       rules: [{ required: true, message: 'Please input your Phone!'}]
                     })(
-                      <MaskedInput mask="(111) 111-1111" placeholder="Loan Officer Phone Number"/>
+                      <MaskedInput mask="(111) 111-1111" name='LoanOfficerPhoneNumber' placeholder="Loan Officer Phone Number" onChange={onChange} value={LoanOfficerPhoneNumber}/>
                     )}
                   </Form.Item>
                 </Col>

@@ -433,12 +433,13 @@ class Dashboard extends Component {
           <Card className='gx-card-widget'>
             <h2 className="h4 gx-mb-3 text-center">CONTACTS</h2>
             <Row className="align-items-center">
+              <Col md={2} sm={24} lg={4} xl={2} xs={24}/>
               <Col md={4} sm={24} lg={4} xl={4} xs={24}>
                 <Link to={"/consumer-profile"}>
                 <div className="text-center">
                   <div className="d-flex">
                     <Badge status="success" />
-                    <img src={require("assets/images/Profile.png")} className="gx-size-70"/>
+                    <img src={require("assets/images/Profile.png")} className="img-size-120 "/>
                   </div>
                   <h5 className="mt-10">Joe Smith </h5>
                   <h5>NMLS # 12345</h5>
@@ -450,7 +451,7 @@ class Dashboard extends Component {
                 <div className="text-center">
                   <div className="d-flex">
                     <Badge status="default" />
-                    <img src={require("assets/images/Profile.png")} className="gx-size-70"/>
+                    <img src={require("assets/images/Profile.png")} className="img-size-120"/>
                   </div>
                   <h5 className="mt-10">Joe Smith </h5>
                   <h5>NMLS # 12345</h5>
@@ -461,7 +462,7 @@ class Dashboard extends Component {
                 <div className="text-center">
                   <div className="d-flex">
                     <Badge status="default" />
-                    <img src={require("assets/images/Profile.png")} className="gx-size-70"/>
+                    <img src={require("assets/images/Profile.png")} className="img-size-120"/>
                   </div>
                   <h5 className="mt-10">Joe Smith </h5>
                   <h5>NMLS # 12345</h5>
@@ -471,7 +472,7 @@ class Dashboard extends Component {
                 <div className="text-center">
                   <div className="d-flex">
                     <Badge status="default" />
-                    <img src={require("assets/images/Profile.png")} className="gx-size-70"/>
+                    <img src={require("assets/images/Profile.png")} className="img-size-120"/>
                   </div>
                   <h5 className="mt-10">Joe Smith </h5>
                   <h5>NMLS # 12345</h5>
@@ -481,12 +482,13 @@ class Dashboard extends Component {
                 <div className="text-center">
                   <div className="d-flex">
                     <Badge status="default" />
-                    <img src={require("assets/images/Profile.png")} className="gx-size-70"/>
+                    <img src={require("assets/images/Profile.png")} className="img-size-120"/>
                   </div>
                   <h5 className="mt-10">Joe Smith </h5>
                   <h5>NMLS # 12345</h5>
                 </div>
               </Col>
+              <Col md={2} sm={24} lg={4} xl={2} xs={24}/>
             </Row>
           </Card>
         </Col>

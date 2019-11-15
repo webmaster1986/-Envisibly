@@ -1,5 +1,6 @@
 import React,{Component} from "react";
 import {Avatar} from "antd";
+import './contact.less'
 
 const ContactsList = [
   {
@@ -233,7 +234,7 @@ const ContactsList = [
 class Contacts extends Component {
   render() {
     return (
-      <div>
+      <div className="contact">
         {
           ContactsList.map((contact, index) =>
             <div className="gx-contact-item" key={index}>

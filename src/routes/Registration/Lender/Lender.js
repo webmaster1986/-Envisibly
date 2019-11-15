@@ -10,6 +10,7 @@ class Lender extends React.Component {
     super(props);
     this.state = {
       current: 0,
+      LoanOfficerPhoneNumber: '',
     }
   }
 
@@ -23,8 +24,14 @@ class Lender extends React.Component {
     this.setState({ current });
   }
 
+  onChange = (event) => {
+    this.setState({
+      [event.target.name] : event.target.value,
+    });
+  };
+
   render() {
-    const { current } = this.state;
+    const { current, LoanOfficerPhoneNumber} = this.state;
     return (
       <div className="gx-app-login-wrap registration">
         <div className="gx-app-login-container">
@@ -39,9 +46,9 @@ class Lender extends React.Component {
                     <Step key="ConfirmAndFinish" title="Confirm & Finish"/>
                   </Steps>
                   <div className="steps-content">
-                    {current === 0 && <LenderFirstStep/>}
+                    {current === 0 && <LenderFirstStep LoanOfficerPhoneNumber={LoanOfficerPhoneNumber} onChange={this.onChange}/>}
                     {current === 1 && <Company/>}
-                    {current === 2 && <><Company/><ConfirmAndFinish/></>}
+                    {current === 2 && <ConfirmAndFinish LoanOfficerPhoneNumber={LoanOfficerPhoneNumber}/>}
                   </div>
                   <div className="steps-action mt-10">
                     <div className="pull-right">

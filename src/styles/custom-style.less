@@ -75,6 +75,11 @@ body {
     border-color: @color-secondary !important;
   }
 
+  .ant-btn-primary.disabled, .ant-btn-primary:disabled {
+    background-color: @color-primary !important;
+    border-color: @color-primary !important;
+  }
+
   .ant-badge:not(:last-child) {
     margin-right: 0;
     padding-top: 23px;
@@ -133,6 +138,11 @@ body {
   .pl-0 {
     padding-left: 0 !important;
   }
+
+  .custom-img {
+    width: 100px
+  }
+
 }
 
 @media screen and (max-width: 600px) {
@@ -142,3 +152,39 @@ body {
     }
   }
 }
+@media screen and (max-width: 350px) {
+  body {
+    .custom-img {
+      width: 80px !important;
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  body {
+    .custom-img {
+      width: 70px !important;
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  body {
+    .custom-img {
+      width: 50px !important;
+    }
+  }
+}
+
+@media screen and (max-width: 992px){
+  .ant-layout-footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 9999;
+  }
+  .ant-layout > .gx-layout-content {
+    margin-bottom: 70px;
+  }
+}
+

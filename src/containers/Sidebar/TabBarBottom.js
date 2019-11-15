@@ -19,7 +19,7 @@ class TabBarBottom extends React.Component {
       <Menu>
         <Menu.Item>
           <a rel="noopener noreferrer">
-            <Link to="/contacts">Calendar</Link>
+            <Link to="/calender">Calendar</Link>
           </a>
         </Menu.Item>
         <Menu.Item>
@@ -44,7 +44,7 @@ class TabBarBottom extends React.Component {
       <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%', top: 0 } : { height: 50 }}>
         <TabBar
           unselectedTintColor="#949494"
-          tintColor="#33A3F4"
+          tintColor="#3AAFA9"
           barTintColor="white"
           hidden={this.state.hidden}
           tabBarPosition="top"
@@ -112,9 +112,9 @@ class TabBarBottom extends React.Component {
             title="More"
             key="more"
             icon={ <Dropdown overlay={menu} placement="bottomCenter">
-              <Icon type="dash" />
+              <Icon type="dash" style={{color: '#3AAFA9'}}/>
               </Dropdown>}
-            selectedIcon={<Icon type="dash" />}
+            selectedIcon={<Icon type="dash" style={{color: '#3AAFA9'}}/>}
             data-seed="logId"
           >
           </TabBar.Item>

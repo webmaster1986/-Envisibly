@@ -9,6 +9,7 @@ class Consumer extends React.Component {
     super(props);
     this.state = {
       current: 0,
+      BorrowerPhone: '',
     }
   }
 
@@ -22,8 +23,14 @@ class Consumer extends React.Component {
     this.setState({ current });
   }
 
+  onChange = (event) => {
+    this.setState({
+      [event.target.name] : event.target.value,
+    });
+  }
+
   render() {
-    const { current } = this.state;
+    const { current, BorrowerPhone } = this.state;
     return (
       <div className="gx-app-login-wrap registration">
         <div className="gx-app-login-container">
@@ -38,9 +45,9 @@ class Consumer extends React.Component {
                       <Step key="ConfirmAndFinish" title="Confirm & Finish"/>
                   </Steps>
                   <div className="steps-content">
-                    {current === 0 && <Borrower/>}
+                    {current === 0 && <Borrower onChange={this.onChange} BorrowerPhone={BorrowerPhone}/>}
                     {current === 1 && <Property/>}
-                    {current === 2 && <ConfirmAndFinish/>}
+                    {current === 2 && <ConfirmAndFinish BorrowerPhone={BorrowerPhone}/>}
                   </div>
                   <div className="steps-action mt-10">
                     <div className="pull-right">

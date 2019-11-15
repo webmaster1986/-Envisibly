@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Avatar,} from "antd";
-
+import './message.less'
 const messageList =  [
   {
     'id': '15453ba60d3baa5daaf',
@@ -23,6 +23,7 @@ const messageList =  [
     'read': true,
     'starred': false,
     'important': false,
+    'time': '4 Dec',
     'hasAttachments': false,
     'labels': [
       3,
@@ -451,7 +452,7 @@ const messageList =  [
 class Messages extends Component {
   render() {
     return(
-      <div>
+      <div className="message">
         {
           messageList.map((mail, index) =>
             <div className="gx-module-list-item gx-mail-cell" key={index}>

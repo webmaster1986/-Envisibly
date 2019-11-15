@@ -50,7 +50,7 @@ class Topbar extends Component {
             </div> : null}
           {/*<Link to="/" className="gx-d-block gx-d-lg-none gx-pointer">
             <img alt="" src={require("assets/images/w-logo.png")}/></Link>*/}
-            <img alt="" src={require("assets/images/EnvisiblyLogo.png")} style={{width: '100px'}}/>
+            <img alt="" src={require("assets/images/EnvisiblyLogo.png")} className="custom-img"/>
           <ul className="gx-header-notifications gx-ml-auto">
             <Auxiliary>
               <li className="gx-notify">

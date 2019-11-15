@@ -6,6 +6,7 @@ const { Option } = Select;
 class Borrower extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
+    const {onChange, BorrowerPhone} = this.props;
     return(
       <div>
             <h4 className="text-center mt-20 mb-20">BORROWER INFORMATION</h4>
@@ -44,10 +45,10 @@ class Borrower extends Component {
                 </Col>
                 <Col md={19} sm={24} lg={24} xl={19} xs={24}>
                   <Form.Item>
-                    {getFieldDecorator('Phone', {
+                    {getFieldDecorator('BorrowerPhone', {
                       rules: [{ required: true, message: 'Please input your Phone!'}]
                     })(
-                      <MaskedInput mask="(111) 111-1111" placeholder="Borrower Phone #" />
+                      <MaskedInput mask="(111) 111-1111" placeholder="Borrower Phone #" name="BorrowerPhone" value={BorrowerPhone} onChange={onChange}/>
                     )}
                   </Form.Item>
                 </Col>
