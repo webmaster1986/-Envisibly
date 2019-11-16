@@ -409,14 +409,14 @@ class Dashboard extends Component {
           <Card className='gx-card-widget'>
             <h2 className="h4 gx-mb-3 text-center">PROFILE</h2>
             <Row className="align-items-center">
-              <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+              <Col md={12} sm={12} lg={12} xl={12} xs={12}>
                 <div className="text-center">
                 <img src={require("assets/images/Profile.png")} className="gx-size-100"/>
                 <h4 className="mt-10">Jeremy Pilchman</h4>
                 <span><Link to="/">EDIT PROFILE</Link></span>
                 </div>
               </Col>
-              <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+              <Col md={12} sm={12} lg={12} xl={12} xs={12}>
                 <div className="text-center">
                 <h4>Stealth Mode</h4>
                   <Switch defaultChecked />
@@ -430,11 +430,10 @@ class Dashboard extends Component {
           </Card>
         </Col>
         <Col md={12} sm={24} lg={12} xl={12} xs={24}>
-          <Card className='gx-card-widget'>
+          <Card className='gx-card-widget contact-card'>
             <h2 className="h4 gx-mb-3 text-center">CONTACTS</h2>
             <Row className="align-items-center">
-              <Col md={2} sm={24} lg={4} xl={2} xs={24}/>
-              <Col md={4} sm={24} lg={4} xl={4} xs={24}>
+              <Col md={6} sm={24} lg={6} xl={6} xs={12}>
                 <Link to={"/consumer-profile"}>
                 <div className="text-center">
                   <div className="d-flex">
@@ -446,7 +445,7 @@ class Dashboard extends Component {
                 </div>
                 </Link>
               </Col>
-              <Col md={4} sm={24} lg={4} xl={4} xs={24}>
+              <Col md={6} sm={12} lg={6} xl={6} xs={12}>
                 <Link to={"/lender-profile"}>
                 <div className="text-center">
                   <div className="d-flex">
@@ -458,7 +457,7 @@ class Dashboard extends Component {
                 </div>
                 </Link>
               </Col>
-              <Col md={4} sm={24} lg={4} xl={4} xs={24}>
+              <Col md={6} sm={12} lg={6} xl={6} xs={12}>
                 <div className="text-center">
                   <div className="d-flex">
                     <Badge status="default" />
@@ -468,7 +467,7 @@ class Dashboard extends Component {
                   <h5>NMLS # 12345</h5>
                 </div>
               </Col>
-              <Col md={4} sm={24} lg={4} xl={4} xs={24}>
+              <Col md={6} sm={12} lg={6} xl={6} xs={12}>
                 <div className="text-center">
                   <div className="d-flex">
                     <Badge status="default" />
@@ -478,17 +477,6 @@ class Dashboard extends Component {
                   <h5>NMLS # 12345</h5>
                 </div>
               </Col>
-              <Col md={4} sm={24} lg={4} xl={4} xs={24}>
-                <div className="text-center">
-                  <div className="d-flex">
-                    <Badge status="default" />
-                    <img src={require("assets/images/Profile.png")} className="img-size-120"/>
-                  </div>
-                  <h5 className="mt-10">Joe Smith </h5>
-                  <h5>NMLS # 12345</h5>
-                </div>
-              </Col>
-              <Col md={2} sm={24} lg={4} xl={2} xs={24}/>
             </Row>
           </Card>
         </Col>
@@ -496,7 +484,7 @@ class Dashboard extends Component {
           <Card className='gx-card-widget'>
             <h2 className="h4 gx-mb-3 text-center">MESSAGES</h2>
             <Row>
-              <CustomScrollbars className="gx-popover-scroll">
+              <CustomScrollbars className="gx-popover-scroll" >
               {
 
                   messageList.map((x, index) =>
@@ -520,7 +508,6 @@ class Dashboard extends Component {
                     </ul>
                   </Col>
                 )
-
               }
               </CustomScrollbars>
             </Row>

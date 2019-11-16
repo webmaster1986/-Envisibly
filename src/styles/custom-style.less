@@ -123,8 +123,14 @@ body {
     .ant-layout-footer {
       border-top: none;
     }
-    .am-tab-bar-bar::before{
+    .am-tab-bar-bar::before {
       content: none !important;
+    }
+    &.contacts-route, &.messages-route, &.calender-route {
+      .gx-main-content-wrapper {
+        padding: 20px 0 0 0;
+        background: #fff;
+      }
     }
   }
 

@@ -96,11 +96,11 @@ export class MainApp extends Component {
   };
 
   render() {
-    const {match, width, navStyle} = this.props;
+    const {match, width, navStyle, location} = this.props;
     const mobileView = this.props.width <= 991;
 
     return (
-      <Layout className={`gx-app-layout ${mobileView ? 'mobile-view' : ''}`}>
+      <Layout className={`gx-app-layout ${location.pathname.slice(1, location.pathname.length)}-route ${mobileView ? 'mobile-view' : ''}`}>
         {this.getSidebar(navStyle, width)}
         <Layout>
           {this.getNavStyles(navStyle)}
@@ -108,7 +108,7 @@ export class MainApp extends Component {
             <App match={match}/>
             <Footer>
               <div className="gx-layout-footer-content">
-               {mobileView ?  <TabBarBottom/> : footerText}
+               {mobileView ?  <TabBarBottom activeTab={this.props.location.pathname}/> : footerText}
               </div>
             </Footer>
           </Content>

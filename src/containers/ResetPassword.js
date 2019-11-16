@@ -9,6 +9,10 @@ import CircularProgress from "components/CircularProgress/index";
 const FormItem = Form.Item;
 
 class ResetPassword extends React.Component {
+  
+  onRedirectToRoot = () => {
+    this.props.history.push('/signin');
+  }
 
   render() {
     const {getFieldDecorator} = this.props.form;
@@ -19,7 +23,7 @@ class ResetPassword extends React.Component {
         <div className="gx-app-login-container">
           <div className="gx-app-login-main-content">
             <div className="gx-app-login-content">
-              <img alt="" src={require("assets/images/Envisibly Logo with Tagline.png")} style={{width: '300px'}}/>
+              <img alt="" src={require("assets/images/Envisibly Logo with Tagline.png")} style={{width: '300px'}}  onClick={this.onRedirectToRoot}/>
               <h4 className="mt-20"><b>RESET YOUR PASSWORD </b></h4>
               <span className="mt-10">Enter a new password for your account</span><br/>
               <Form className="gx-signin-form gx-form-row0 mt-20">

@@ -29,6 +29,10 @@ class Lender extends React.Component {
       [event.target.name] : event.target.value,
     });
   };
+  
+  onRedirectToRoot = () => {
+    this.props.history.push('/')
+  }
 
   render() {
     const { current, LoanOfficerPhoneNumber} = this.state;
@@ -37,7 +41,7 @@ class Lender extends React.Component {
         <div className="gx-app-login-container">
           <div className="gx-app-login-main-content">
             <div className="gx-app-login-content">
-              <img alt="" src={require("assets/images/Envisibly Logo with Tagline.png")} style={{width: '300px'}}/>
+              <img alt="" src={require("assets/images/Envisibly Logo with Tagline.png")} style={{width: '300px'}} onClick={this.onRedirectToRoot}/>
               <Row className="mt-20">
                 <Col md={24} sm={24} lg={24} xl={24} xs={24}>
                   <Steps current={current} >

@@ -50,7 +50,7 @@
 }
 
 .rbc-month-row {
-  min-height: 100px;
+  min-height: 50px;
 }
 
 .rbc-event {
@@ -60,6 +60,16 @@
 .rbc-btn-group {
   & button {
     cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .rbc-month-row {
+    min-height: 35px;
+  }
+  .gx-rbc-calendar {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
   }
 }
 

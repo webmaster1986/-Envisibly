@@ -928,7 +928,7 @@ class Messages extends Component {
   render() {
     return(
       <div className="message">
-        <div className="gx-module-logo"><i className="icon icon-email gx-mr-4"/><span><span>Message</span></span></div>
+        <div className="gx-module-logo"><i className="icon icon-email gx-mr-4"/><span><span>Messages</span></span></div>
         <div className="gx-chat-search-wrapper mb-10 mt-10">
           <div className={`gx-search-bar gx-chat-search-bar gx-lt-icon-search-bar-lg `}>
             <div className="gx-form-group">

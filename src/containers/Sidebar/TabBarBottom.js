@@ -1,14 +1,15 @@
 import React from 'react'
 import TabBar from 'antd-mobile/lib/tab-bar';
-import 'antd-mobile/lib/tab-bar/style';
 import {Link} from "react-router-dom";
 import {Icon, Dropdown, Menu} from 'antd'
+import 'antd-mobile/lib/tab-bar/style';
+import './TabBarBottom.less';
 
 class TabBarBottom extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'dashboard',
+      selectedTab: this.props.activeTab.slice(1, this.props.activeTab.length),
       hidden: false,
       fullScreen: false,
     };
@@ -47,13 +48,18 @@ class TabBarBottom extends React.Component {
           tintColor="#3AAFA9"
           barTintColor="white"
           hidden={this.state.hidden}
+          className="tab-bar-mobile"
           tabBarPosition="top"
         >
           <TabBar.Item
             title="Home"
             key="dashboard"
-            icon={<Link to="/dashboard"><i className="icon icon-widgets" style={{width: '22px', height: '22px'}}/></Link>}
-            selectedIcon={<Link to="/dashboard"><i className="icon icon-widgets" style={{width: '22px', height: '22px'}}/></Link>}
+            icon={<Link to="/dashboard">
+              <i className="icon icon-widgets" style={{width: '22px', height: '22px', color: '#545454'}}/>
+            </Link>}
+            selectedIcon={<Link to="/dashboard">
+              <i className="icon icon-widgets" style={{width: '22px', height: '22px'}}/>
+            </Link>}
             selected={this.state.selectedTab === 'dashboard'}
             onPress={() => {
               this.setState({
@@ -67,7 +73,7 @@ class TabBarBottom extends React.Component {
           <TabBar.Item
             title="Contacts"
             key="contacts"
-            icon={<Link to="/contacts"><i className="icon icon-user" style={{width: '22px', height: '22px'}}/></Link>}
+            icon={<Link to="/contacts"><i className="icon icon-user" style={{width: '22px', height: '22px', color: '#545454'}}/></Link>}
             selectedIcon={<Link to="/contacts"><i className="icon icon-user" style={{width: '22px', height: '22px'}}/></Link>}
             selected={this.state.selectedTab === 'contacts'}
             onPress={() => {
@@ -82,7 +88,7 @@ class TabBarBottom extends React.Component {
           <TabBar.Item
             title="Messages"
             key="messages"
-            icon={<Link to="/messages"><i className="icon icon-email" style={{width: '22px', height: '22px'}}/></Link>}
+            icon={<Link to="/messages"><i className="icon icon-email" style={{width: '22px', height: '22px', color: '#545454'}}/></Link>}
             selectedIcon={<Link to="/messages"><i className="icon icon-email" style={{width: '22px', height: '22px'}}/></Link>}
             selected={this.state.selectedTab === 'messages'}
             onPress={() => {
@@ -112,9 +118,9 @@ class TabBarBottom extends React.Component {
             title="More"
             key="more"
             icon={ <Dropdown overlay={menu} placement="bottomCenter">
-              <Icon type="dash" style={{color: '#3AAFA9'}}/>
+              <Icon type="more" style={{color: '#545454', transform: 'rotate(90deg)', fontSize: 34}}/>
               </Dropdown>}
-            selectedIcon={<Icon type="dash" style={{color: '#3AAFA9'}}/>}
+            selectedIcon={<Icon type="more" style={{color: '#3AAFA9', transform: 'rotate(90deg)', fontSize: 34}}/>}
             data-seed="logId"
           >
           </TabBar.Item>

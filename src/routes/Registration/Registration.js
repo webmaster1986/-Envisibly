@@ -37,6 +37,10 @@ class Registration extends React.Component {
       this.props.history.push('/registration/lender')
     }
   }
+  
+  onRedirectToRoot = () => {
+    this.props.history.push('/signin');
+  }
 
   render() {
     const {registrationType} = this.state;
@@ -46,7 +50,7 @@ class Registration extends React.Component {
         <div className="gx-app-login-container">
           <div className="gx-app-login-main-content login-container">
             <div className="gx-app-login-content">
-              <img alt="" src={require("assets/images/Envisibly Logo with Tagline.png")} style={{width: '300px'}}/>
+              <img alt="" src={require("assets/images/Envisibly Logo with Tagline.png")} style={{width: '300px'}} onClick={this.onRedirectToRoot}/>
               <h2 className="text-center mt-20">Registration Into Envisibly</h2>
               <div className="text-center">
                 <Radio.Group value={registrationType} onChange={this.onRegistrationTypeChange} >

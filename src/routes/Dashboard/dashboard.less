@@ -7,13 +7,37 @@
   }
   .message-height {
     .gx-card-widget .ant-card-body {
-      height: 683px
+      min-height: 340px;
+    }
+    .gx-popover-scroll {
+      width: 100% !important;
+      min-height: 340px;
     }
   }
 
-  .gx-popover-scroll {
-    width: 100% !important;
-    height: 625px !important;
+
+  .contact-card {
+    img {
+      max-width: 105px;
+      margin: 0 auto;
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .dashboard {
+    .message-height {
+      .gx-popover-scroll {
+        width: 100% !important;
+        min-height: unset;
+      }
+    }
+    .contact-card {
+      img {
+        max-width: 65px;
+        margin: 0 auto;
+      }
+    }
   }
 }
 
@@ -28,3 +52,8 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .gx-card-widget .ant-card-body {
+    padding: 5px 10px;
+  }
+}

@@ -14,6 +14,10 @@ class ForgotPassword extends React.Component {
   onResetPassword = () => {
     this.props.history.push('/reset-password')
   }
+  
+  onRedirectToRoot = () => {
+    this.props.history.push('/signin');
+  }
 
   render() {
     const {getFieldDecorator} = this.props.form;
@@ -24,7 +28,7 @@ class ForgotPassword extends React.Component {
         <div className="gx-app-login-container ">
           <div className="gx-app-login-main-content login-container">
             <div className="gx-app-login-content">
-              <img alt="" src={require("assets/images/Envisibly Logo with Tagline.png")} style={{width: '300px'}}/>
+              <img alt="" src={require("assets/images/Envisibly Logo with Tagline.png")} style={{width: '300px'}} onClick={this.onRedirectToRoot}/>
               <h4 className="mt-20"><b>FORGOT YOUR PASSWORD? </b></h4>
               <span className="mt-10">Don’t worry, resetting your password is easy. </span><br/>
               <span>Just enter the email you registered with below and we will</span><br/>
