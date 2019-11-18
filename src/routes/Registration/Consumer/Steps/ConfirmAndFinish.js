@@ -28,7 +28,7 @@ class ConfirmAndFinish extends Component {
 
 
   componentDidMount() {
-    this.props.form.setFieldsValue(this.props)
+    this.props.form.setFieldsValue({...this.props.state})
   }
 
   modal = () => {
@@ -57,7 +57,6 @@ class ConfirmAndFinish extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const {BorrowerPhone} = this.props;
     return(
       <div>
         <Row>
@@ -76,10 +75,10 @@ class ConfirmAndFinish extends Component {
                     </Col>
                     <Col md={10} sm={24} lg={24} xl={10} xs={24}>
                       <Form.Item>
-                        {getFieldDecorator('BorrowerPhone', {
+                        {getFieldDecorator('borrowerPhone', {
                           rules: [{ required: true, message: 'Please input your phone!' }],
                         })(
-                          <MaskedInput mask={'(111) 111-1111'} placeholder="phone"/>
+                          <MaskedInput mask={'(111) 111-1111'} placeholder="phone" name="borrowerPhone" onChange={this.props.onChange}/>
                         )}
                       </Form.Item>
                     </Col>

@@ -10,7 +10,21 @@ class Lender extends React.Component {
     super(props);
     this.state = {
       current: 0,
-      LoanOfficerPhoneNumber: '',
+      loanOfficerPhoneNumber: '',
+      loanOfficerFirstName: '',
+      loanOfficerLastName: '',
+      NMLS: '',
+      loanOfficerPhysicalAddress: '',
+      loanOfficerCity: '',
+      loanOfficerState: '',
+      loanOfficerZipCode: '',
+      mortgageCompanyName: '',
+      MNLS: '',
+      mortgageCompanyLicensingContact: '',
+      mortgageCompanyCorporateAddress: '',
+      mortgageCompanyCorporateCity: '',
+      mortgageCompanyCorporateState: '',
+      mortgageCompanyCorporateZIPCode: '',
     }
   }
 
@@ -29,13 +43,13 @@ class Lender extends React.Component {
       [event.target.name] : event.target.value,
     });
   };
-  
+
   onRedirectToRoot = () => {
     this.props.history.push('/')
   }
 
   render() {
-    const { current, LoanOfficerPhoneNumber} = this.state;
+    const { current, LoanOfficerPhoneNumber, loanOfficerFirstName} = this.state;
     return (
       <div className="gx-app-login-wrap registration">
         <div className="gx-app-login-container">
@@ -50,9 +64,14 @@ class Lender extends React.Component {
                     <Step key="ConfirmAndFinish" title="Confirm & Finish"/>
                   </Steps>
                   <div className="steps-content">
-                    {current === 0 && <LenderFirstStep LoanOfficerPhoneNumber={LoanOfficerPhoneNumber} onChange={this.onChange}/>}
-                    {current === 1 && <Company/>}
-                    {current === 2 && <ConfirmAndFinish LoanOfficerPhoneNumber={LoanOfficerPhoneNumber}/>}
+                    {
+                      current === 0 && <LenderFirstStep
+                        state={this.state}
+                      onChange={this.onChange}
+                    />
+                    }
+                    {current === 1 && <Company state={this.state} onChange={this.onChange}/>}
+                    {current === 2 && <ConfirmAndFinish state={this.state} onChange={this.onChange}/>}
                   </div>
                   <div className="steps-action mt-10">
                     <div className="pull-right">

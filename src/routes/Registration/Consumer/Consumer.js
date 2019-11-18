@@ -9,7 +9,14 @@ class Consumer extends React.Component {
     super(props);
     this.state = {
       current: 0,
-      BorrowerPhone: '',
+      borrowerPhone: '',
+      borrowerFirstName: '',
+      borrowerLastName: '',
+      borrowerZIPCode: '',
+      borrowerCreditQuality: '',
+      preferredSpokenLanguage: '',
+      ZIPCode: '',
+      creditQuality: '',
     }
   }
 
@@ -28,7 +35,7 @@ class Consumer extends React.Component {
       [event.target.name] : event.target.value,
     });
   }
-  
+
   onRedirectToRoot = () => {
     this.props.history.push('/signin');
   }
@@ -49,9 +56,9 @@ class Consumer extends React.Component {
                       <Step key="ConfirmAndFinish" title="Confirm & Finish"/>
                   </Steps>
                   <div className="steps-content">
-                    {current === 0 && <Borrower onChange={this.onChange} BorrowerPhone={BorrowerPhone}/>}
-                    {current === 1 && <Property/>}
-                    {current === 2 && <ConfirmAndFinish BorrowerPhone={BorrowerPhone}/>}
+                    {current === 0 && <Borrower onChange={this.onChange} state={this.state}/>}
+                    {current === 1 && <Property onChange={this.onChange} state={this.state}/>}
+                    {current === 2 && <ConfirmAndFinish onChange={this.onChange} state={this.state}/>}
                   </div>
                   <div className="steps-action mt-10">
                     <div className="pull-right">

@@ -28,7 +28,7 @@ class ConfirmAndFinish extends Component {
 
 
   componentDidMount() {
-    this.props.form.setFieldsValue(this.props)
+    this.props.form.setFieldsValue({...this.props.state})
   }
 
   modal = () => {
@@ -47,7 +47,7 @@ class ConfirmAndFinish extends Component {
       <SweetAlert show={this.state.isSendCode} success
                   onConfirm={this.onSendCode}>
         <div className="text-center">
-          <p>{`Secret 6 digit code sent to ${this.props.form.getFieldValue('LoanOfficerPhoneNumber')}`}</p>
+          <p>{`Secret 6 digit code sent to ${this.props.form.getFieldValue('loanOfficerPhoneNumber')}`}</p>
         </div>
       </SweetAlert>
     )
@@ -75,17 +75,17 @@ class ConfirmAndFinish extends Component {
                 </Col>
                 <Col md={10} sm={24} lg={24} xl={10} xs={24}>
                   <Form.Item>
-                    {getFieldDecorator('LoanOfficerPhoneNumber', {
+                    {getFieldDecorator('loanOfficerPhoneNumber', {
                       rules: [{ required: true, message: 'Please input your phone!' }],
                     })(
-                      <MaskedInput mask={'(111) 111-1111'} placeholder="phone"/>
+                      <MaskedInput mask={'(111) 111-1111'} placeholder="phone" name={"loanOfficerPhoneNumber"} onChange={this.props.onChange}/>
                     )}
                   </Form.Item>
                 </Col>
                 <Col md={1} sm={24} lg={24} xl={1} xs={24}/>
                 <Col md={4} sm={24} lg={24} xl={4} xs={24}>
                   <Form.Item>
-                    <Button type="primary" style={{marginBottom: 0}} onClick={this.onSendCode}  disabled={!this.props.form.getFieldValue('LoanOfficerPhoneNumber')}>SEND CODE</Button>
+                    <Button type="primary" style={{marginBottom: 0}} onClick={this.onSendCode}  disabled={!this.props.form.getFieldValue('loanOfficerPhoneNumber')}>SEND CODE</Button>
                   </Form.Item>
                 </Col>
               </Row>
