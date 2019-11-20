@@ -87,9 +87,14 @@ class Property extends Component {
                       rules: [{ required: true,  message: 'Please input your Mortgage Types!' }],
                     })(
                       <Select  mode="multiple" placeholder="OPTIONAL: Select All That May Apply" onChange={(value) => onChange({target:{name:"mortgageTypes", value}})}>
-                        <Option value="1">Option 1</Option>
-                        <Option value="2">Option 2</Option>
-                        <Option value="3">Option 3</Option>
+                        <Option value="1">Cash Out</Option>
+                        <Option value="2">FHA</Option>
+                        <Option value="3">Fixed Rate</Option>
+                        <Option value="4">ARM</Option>
+                        <Option value="5">VA</Option>
+                        <Option value="6">Reverse</Option>
+                        <Option value="7">30 Year</Option>
+                        <Option value="8">15 Year</Option>
                       </Select>
                     )}
                   </Form.Item>
