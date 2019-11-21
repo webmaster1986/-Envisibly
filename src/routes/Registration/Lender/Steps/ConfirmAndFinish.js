@@ -32,13 +32,31 @@ class ConfirmAndFinish extends Component {
   }
 
   modal = () => {
+    let inputCode = this.props.form.getFieldValue('InputCode');
+    const isLength6 = (inputCode || '').replace(/_/g, '').trim().length === 11;
     return (
-      <SweetAlert show={this.state.success} success title={"Registration and confirmation successful!"}
-                  onConfirm={this.showModal}>
-        <div className="text-center">
-          <p>Your account is registered but pending your NMLS check. We will notify once your account is active.</p>
-        </div>
-      </SweetAlert>
+      <>
+        { isLength6 ?
+          <SweetAlert
+            show={this.state.success}
+            success
+            title={"Registration and confirmation successful!"}
+            onConfirm={this.showModal}>
+
+            <div className="text-center">
+              <p>Your account is registered but pending your NMLS check. We will notify once your account is active.</p>
+            </div>
+          </SweetAlert> :
+          <SweetAlert
+            show={this.state.success}
+            error title={"Incorrect code entered!"}
+            onConfirm={this.showModal}
+            onCancel={this.showModal}
+            confirmBtnText={"Resend code"}
+            showCancel={true}
+          />
+        }
+      </>
     )
   }
 
@@ -76,7 +94,7 @@ class ConfirmAndFinish extends Component {
                 <Col md={10} sm={24} lg={24} xl={10} xs={24}>
                   <Form.Item>
                     {getFieldDecorator('loanOfficerPhoneNumber', {
-                      rules: [{ required: true, message: 'Please input your phone!' }],
+                      rules: [{ required: true, message: 'Phone is required!' }],
                     })(
                       <MaskedInput mask={'(111) 111-1111'} placeholder="phone" name={"loanOfficerPhoneNumber"} onChange={this.props.onChange}/>
                     )}
@@ -104,10 +122,10 @@ class ConfirmAndFinish extends Component {
                 </Col>
                 <Col md={10} sm={24} lg={24} xl={10} xs={24} className="input-code">
                   <Form.Item>
-                    {getFieldDecorator('Input Code', {
-                      rules: [{ required: true, message: 'Please input your Input Code!' }],
+                    {getFieldDecorator('InputCode', {
+                      rules: [{ required: true, message: 'Input Code is required!' }],
                     })(
-                      <MaskedInput mask="1 1 1 1 1 1" className="border-none "/>
+                      <MaskedInput mask="1 1 1 1 1 1" className="border-none" name="InputCode" onChange={this.props.onChange}/>
                     )}
                   </Form.Item>
                 </Col>

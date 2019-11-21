@@ -32,13 +32,33 @@ class ConfirmAndFinish extends Component {
   }
 
   modal = () => {
+    let inputCode = this.props.form.getFieldValue('InputCode');
+    const isLength6 = (inputCode || '').replace(/_/g, '').trim().length === 11;
     return (
-      <SweetAlert show={this.state.success} success title={"Registration and confirmation successful!"}
-                  onConfirm={this.showModal}>
-        <div className="text-center">
-          <p>You are now free to use your new Envisibly dashboard</p>
-        </div>
-      </SweetAlert>
+      <>
+        {
+          isLength6 ? <SweetAlert show={this.state.success} success title={"Registration and confirmation successful!"}
+                                  onConfirm={this.showModal}>
+            <div className="text-center">
+              <p>You are now free to use your new  dashboard</p>
+            </div>
+          </SweetAlert> : <SweetAlert  show={this.state.success}
+                                       error title={"Incorrect code entered!"}
+                                       onConfirm={this.showModal}
+                                       onCancel={this.showModal}
+                                       confirmBtnText={"Resend code"}
+                                       showCancel={true}
+          >
+            {/*<div className="text-center ">
+              <Button type="danger" onClick={this.showModal}>Resend code</Button>
+              <Button type="danger" onClick={this.showModal}>Cancel</Button>
+            </div>*/}
+          </SweetAlert>
+        }
+
+
+      </>
+
     )
   }
 
@@ -47,16 +67,15 @@ class ConfirmAndFinish extends Component {
       <SweetAlert show={this.state.isSendCode} success
                   onConfirm={this.onSendCode}>
         <div className="text-center">
-          <p>{`Secret 6 digit code sent to ${this.props.form.getFieldValue('BorrowerPhone')}`}</p>
+          <p>{`Secret 6 digit code sent to ${this.props.form.getFieldValue('borrowerPhone')}`}</p>
         </div>
       </SweetAlert>
     )
   }
 
-
-
   render() {
     const { getFieldDecorator } = this.props.form;
+    const {current} = this.props;
     return(
       <div>
         <Row>
@@ -76,7 +95,7 @@ class ConfirmAndFinish extends Component {
                     <Col md={10} sm={24} lg={24} xl={10} xs={24}>
                       <Form.Item>
                         {getFieldDecorator('borrowerPhone', {
-                          rules: [{ required: true, message: 'Please input your phone!' }],
+                          rules: [{ required: true, message: 'Phone is required!' }],
                         })(
                           <MaskedInput mask={'(111) 111-1111'} placeholder="phone" name="borrowerPhone" onChange={this.props.onChange}/>
                         )}
@@ -85,7 +104,7 @@ class ConfirmAndFinish extends Component {
                     <Col md={1} sm={24} lg={24} xl={1} xs={24}/>
                     <Col md={4} sm={24} lg={24} xl={4} xs={24}>
                       <Form.Item>
-                        <Button type="primary" style={{marginBottom: 0}} onClick={this.onSendCode}  disabled={!this.props.form.getFieldValue('BorrowerPhone')}>SEND CODE</Button>
+                        <Button type="primary" style={{marginBottom: 0}} onClick={this.onSendCode}  disabled={!this.props.form.getFieldValue('borrowerPhone')}>SEND CODE</Button>
                       </Form.Item>
                     </Col>
                   </Row>
@@ -104,10 +123,10 @@ class ConfirmAndFinish extends Component {
                     </Col>
                     <Col md={10} sm={24} lg={24} xl={10} xs={24} className="input-code">
                       <Form.Item>
-                        {getFieldDecorator('Input Code', {
-                          rules: [{ required: true, message: 'Please input your Input Code!' }],
+                        {getFieldDecorator('InputCode', {
+                          rules: [{ required: true, message: 'Input Code is required!' }],
                         })(
-                          <MaskedInput mask="1 1 1 1 1 1" className="border-none "/>
+                          <MaskedInput mask="1 1 1 1 1 1" className="border-none" name="InputCode" onChange={this.props.onChange}/>
                         )}
                       </Form.Item>
                     </Col>
@@ -119,6 +138,24 @@ class ConfirmAndFinish extends Component {
                           <Button type="danger" onClick={this.showModal}>CONFIRM & FINISH</Button>
                         </div>
                       </Form.Item>
+                    </Col>
+                  </Row>
+                  <Row className="align-items-center">
+                    <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+                      <div className="steps-action mt-10">
+                        <div className="pull-right">
+                          {current >= -1 && current < 2 &&
+                          <Button className="float-right" type="primary" >
+                            Next
+                          </Button>
+                          }
+                        </div>
+                        {current > 0 && (
+                          <Button type="primary" onClick={this.props.prev}>
+                            Back
+                          </Button>
+                        )}
+                      </div>
                     </Col>
                   </Row>
                 </Form>

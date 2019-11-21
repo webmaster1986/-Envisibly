@@ -1,5 +1,5 @@
 import React,{Component} from "react"
-import {Row, Col, Form, Input, Select,} from 'antd'
+import {Row, Col, Form, Input, Select, Button,} from 'antd'
 import MaskedInput from "antd-mask-input";
 const { Option } = Select;
 class LenderFirstStep extends Component {
@@ -10,9 +10,47 @@ class LenderFirstStep extends Component {
     });
   }
 
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (err) {
+        return;
+      }
+      this.props.next()
+    });
+  };
+
+  phoneNumberValidation = (rule, value, callback) => {
+
+    if (!value) {
+      callback();
+    } else {
+      const number = value.match(/\d/g).join("");
+      if (number.length < 10) {
+        callback([new Error('Enter Valid phone')]);
+      } else {
+        callback();
+      }
+    }
+  }
+
+  zipCodeValidation = (rule, value, callback) => {
+
+    if (!value) {
+      callback();
+    } else {
+      const number = value.match(/\d/g).join("");
+      if (number.length < 5) {
+        callback([new Error('Enter Valid ZIP Code')]);
+      } else {
+        callback();
+      }
+    }
+  }
+
   render() {
     const { getFieldDecorator } = this.props.form;
-    const {onChange} = this.props;
+    const {onChange, current} = this.props;
     return(
       <div>
             <h4 className="text-center mt-20 mb-20">LENDER INFORMATION</h4>
@@ -24,7 +62,7 @@ class LenderFirstStep extends Component {
                 <Col md={19} sm={24} lg={24} xl={19} xs={24}>
                   <Form.Item>
                     {getFieldDecorator('loanOfficerFirstName', {
-                      rules: [{ required: true, message: 'Please input your First Name!' }],
+                      rules: [{ required: true, message: 'First Name is required!' }],
                     })(
                       <Input autoFocus={true} placeholder="Loan Officer First Name" name="loanOfficerFirstName" onChange={onChange}/>
                     )}
@@ -38,7 +76,7 @@ class LenderFirstStep extends Component {
                 <Col md={19} sm={24} lg={24} xl={19} xs={24}>
                   <Form.Item>
                     {getFieldDecorator('loanOfficerLastName', {
-                      rules: [{ required: true, message: 'Please input your Last Name!' }],
+                      rules: [{ required: true, message: 'Last Name is required!' }],
                     })(
                       <Input placeholder="Loan Officer Last Name" name="loanOfficerLastName" onChange={onChange}/>
                     )}
@@ -52,7 +90,7 @@ class LenderFirstStep extends Component {
                 <Col md={19} sm={24} lg={24} xl={19} xs={24}>
                   <Form.Item>
                     {getFieldDecorator('loanOfficerPhoneNumber', {
-                      rules: [{ required: true, message: 'Please input your Phone!'}]
+                      rules: [{ required: true, message: 'Phone is required!'},{ validator: this.phoneNumberValidation }]
                     })(
                       <MaskedInput mask="(111) 111-1111" name='loanOfficerPhoneNumber' placeholder="Loan Officer Phone Number" onChange={onChange}/>
                     )}
@@ -66,7 +104,7 @@ class LenderFirstStep extends Component {
                 <Col md={19} sm={24} lg={24} xl={19} xs={24}>
                   <Form.Item>
                     {getFieldDecorator('NMLS', {
-                      rules: [{ required: true,  message: 'Please input your NMLS!' }],
+                      rules: [{ required: true,  message: 'NMLS is required!' }],
                     })(
                       <Input type="number" placeholder="Loan Officer NMLS #" name="NMLS" onChange={onChange}/>
                     )}
@@ -80,7 +118,7 @@ class LenderFirstStep extends Component {
                 <Col md={19} sm={24} lg={24} xl={19} xs={24}>
                   <Form.Item>
                     {getFieldDecorator('loanOfficerPhysicalAddress', {
-                      rules: [{ required: true,  message: 'Please input your Address!' }],
+                      rules: [{ required: true,  message: 'Address is required!' }],
                     })(
                       <Input placeholder="Loan Officer Physical Address" name="loanOfficerPhysicalAddress" onChange={onChange}/>
                     )}
@@ -89,17 +127,21 @@ class LenderFirstStep extends Component {
               </Row>
               <Row className="align-items-center">
                 <Col md={5} sm={24} lg={24} xl={5} xs={24}/>
-                <Col md={11} sm={24} lg={24} xl={11} xs={24}>
+                <Col md={9} sm={24} lg={24} xl={9} xs={24}>
                   <Form.Item>
-                    {getFieldDecorator('loanOfficerCity')(
+                    {getFieldDecorator('loanOfficerCity',  {
+                      rules: [{ required: true,  message: 'City is required!' }],
+                    })(
                       <Input placeholder="City" name="loanOfficerCity" onChange={onChange}/>
                     )}
                   </Form.Item>
                 </Col>
-                <Col md={4} sm={24} lg={24} xl={4} xs={24}>
+                <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                   <Form.Item>
-                    {getFieldDecorator('loanOfficerState')(
-                      <Select placeholder="State" name="loanOfficerState" onChange={(value) => onChange({target:{name:"loanOfficerState", value}})}>
+                    {getFieldDecorator('loanOfficerState', {
+                      rules: [{ required: true,  message: 'State is required!' }],
+                    })(
+                      <Select placeholder="State" name="loanOfficerState" className={this.props.form.getFieldValue('loanOfficerState') ? "" : 'show-placeholder'} onChange={(value) => onChange({target:{name:"loanOfficerState", value}})}>
                         <option value="AL">Alabama</option>
                         <option value="AK">Alaska</option>
                         <option value="AZ">Arizona</option>
@@ -155,12 +197,32 @@ class LenderFirstStep extends Component {
                     )}
                   </Form.Item>
                 </Col>
-                <Col md={4} sm={24} lg={24} xl={4} xs={24}>
+                <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                   <Form.Item>
-                    {getFieldDecorator('loanOfficerZIPCode')(
+                    {getFieldDecorator('loanOfficerZIPCode', {
+                      rules: [{ required: true,  message: 'Zip Code is required!' },{ validator: this.zipCodeValidation }],
+                    })(
                       <MaskedInput mask="11111" placeholder="ZIP Code" name="loanOfficerZipCode" onChange={onChange}/>
                     )}
                   </Form.Item>
+                </Col>
+              </Row>
+              <Row className="align-items-center">
+                <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+                  <div className="steps-action mt-10">
+                    <div className="pull-right">
+                      {current >= -1 && current < 2 &&
+                      <Button className="float-right" type="primary" onClick={this.handleSubmit}>
+                        Next
+                      </Button>
+                      }
+                    </div>
+                    {current > 0 && (
+                      <Button type="primary" onClick={this.props.prev}>
+                        Back
+                      </Button>
+                    )}
+                  </div>
                 </Col>
               </Row>
             </Form>

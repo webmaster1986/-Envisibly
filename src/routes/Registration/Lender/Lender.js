@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Row, Col, Steps} from "antd";
+import { Row, Col, Steps} from "antd";
 import LenderFirstStep from './Steps/LenderFirstStep'
 import Company from './Steps/Company'
 import ConfirmAndFinish from "./Steps/ConfirmAndFinish";
@@ -25,22 +25,24 @@ class Lender extends React.Component {
       mortgageCompanyCorporateCity: '',
       mortgageCompanyCorporateState: '',
       mortgageCompanyCorporateZIPCode: '',
+      InputCode: '',
     }
   }
 
-  next() {
+  next = () =>  {
     const current = this.state.current + 1;
     this.setState({ current });
   }
 
-  prev() {
+  prev = () => {
     const current = this.state.current - 1;
     this.setState({ current });
   }
 
   onChange = (event) => {
+    const {name, value} = event.target
     this.setState({
-      [event.target.name] : event.target.value,
+      [name] : value
     });
   };
 
@@ -49,7 +51,7 @@ class Lender extends React.Component {
   }
 
   render() {
-    const { current, LoanOfficerPhoneNumber, loanOfficerFirstName} = this.state;
+    const { current} = this.state;
     return (
       <div className="gx-app-login-wrap registration">
         <div className="gx-app-login-container">
@@ -64,28 +66,9 @@ class Lender extends React.Component {
                     <Step key="ConfirmAndFinish" title="Confirm & Finish"/>
                   </Steps>
                   <div className="steps-content">
-                    {
-                      current === 0 && <LenderFirstStep
-                        state={this.state}
-                      onChange={this.onChange}
-                    />
-                    }
-                    {current === 1 && <Company state={this.state} onChange={this.onChange}/>}
-                    {current === 2 && <ConfirmAndFinish state={this.state} onChange={this.onChange}/>}
-                  </div>
-                  <div className="steps-action mt-10">
-                    <div className="pull-right">
-                      {current >= -1 && current < 2 &&
-                      <Button className="float-right" type="primary" onClick={() => this.next()}>
-                        Next
-                      </Button>
-                      }
-                    </div>
-                    {current > 0 && (
-                      <Button type="primary" onClick={() => this.prev()}>
-                        Back
-                      </Button>
-                    )}
+                    {current === 0 && <LenderFirstStep state={this.state} onChange={this.onChange} next={this.next} current={current} prev={this.prev}/>}
+                    {current === 1 && <Company state={this.state} onChange={this.onChange} next={this.next} current={current} prev={this.prev}/>}
+                    {current === 2 && <ConfirmAndFinish state={this.state} onChange={this.onChange} next={this.next} current={current} prev={this.prev}/>}
                   </div>
                 </Col>
               </Row>

@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Row, Col, Steps,} from "antd";
+import {Row, Col, Steps,} from "antd";
 import Borrower from "./Steps/Borrower";
 import Property from "./Steps/Property";
 import ConfirmAndFinish from "./Steps/ConfirmAndFinish";
@@ -17,15 +17,18 @@ class Consumer extends React.Component {
       preferredSpokenLanguage: '',
       ZIPCode: '',
       creditQuality: '',
+      propertyType: '',
+      propertyOccupancy: '',
+      InputCode: '',
     }
   }
 
-  next() {
+  next = () => {
     const current = this.state.current + 1;
     this.setState({ current });
   }
 
-  prev() {
+  prev = () => {
     const current = this.state.current - 1;
     this.setState({ current });
   }
@@ -56,23 +59,9 @@ class Consumer extends React.Component {
                       <Step key="ConfirmAndFinish" title="Confirm & Finish"/>
                   </Steps>
                   <div className="steps-content">
-                    {current === 0 && <Borrower onChange={this.onChange} state={this.state}/>}
-                    {current === 1 && <Property onChange={this.onChange} state={this.state}/>}
-                    {current === 2 && <ConfirmAndFinish onChange={this.onChange} state={this.state}/>}
-                  </div>
-                  <div className="steps-action mt-10">
-                    <div className="pull-right">
-                    {current >= -1 && current < 2 &&
-                    <Button className="float-right" type="primary" onClick={() => this.next()}>
-                      Next
-                    </Button>
-                    }
-                    </div>
-                    {current > 0 && (
-                      <Button type="primary" onClick={() => this.prev()}>
-                        Back
-                      </Button>
-                    )}
+                    {current === 0 && <Borrower onChange={this.onChange} state={this.state} next={this.next} current={current} prev={this.prev}/>}
+                    {current === 1 && <Property onChange={this.onChange} state={this.state} next={this.next} current={current} prev={this.prev}/>}
+                    {current === 2 && <ConfirmAndFinish onChange={this.onChange} state={this.state} prev={this.prev} current={current}/>}
                   </div>
                 </Col>
               </Row>

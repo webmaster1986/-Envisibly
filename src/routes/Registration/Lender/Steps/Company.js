@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import {Row, Col, Form, Input, Select} from 'antd'
+import {Row, Col, Form, Input, Select, Button} from 'antd'
 import MaskedInput from "antd-mask-input";
 
 class Company extends Component {
@@ -10,12 +10,49 @@ class Company extends Component {
     });
   }
 
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (err) {
+        return;
+      }
+      this.props.next()
+    });
+  };
+
+  phoneNumberValidation = (rule, value, callback) => {
+    if (!value) {
+      callback();
+    } else {
+      const number = value.match(/\d/g).join("");
+      if (number.length < 10) {
+        callback([new Error('Enter Valid phone')]);
+      } else {
+        callback();
+      }
+    }
+  }
+
+  zipCodeValidation = (rule, value, callback) => {
+
+    if (!value) {
+      callback();
+    } else {
+      const number = value.match(/\d/g).join("");
+      if (number.length < 5) {
+        callback([new Error('Enter Valid ZIP Code')]);
+      } else {
+        callback();
+      }
+    }
+  }
+
   render() {
     const {getFieldDecorator} = this.props.form;
-    const {onChange} = this.props;
+    const {onChange, current} = this.props;
     return (
       <div>
-        <h4 className="text-center mt-20 mb-20">COMPANY INFORMATIO</h4>
+        <h4 className="text-center mt-20 mb-20">COMPANY INFORMATION</h4>
         <Form>
           <Row className="align-items-center">
             <Col md={5} sm={24} lg={24} xl={5} xs={24}>
@@ -24,7 +61,7 @@ class Company extends Component {
             <Col md={19} sm={24} lg={24} xl={19} xs={24}>
               <Form.Item>
                 {getFieldDecorator('mortgageCompanyName', {
-                  rules: [{required: true, message: 'Please input your Company Name!'}],
+                  rules: [{required: true, message: 'Company Name is required!'}],
                 })(
                   <Input autoFocus={true} placeholder="Mortgage Company Name" name="mortgageCompanyName" onChange={onChange}/>
                 )}
@@ -38,7 +75,7 @@ class Company extends Component {
             <Col md={19} sm={24} lg={24} xl={19} xs={24}>
               <Form.Item>
                 {getFieldDecorator('MNLS', {
-                  rules: [{required: true, message: 'Please input your MNLS!'}],
+                  rules: [{required: true, message: 'MNLS is required!'}],
                 })(
                   <Input type="number" placeholder="Mortgage Company MNLS #" name="MNLS" onChange={onChange}/>
                 )}
@@ -52,7 +89,7 @@ class Company extends Component {
             <Col md={19} sm={24} lg={24} xl={19} xs={24}>
               <Form.Item>
                 {getFieldDecorator('mortgageCompanyLicensingContact', {
-                  rules: [{required: true, type: "number", message: 'Please input your Phone!'}]
+                  rules: [{required: true,  message: 'Phone is required!'},{ validator: this.phoneNumberValidation }]
                 })(
                   <MaskedInput mask="(111) 111-1111" placeholder="Mortgage Company Licensing Contact # " name="mortgageCompanyLicensingContact" onChange={onChange}/>
                 )}
@@ -66,7 +103,7 @@ class Company extends Component {
             <Col md={19} sm={24} lg={24} xl={19} xs={24}>
               <Form.Item>
                 {getFieldDecorator('mortgageCompanyCorporateAddress', {
-                  rules: [{required: true, message: 'Please input your Address!'}],
+                  rules: [{required: true, message: 'Address is required!'}],
                 })(
                   <Input placeholder="Mortgage Company Corporate Address" name="mortgageCompanyCorporateAddress" onChange={onChange}/>
                 )}
@@ -77,17 +114,21 @@ class Company extends Component {
             <Col md={5} sm={24} lg={24} xl={5} xs={24}>
               <p>City, State, Zip:</p>
             </Col>
-            <Col md={11} sm={24} lg={24} xl={11} xs={24}>
+            <Col md={9} sm={24} lg={24} xl={9} xs={24}>
               <Form.Item>
-                {getFieldDecorator('mortgageCompanyCorporateCity')(
+                {getFieldDecorator('mortgageCompanyCorporateCity', {
+                  rules: [{required: true, message: 'City is required!'}],
+                })(
                   <Input placeholder="City" name="mortgageCompanyCorporateCity" onChange={onChange}/>
                 )}
               </Form.Item>
             </Col>
-            <Col md={4} sm={24} lg={24} xl={4} xs={24}>
+            <Col md={5} sm={24} lg={24} xl={5} xs={24}>
               <Form.Item>
-                {getFieldDecorator('mortgageCompanyCorporateState')(
-                  <Select placeholder="State" name="mortgageCompanyCorporateState" onChange={(value) => onChange({target:{name:"mortgageCompanyCorporateState", value}})}>
+                {getFieldDecorator('mortgageCompanyCorporateState', {
+                  rules: [{required: true, message: 'State is required!'}],
+                })(
+                  <Select placeholder="State" name="mortgageCompanyCorporateState" className={this.props.form.getFieldValue('mortgageCompanyCorporateState') ? "" : 'show-placeholder'} onChange={(value) => onChange({target:{name:"mortgageCompanyCorporateState", value}})}>
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
                     <option value="AZ">Arizona</option>
@@ -143,12 +184,32 @@ class Company extends Component {
                 )}
               </Form.Item>
             </Col>
-            <Col md={4} sm={24} lg={24} xl={4} xs={24}>
+            <Col md={5} sm={24} lg={24} xl={5} xs={24}>
               <Form.Item>
-                {getFieldDecorator('mortgageCompanyCorporateZIPCode')(
+                {getFieldDecorator('mortgageCompanyCorporateZIPCode', {
+                  rules: [{required: true, message: 'ZIP Code is required!'},{ validator: this.zipCodeValidation }],
+                })(
                   <MaskedInput mask="11111" placeholder="ZIP Code" onChange={onChange} name="mortgageCompanyCorporateZIPCode"/>
                 )}
               </Form.Item>
+            </Col>
+          </Row>
+          <Row className="align-items-center">
+            <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+              <div className="steps-action mt-10">
+                <div className="pull-right">
+                  {current >= -1 && current < 2 &&
+                  <Button className="float-right" type="primary" onClick={this.handleSubmit}>
+                    Next
+                  </Button>
+                  }
+                </div>
+                {current > 0 && (
+                  <Button type="primary" onClick={this.props.prev}>
+                    Back
+                  </Button>
+                )}
+              </div>
             </Col>
           </Row>
         </Form>
