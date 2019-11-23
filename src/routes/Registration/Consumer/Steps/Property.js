@@ -111,12 +111,11 @@ class Property extends Component {
                       rules: [{ required: true,  message: 'Property Type is required!' }],
                     })(
                       <Select placeholder="Property Type" className={this.props.form.getFieldValue('propertyType') ? "" : 'show-placeholder'} onChange={(value) => onChange({target:{name:"propertyType", value}})}>
-                        <Option value="1">Single Family</Option>
-                        <Option value="2">Residence</Option>
-                        <Option value="3">Condominium</Option>
-                        <Option value="4">Townhome</Option>
-                        <Option value="5">PUD</Option>
-                        <Option value="6">Other</Option>
+                        <Option value="1">Single Family Residence</Option>
+                        <Option value="2">Condominium</Option>
+                        <Option value="3">Townhome</Option>
+                        <Option value="4">PUD</Option>
+                        <Option value="5">Other</Option>
                       </Select>
                     )}
                   </Form.Item>
