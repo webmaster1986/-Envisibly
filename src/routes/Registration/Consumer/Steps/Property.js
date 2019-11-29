@@ -11,6 +11,8 @@ class Property extends Component {
     const { setFieldsValue } = this.props.form;
     if(value){
       setTimeout(() => setFieldsValue({ LoanAmount: maskCurrency(value) }), 1);
+      const amount =  maskCurrency(value)
+      this.props.updateState(amount)
     }
   };
 
@@ -36,7 +38,6 @@ class Property extends Component {
   };
 
   zipCodeValidation = (rule, value, callback) => {
-
     if (!value) {
       callback();
     } else {

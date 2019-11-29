@@ -429,7 +429,7 @@ class Dashboard extends Component {
             </Row>
           </Card>
         </Col>
-        <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+        <Col md={12} sm={24} lg={12} xl={12} xs={24} className="contact-height">
           <Card className='gx-card-widget contact-card'>
             <h2 className="h4 gx-mb-3 text-center">CONTACTS</h2>
             <Row className="align-items-center">
@@ -484,7 +484,7 @@ class Dashboard extends Component {
           <Card className='gx-card-widget'>
             <h2 className="h4 gx-mb-3 text-center">MESSAGES</h2>
             <Row>
-              <CustomScrollbars className="gx-popover-scroll" >
+              <CustomScrollbars className="gx-popover-scroll scroll-bar-nav" >
               {
 
                   messageList.map((x, index) =>
@@ -522,6 +522,7 @@ class Dashboard extends Component {
                     events={events}
                     views={allViews}
                     step={60}
+                    defaultView={'agenda'}
                     defaultDate={new Date(2015, 3, 1)}/>
                 </div>
               </div>

@@ -60,6 +60,13 @@ body {
   .border-none {
     border: none !important;
   }
+  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: #ffffff;
+  }
+
+  .ant-menu-item-selected  > a {
+    color: @color-primary;
+  }
 
   .ant-btn-primary ,.ant-btn-primary:not([disabled]):not(.disabled):active, .ant-btn-primary:not([disabled]):not(.disabled).active, .ant-btn-primary:hover, .ant-btn-primary:focus  {
     background-color: @color-primary !important;
@@ -149,7 +156,24 @@ body {
     width: 100px
   }
 
+  .no-horizontal-scroll {
+    overflow-x: auto;
+  }
+
+  .scroll-bar-nav, .scroll-bar-nav div:first-child{
+    overflow-x: hidden !important;
+  }
+
+  .ant-layout-sider-collapsed .gx-layout-sider-scrollbar {
+    height: calc(100vh) !important;
+  }
+
+  .gx-module-content-scroll {
+     height: 100% !important;
+  }
 }
+
+
 
 @media screen and (max-width: 600px) {
   body {
@@ -187,7 +211,7 @@ body {
     position: fixed;
     width: 100%;
     bottom: 0;
-    z-index: 9999;
+    z-index: 999;
     border-top: solid 2px #91afad !important;
 
   }

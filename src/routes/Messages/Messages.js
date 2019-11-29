@@ -1,990 +1,839 @@
 import React, {Component} from "react";
-import {Avatar,} from "antd";
-import './message.less'
-const messageList =  [
+import {Avatar, Button, Drawer, Input, Tabs} from "antd";
+import CustomScrollbars from "util/CustomScrollbars";
+import Moment from "moment";
+import ChatUserList from "../../../src/components/chat/ChatUserList";
+import Conversation from "../../../src/components/chat/Conversation/index";
+import ContactList from "../../../src/components/chat/ContactList/index";
+import IntlMessages from "util/IntlMessages";
+import SearchBox from "../../../src/components/SearchBox";
+import CircularProgress from "../../../src/components/CircularProgress/index";
+const TabPane = Tabs.TabPane;
+const users = [
   {
-    'id': '15453ba60d3baa5daaf',
-    'from': {
-      'name': 'Domnic Harris',
-      'avatar': 'https://via.placeholder.com/150x150',
-      'email': 'domnicharris@example.com'
-    },
-    'to': [
-      {
-        'name': 'me',
-        'email': 'robert.johnson@example.com'
-      }, {
-        'name': 'me',
-        'email': 'robert.johnson@example.com'
-      }
-    ],
-    'subject': 'Fusce a libero pellentesque',
-    'message': 'Maecenas sem arcu, scelerisque in odio vel, porttitor dignissim purus. Sed vehicula commodo porta. Etiam nec dictum mauris. Ut imperdiet maximus orci vitae ornare. Nullam et libero sit amet tellus ultricies rutrum et sit amet nisl. Pellentesque condimentum diam sed hendrerit facilisis. Suspendisse bibendum convallis quam, sit amet rutrum nisi pulvinar et. Nunc placerat, diam at scelerisque viverra, mi velit auctor nibh, at rhoncus erat ex vitae felis. Integer sed ante eget est rutrum ultrices ut non ipsum.',
-    'read': true,
-    'starred': false,
-    'important': false,
-    'time': '4 Dec',
-    'hasAttachments': false,
-    'labels': [
-      3,
-      2
-    ],
-    'selected': false,
-    'folder': 0
-  },
-  {
-    'id': '15453a06c08fb021776',
-    'from': {
-      'name': 'Garry Sobars',
-      'avatar': 'https://via.placeholder.com/150x150',
-      'email': 'danielleobrien@example.com'
-    },
-    'to': [
-      {
-        'name': 'me',
-        'email': 'robert.johnson@example.com'
-      }
-    ],
-    'subject': 'Nullam id ex at augue pharetra vestibulum eget id mauris.',
-    'message': 'Cras bibendum tortor tortor, eu luctus risus gravida ut. Suspendisse nisi tortor, consequat at pellentesque quis, dapibus vel risus. Praesent aliquam sit amet diam quis luctus. Nulla facilisi. Maecenas id molestie tortor. Nulla eget pretium nulla. Etiam consequat dictum velit, at egestas lacus laoreet ac. Ut facilisis massa vel mi fringilla, non blandit eros dictum. Integer in tellus vitae nisi tincidunt pulvinar. Maecenas ac ante ut felis feugiat ornare id a quam. Quisque feugiat ante quis ornare placerat.',
-    'time': '4 Dec',
-    'read': true,
-    'starred': true,
-    'important': false,
-    'hasAttachments': false,
-    'labels': [
-      1,
-      3
-    ],
-    'selected': false,
-    'folder': 0
-  },
-  {
-    'id': '1541ca7af66da284177',
-    'from': {
-      'name': 'Stella Brown',
-      'avatar': '',
-      'email': 'stellgrown@example.com'
-    },
-    'to': [
-      {
-        'name': 'me',
-        'email': 'robert.johnson@example.com'
-      }
-    ],
-    'subject': 'Vivamus venenatis tempus ipsum, id finibus libero aliquet convallis.',
-    'message': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lorem diam, pulvinar id nisl non, ultrices maximus nibh. Suspendisse ut justo velit. Nullam ac ultrices risus, quis auctor orci. Vestibulum volutpat nisi et neque porta ullamcorper. Maecenas porttitor porta erat ac suscipit. Sed cursus leo ut elementum fringilla. Maecenas semper viverra erat, vel ullamcorper dui efficitur in. Vestibulum placerat imperdiet tellus, et tincidunt eros posuere eget. Proin sit amet facilisis libero. Nulla eget est ut erat aliquet rhoncus. Quisque ac urna vitae dui hendrerit sollicitudin vel id sem.  In eget ante sapien. Quisque consequat velit non ante finibus, vel placerat erat ultricies. Aliquam bibendum justo erat, ultrices vehicula dolor elementum a. Mauris eu nisl feugiat ligula molestie eleifend.\n Aliquam efficitur venenatis velit ac porta. Vivamus vitae pulvinar tellus. Donec odio enim, auctor eget nibh mattis, ultricies dignissim lacus. Phasellus non tincidunt dui. Nulla eu arcu lorem.  Donec non hendrerit augue, lobortis sollicitudin odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis sit amet euismod enim, eget vestibulum justo. Fusce a placerat lectus, eget feugiat purus. Cras risus ante, faucibus eget justo commodo, volutpat tempor ante. Donec sit amet leo venenatis, gravida quam sit amet, blandit dui. In quam ante, elementum ut faucibus nec, tristique vitae dui.  \n \n Praesent vel erat at enim placerat luctus vel ut ipsum. In congue tempor mi, non ornare lectus condimentum at. Aenean libero diam, finibus eget sapien et, tristique fermentum lorem.  ',
-    'time': '3 Dec',
-    'read': true,
-    'starred': false,
-    'important': false,
-    'hasAttachments': false,
-    'labels': [],
-    'selected': false,
-    'folder': 0
-  },
-  {
-    'id': '154297167e781781745',
-    'from': {
-      'name': 'Steve Jonson',
-      'avatar': '',
-      'email': 'stevejonson@example.com'
-    },
-    'to': [
-      {
-        'name': 'me',
-        'email': 'robert.johnson@example.com'
-      }
-    ],
-    'subject': 'Donec ut ante tristique, gravida justo vitae',
-    'message': 'dictum at ligula vitae, posuere sagittis augue. Nam vitae eros quis felis consectetur egestas vitae vitae massa. Vestibulum tincidunt nisi neque, eu ullamcorper risus aliquet vel. Nunc ut lorem dapibus, interdum nulla vel, euismod elit. Fusce a mollis erat, non egestas dui. Fusce eu rutrum orci. Aliquam hendrerit metus sit amet interdum iaculis. Morbi eget nibh ut nibh convallis fermentum vitae ac mauris. Phasellus ligula purus, eleifend vel massa ut, interdum pulvinar sapien. Nullam a ex nec elit condimentum mattis. Nullam sit amet dictum neque, vel sagittis eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. ',
-    'time': '3 Dec',
-    'read': true,
-    'starred': false,
-    'important': false,
-    'hasAttachments': false,
-    'labels': [],
-    'selected': false,
-    'folder': 0
-  },
-  {
-    'id': '15427f4c1b7f3953234',
-    'from': {
-      'name': 'Ira Shorter',
-      'avatar': '',
-      'email': 'irashorter@example.com'
-    },
-    'to': [
-      {
-        'name': 'me',
-        'email': 'robert.johnson@example.com'
-      }
-    ],
-    'subject': 'Commits that need to be pushed lorem ipsum dolor sit amet',
-    'message': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lorem diam, pulvinar id nisl non, ultrices maximus nibh. Suspendisse ut justo velit. Nullam ac ultrices risus, quis auctor orci. Vestibulum volutpat nisi et neque porta ullamcorper. Maecenas porttitor porta erat ac suscipit. Sed cursus leo ut elementum fringilla. Maecenas semper viverra erat, vel ullamcorper dui efficitur in. Vestibulum placerat imperdiet tellus, et tincidunt eros posuere eget. Proin sit amet facilisis libero. Nulla eget est ut erat aliquet rhoncus. Quisque ac urna vitae dui hendrerit sollicitudin vel id sem.  In eget ante sapien. Quisque consequat velit non ante finibus, vel placerat erat ultricies. Aliquam bibendum justo erat, ultrices vehicula dolor elementum a. Mauris eu nisl feugiat ligula molestie eleifend.\n Aliquam efficitur venenatis velit ac porta. Vivamus vitae pulvinar tellus. Donec odio enim, auctor eget nibh mattis, ultricies dignissim lacus. Phasellus non tincidunt dui. Nulla eu arcu lorem.  Donec non hendrerit augue, lobortis sollicitudin odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis sit amet euismod enim, eget vestibulum justo. Fusce a placerat lectus, eget feugiat purus. Cras risus ante, faucibus eget justo commodo, volutpat tempor ante. Donec sit amet leo venenatis, gravida quam sit amet, blandit dui. In quam ante, elementum ut faucibus nec, tristique vitae dui.  \n \n Praesent vel erat at enim placerat luctus vel ut ipsum. In congue tempor mi, non ornare lectus condimentum at. Aenean libero diam, finibus eget sapien et, tristique fermentum lorem.  ',
-    'time': '2 Dec',
-    'read': true,
-    'starred': false,
-    'important': false,
-    'hasAttachments': false,
-    'labels': [],
-    'selected': false,
-    'folder': 3
-  },
-  {
-    'id': '15459251a6d6b397565',
-    'from': {
-      'name': 'Alex Dolgove',
-      'avatar': 'https://via.placeholder.com/150x150',
-      'email': 'alexdolgove@example.com'
-    },
-    'to': [
-      {
-        'name': 'me',
-        'email': 'robert.johnson@example.com'
-      }
-    ],
-    'subject': 'Ut tincidunt massa non elementum fermentum..',
-    'message': 'Nullam vel ipsum eget odio viverra pellentesque. Nulla auctor eu felis eget vulputate. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque quam nisi, pulvinar vitae nulla sed, blandit auctor lacus. Vestibulum et semper lorem. Suspendisse interdum est neque, ut tempus eros ultricies et. Proin ultricies elit ac est egestas pharetra. Praesent id mollis enim. Suspendisse quis arcu nec lacus molestie pharetra sit amet in mauris.',
-    'time': '2 Dec',
-    'read': false,
-    'starred': false,
-    'important': true,
-    'hasAttachments': true,
-    'attachments': [
-      {
-        'type': 'image',
-        'fileName': 'bike',
-        'preview': 'https://via.placeholder.com/500x330',
-        'url': '',
-        'size': '1.1Mb'
-      },
-      {
-        'type': 'image',
-        'fileName': 'burgers',
-        'preview': 'https://via.placeholder.com/500x330',
-        'url': '',
-        'size': '380kb'
-      },
-      {
-        'type': 'image',
-        'fileName': 'camera',
-        'preview': 'https://via.placeholder.com/600x400',
-        'url': 'https://via.placeholder.com/600x400',
-        'size': '17Mb'
-      }
-    ],
-    'labels': [
-      1
-    ],
-    'selected': false,
-    'folder': 0
-  },
-  {
-    'id': '154588a0864d2881124',
-    'from': {
-      'name': 'Domnic Brown',
-      'avatar': 'https://via.placeholder.com/150x150',
-      'email': 'domnicbrown@example.com'
-    },
-    'to': [
-      {
-        'name': 'me',
-        'email': 'robert.johnson@example.com'
-      }
-    ],
-    'subject': 'Fusce eu rutrum orci. Aliquam hendrerit metus sit amet interdum ',
-    'message': 'Phasellus ligula purus, eleifend vel massa ut, interdum pulvinar sapien. Nullam a ex nec elit condimentum mattis. Nullam sit amet dictum neque, vel sagittis eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas..',
-    'time': '1 Dec',
-    'read': false,
-    'starred': false,
-    'important': false,
-    'hasAttachments': false,
-    'labels': [],
-    'selected': false,
-    'folder': 0
-  },
-  {
-    'id': '154537435d5b32bf11a',
-    'from': {
-      'name': 'Brian Lara',
-      'avatar': '',
-      'email': 'brianlara@example.com'
-    },
-    'to': [
-      {
-        'name': 'me',
-        'email': 'robert.johnson@example.com'
-      }
-    ],
-    'subject': 'Quisque felis nisi, iaculis at lacinia et.',
-    'message': 'Aenean facilisis, lorem eget interdum tristique, velit odio tempus orci, sed molestie felis ipsum dignissim leo. Praesent volutpat convallis molestie. Praesent eu massa gravida, semper lacus id, blandit turpis. Nullam posuere sodales dignissim. Nunc commodo dui sit amet posuere lobortis. Aliquam placerat mi at felis laoreet, non aliquam odio varius. Nulla ultrices leo vel metus finibus, tempor feugiat velit mattis. Donec et commodo nisl, sit amet dignissim mi. Ut ullamcorper lacus sed magna pretium commodo. Sed dictum auctor sem vitae tincidunt. Morbi ut justo sit amet tortor tincidunt aliquet. Aenean at est in lorem pulvinar fermentum.',
-    'time': '1 Dec',
-    'read': true,
-    'starred': false,
-    'important': false,
-    'hasAttachments': false,
-    'labels': [],
-    'selected': false,
-    'folder': 0
-  },
-  {
-    'id': '1544e43dcdae6ebf876',
-    'from': {
-      'name': 'Jeson Born',
-      'avatar': 'https://via.placeholder.com/150x150',
-      'email': 'jesonborn@example.com'
-    },
-    'to': [
-      {
-        'name': 'me',
-        'email': 'robert.johnson@example.com'
-      }
-    ],
-    'subject': 'The standard Lorem Ipsum passage',
-    'message': 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided.\n But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse painsAt vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. ',
-    'time': '30 Nov',
-    'read': true,
-    'starred': false,
-    'important': true,
-    'hasAttachments': false,
-    'labels': [
-      2
-    ],
-    'selected': false,
-    'folder': 0
-  },
-  {
-    'id': '1543ee3a5b43e0f9f45',
-    'from': {
-      'name': 'Domnic White',
-      'avatar': '',
-      'email': 'domnicwhite@example.com'
-    },
-    'to': [
-      {
-        'name': 'me',
-        'email': 'robert.johnson@example.com'
-      }
-    ],
-    'subject': 'Cras bibendum tortor tortor.',
-    'message': 'Cras bibendum tortor tortor, eu luctus risus gravida ut. Suspendisse nisi tortor, consequat at pellentesque quis, dapibus vel risus. Praesent aliquam sit amet diam quis luctus. Nulla facilisi. Maecenas id molestie tortor. Nulla eget pretium nulla. Etiam consequat dictum velit, at egestas lacus laoreet ac. Ut facilisis massa vel mi fringilla, non blandit eros dictum. Integer in tellus vitae nisi tincidunt pulvinar. Maecenas ac ante ut felis feugiat ornare id a quam. Quisque feugiat ante quis ornare placerat.',
-    'time': '30 Nov',
-    'read': true,
-    'starred': false,
-    'important': false,
-    'hasAttachments': false,
-    'labels': [],
-    'selected': false,
-    'folder': 0
-  },
-  {
-    'id': '1543cc4515df3146112',
-    'from': {
-      'name': 'Jimmy Jo',
-      'avatar': 'https://via.placeholder.com/150x150',
-      'email': 'jimmy.jo@example.com'
-    },
-    'to': [
-      {
-        'name': 'me',
-        'email': 'robert.johnson@example.com'
-      }
-    ],
-    'subject': 'Contrary to popular belief. ',
-    'message': 'ontrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.\n This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32',
-    'time': '29 Nov',
-    'read': true,
-    'starred': false,
-    'important': false,
-    'hasAttachments': false,
-    'labels': [],
-    'selected': false,
-    'folder': 0
-  },
-  {
-    'id': '154398a4770d7aaf9a2',
-    'from': {
-      'name': 'John Smith',
-      'avatar': 'https://via.placeholder.com/150x150',
-      'email': 'johnsmith@example.com'
-    },
-    'to': [
-      {
-        'name': 'me',
-        'email': 'robert.johnson@example.com'
-      }
-    ],
-    'subject': 'Ut elementum rhoncus nisl.',
-    'message': ['Suspendisse congue ipsum tincidunt justo dictum, sit amet finibus lectus egestas. Proin fermentum nec risus vitae accumsan. Vivamus non ligula eu urna mattis feugiat. Pellentesque ex felis, commodo sed sem a, pharetra semper purus. Curabitur in quam rhoncus, blandit eros tempor, sodales metus. Pellentesque vel luctus ex. Quisque blandit nisl at tincidunt viverra. Phasellus elementum faucibus leo ac molestie.'],
-    'time': '1 Dec',
-    'read': true,
-    'starred': false,
-    'important': false,
-    'hasAttachments': false,
-    'labels': [],
-    'selected': false,
-    'folder': 0
-  },
-  {
-    'id': '15438351f87dcd68567',
-    'from': {
-      'name': 'Jonny Brown',
-      'avatar': '',
-      'email': 'jonnnybrown@example.com'
-    },
-    'to': [
-      {
-        'name': 'me',
-        'email': 'robert.johnson@example.com'
-      }
-    ],
-    'subject': 'Integer nec tempus eros.',
-    'message': 'Vestibulum ornare orci hendrerit elit egestas, nec consectetur mi lobortis. Mauris porttitor dolor in neque aliquam, in sollicitudin enim consequat. Fusce pharetra venenatis fermentum.\n \n Maecenas semper nisi quis lectus dictum, vel fermentum purus malesuada. Nunc tincidunt sit amet nunc sit amet eleifend. Sed tellus risus, sagittis id magna in, commodo feugiat risus. Donec commodo pretium dolor non hendrerit. Nullam id leo et quam cursus vestibulum. Ut id aliquet diam, id varius libero. Ut et felis et est eleifend dignissim vitae condimentum ex. Ut a ullamcorper ante, ac laoreet erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-    'time': '28 Nov',
-    'read': true,
-    'starred': false,
-    'important': false,
-    'hasAttachments': false,
-    'labels': [0],
-    'selected': false,
-    'folder': 0
-  },
-  {
-    'id': '1542d75d929a603125',
-    'from': {
-      'name': 'Rahim Kadir',
-      'avatar': '',
-      'email': 'rahimkadir@example.com'
-    },
-    'to': [
-      {
-        'name': 'me',
-        'email': 'robert.johnson@example.com'
-      }
-    ],
-    'subject': 'Praesent tortor odio, laoreet.',
-    'message': 'Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed id eros sit amet lorem viverra tincidunt eget id dolor. Morbi egestas bibendum ipsum at efficitur. Suspendisse at mauris justo. Curabitur elementum ante et lacus blandit, quis faucibus lorem pellentesque. Duis et auctor quam, sed lacinia ante. Nam placerat lacus eu mollis lobortis. Sed placerat, ipsum eu vestibulum gravida, magna sapien feugiat felis, non varius leo mauris vitae ligula. Suspendisse tincidunt nec enim eu porttitor.',
-    'time': '27 Nov',
-    'read': true,
-    'starred': false,
-    'important': false,
-    'hasAttachments': false,
-    'labels': [],
-    'selected': false,
-    'folder': 0
-  },
-  {
-    'id': '154204e45a59b168453',
-    'from': {
-      'name': 'Kadir',
-      'avatar': 'https://via.placeholder.com/150x150',
-      'email': 'kadirm@example.com'
-    },
-    'to': [
-      {
-        'name': 'me',
-        'email': 'robert.johnson@example.com'
-      }
-    ],
-    'subject': 'Many desktop publishing packages',
-    'message': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lorem diam, pulvinar id nisl non, ultrices maximus nibh. Suspendisse ut justo velit. Nullam ac ultrices risus, quis auctor orci. Vestibulum volutpat nisi et neque porta ullamcorper. Maecenas porttitor porta erat ac suscipit. Sed cursus leo ut elementum fringilla. Maecenas semper viverra erat, vel ullamcorper dui efficitur in. Vestibulum placerat imperdiet tellus, et tincidunt eros posuere eget. Proin sit amet facilisis libero. Nulla eget est ut erat aliquet rhoncus. Quisque ac urna vitae dui hendrerit sollicitudin vel id sem.  In eget ante sapien. Quisque consequat velit non ante finibus, vel placerat erat ultricies. Aliquam bibendum justo erat, ultrices vehicula dolor elementum a.  \n \n Mauris eu nisl feugiat ligula molestie eleifend. Aliquam efficitur venenatis velit ac porta. Vivamus vitae pulvinar tellus. Donec odio enim, auctor eget nibh mattis, ultricies dignissim lacus.\n Phasellus non tincidunt dui. Nulla eu arcu lorem.  Donec non hendrerit augue, lobortis sollicitudin odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis sit amet euismod enim, eget vestibulum justo. Fusce a placerat lectus, eget feugiat purus. Cras risus ante, faucibus eget justo commodo, volutpat tempor ante. Donec sit amet leo venenatis, gravida quam sit amet, blandit dui. In quam ante, elementum ut faucibus nec, tristique vitae dui. Praesent vel erat at enim placerat luctus vel ut ipsum. \n \n In congue tempor mi, non ornare lectus condimentum at. Aenean libero diam, finibus eget sapien et, tristique fermentum lorem.  ',
-    'time': '26 Nov',
-    'read': true,
-    'starred': false,
-    'important': false,
-    'hasAttachments': false,
-    'labels': [0],
-    'selected': false,
-    'folder': 3
-  },
-  {
-    'id': '1541dd1e05dfc439216',
-    'from': {
-      'name': 'Stella Johnson',
-      'avatar': 'https://via.placeholder.com/150x150',
-      'email': 'stella-johnson@example.com'
-    },
-    'to': [
-      {
-        'name': 'me',
-        'email': 'robert.johnson@example.com'
-      }
-    ],
-    'subject': 'Section 1.10.32 of "de',
-    'message': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lorem diam, pulvinar id nisl non, ultrices maximus nibh. Suspendisse ut justo velit. Nullam ac ultrices risus, quis auctor orci. Vestibulum volutpat nisi et neque porta ullamcorper. Maecenas porttitor porta erat ac suscipit. Sed cursus leo ut elementum fringilla. \n \n Maecenas semper viverra erat, vel ullamcorper dui efficitur in. Vestibulum placerat imperdiet tellus, et tincidunt eros posuere eget. Proin sit amet facilisis libero. Nulla eget est ut erat aliquet rhoncus. Quisque ac urna vitae dui hendrerit sollicitudin vel id sem.  In eget ante sapien. Quisque consequat velit non ante finibus, vel placerat erat ultricies. Aliquam bibendum justo erat, ultrices vehicula dolor elementum a. Mauris eu nisl feugiat ligula molestie eleifend. Aliquam efficitur venenatis velit ac porta. Vivamus vitae pulvinar tellus. Donec odio enim, auctor eget nibh mattis, ultricies dignissim lacus.\n Phasellus non tincidunt dui. Nulla eu arcu lorem.  Donec non hendrerit augue, lobortis sollicitudin odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis sit amet euismod enim, eget vestibulum justo. Fusce a placerat lectus, eget feugiat purus. Cras risus ante, faucibus eget justo commodo, volutpat tempor ante. Donec sit amet leo venenatis, gravida quam sit amet, blandit dui. In quam ante, elementum ut faucibus nec, tristique vitae dui. Praesent vel erat at enim placerat luctus vel ut ipsum. In congue tempor mi, non ornare lectus condimentum at. Aenean libero diam, finibus eget sapien et, tristique fermentum lorem.  ',
-    'time': '25 Nov',
-    'read': true,
-    'starred': false,
-    'important': false,
-    'hasAttachments': false,
-    'labels': [],
-    'selected': false,
-    'folder': 3
-  },
-  {
-    'id': '1541dd1e05dfc439217',
-    'from': {
-      'name': 'Steve Smith',
-      'avatar': 'https://via.placeholder.com/150x150',
-      'email': 'stevesmith@example.com'
-    },
-    'to': [
-      {
-        'name': 'me',
-        'email': 'robert.johnson@example.com'
-      }
-    ],
-    'subject': 'Integer nec tempus eros.',
-    'message': 'Curabitur id rutrum ex. Morbi tempus libero eget mauris ultricies venenatis. Curabitur eget pellentesque lorem. Morbi in tempor sem, vel posuere odio. Vivamus sit amet efficitur tortor. Fusce in tortor non lorem blandit eleifend quis eu risus. Donec lobortis ex justo, sed suscipit dolor posuere eget.',
-    'time': '24 Nov',
-    'read': true,
-    'starred': false,
-    'important': false,
-    'hasAttachments': false,
-    'labels': [],
-    'selected': false,
-    'folder': 3
+    id: 1,
+    name: 'Alex Dolgove',
+    thumb: 'https://via.placeholder.com/150x150',
+    status: 'away',
+    mood: 'English versions from the 1914 translation by H. Rackham',
+    lastMessage: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
+    unreadMessage: '',
+    lastMessageTime: '20 min ago',
+    recent: false
+  }, {
+    id: 2,
+    name: 'Domnic Brown',
+    thumb: 'https://via.placeholder.com/150x150',
+    status: 'online',
+    mood: 'English versions from the 1914 translation by H. Rackham',
+    lastMessage: 'It is a long established fact',
+    unreadMessage: '4',
+    lastMessageTime: 'Yesterday',
+    recent: true
+  }, {
+    id: 3,
+    name: 'Domnic Harris',
+    thumb: 'https://via.placeholder.com/150x150',
+    status: 'offline',
+    mood: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
+    lastMessage: 'There are many variations of passages of ',
+    unreadMessage: '',
+    lastMessageTime: '20/11/17',
+    recent: false
+  }, {
+    id: 4,
+    name: 'Garry Sobars',
+    thumb: 'https://via.placeholder.com/150x150',
+    status: 'away',
+    mood: 'It is a long established fact',
+    lastMessage: 'English versions from the 1914 translation by H. Rackham',
+    unreadMessage: '3',
+    lastMessageTime: 'Yesterday',
+    recent: true
+  }, {
+    id: 5,
+    name: 'Jeson Born',
+    thumb: 'https://via.placeholder.com/150x150',
+    status: 'away',
+    mood: 'I must explain to you how all this mistaken idea of denouncing ',
+    lastMessage: 'It is a long established fact',
+    unreadMessage: '',
+    lastMessageTime: 'Monday',
+    recent: true
+  }, {
+    id: 6,
+    name: 'Jimmy Jo',
+    thumb: 'https://via.placeholder.com/150x150',
+    status: 'online',
+    mood: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested',
+    lastMessage: 'All the Lorem Ipsum generators on the',
+    unreadMessage: '',
+    lastMessageTime: 'Friday',
+    recent: false
+  }, {
+    id: 7,
+    name: 'John Smith',
+    thumb: 'https://via.placeholder.com/150x150',
+    status: 'away',
+    mood: 'There are many variations of passages of ',
+    lastMessage: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested',
+    unreadMessage: '',
+    lastMessageTime: 'Tuesday',
+    recent: true
+  }, {
+    id: 8,
+    name: 'Kadir M',
+    thumb: 'https://via.placeholder.com/150x150',
+    status: 'online',
+    mood: 'All the Lorem Ipsum generators on the',
+    lastMessage: 'I must explain to you how all this mistaken idea of denouncing ',
+    unreadMessage: '5',
+    lastMessageTime: 'Monday',
+    recent: false
+  }, {
+    id: 9,
+    name: 'Jimmy Jon',
+    thumb: 'https://via.placeholder.com/150x150',
+    status: 'offline',
+    mood: 'There are many variations of passages of ',
+    lastMessage: 'There are many variations of passages of ',
+    unreadMessage: '',
+    lastMessageTime: '30 Min ago',
+    recent: false
+  }, {
+    id: 10,
+    name: 'Stella Johnson',
+    thumb: 'https://via.placeholder.com/150x150',
+    status: 'offline',
+    mood: 'It is a long established fact',
+    lastMessage: 'English versions from the 1914 translation by H. Rackham',
+    unreadMessage: '',
+    lastMessageTime: 'Yesterday',
+    recent: false
+  }, {
+    id: 11,
+    name: 'Steve Smith',
+    thumb: 'https://via.placeholder.com/150x150',
+    status: 'online',
+    mood: 'The standard chunk of Lorem Ipsum used since the 1500s',
+    lastMessage: 'The standard chunk of Lorem Ipsum used since the 1500s',
+    unreadMessage: '2',
+    lastMessageTime: 'Monday',
+    recent: false
   }
-];
-;
+]
+
+const conversationList = [
+  {
+    'id': 1,
+    'conversationData': [
+      {
+        'type': 'sent',
+        'message': 'It is a long established fact',
+        'sentAt': '3:08:35 PM',
+      }, {
+        'type': 'received',
+        'message': 'I must explain to you how all this mistaken idea of denouncing ',
+        'sentAt': '3:10:28 PM',
+      }, {
+        'type': 'sent',
+        'message': 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested',
+        'sentAt': '3:11:25 PM',
+      }, {
+        'type': 'received',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:12:36 PM',
+      }, {
+        'type': 'received',
+        'message': 'All the Lorem Ipsum generators on the',
+        'sentAt': '3:12:45 PM',
+      }, {
+        'type': 'sent',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:13:04 PM',
+      }, {
+        'type': 'received',
+        'message': 'It is a long established fact',
+        'sentAt': '3:13:28 PM',
+      }, {
+        'type': 'sent',
+        'message': 'The standard chunk of Lorem Ipsum used since the 1500s',
+        'sentAt': '3:15:45 PM',
+      }
+    ]
+  },
+  {
+    'id': 2,
+    'conversationData': [
+      {
+        'type': 'sent',
+        'message': 'English versions from the 1914 translation by H. Rackham',
+        'sentAt': '3:03:28 PM',
+      },
+      {
+        'type': 'received',
+        'message': 'English versions from the 1914 translation by H. Rackham',
+        'sentAt': '3:05:47 PM',
+      },
+      {
+        'type': 'sent',
+        'message': 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
+        'sentAt': '3:07:52 PM',
+      }, {
+        'type': 'received',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:12:36 PM',
+      }, {
+        'type': 'received',
+        'message': 'All the Lorem Ipsum generators on the',
+        'sentAt': '3:12:45 PM',
+      }, {
+        'type': 'sent',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:13:04 PM',
+      },
+    ]
+  },
+  {
+    'id': 3,
+    'conversationData': [
+      {
+        'type': 'sent',
+        'message': 'It is a long established fact',
+        'sentAt': '3:08:35 PM',
+      }, {
+        'type': 'received',
+        'message': 'I must explain to you how all this mistaken idea of denouncing ',
+        'sentAt': '3:10:28 PM',
+      }, {
+        'type': 'sent',
+        'message': 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested',
+        'sentAt': '3:11:25 PM',
+      }, {
+        'type': 'received',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:12:36 PM',
+      }, {
+        'type': 'received',
+        'message': 'All the Lorem Ipsum generators on the',
+        'sentAt': '3:12:45 PM',
+      }, {
+        'type': 'sent',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:13:04 PM',
+      }, {
+        'type': 'received',
+        'message': 'It is a long established fact',
+        'sentAt': '3:13:28 PM',
+      },
+    ]
+  },
+  {
+    'id': 4,
+    'conversationData': [
+      {
+        'type': 'sent',
+        'message': 'English versions from the 1914 translation by H. Rackham',
+        'sentAt': '3:03:28 PM',
+      },
+      {
+        'type': 'received',
+        'message': 'English versions from the 1914 translation by H. Rackham',
+        'sentAt': '3:05:47 PM',
+      },
+      {
+        'type': 'sent',
+        'message': 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested',
+        'sentAt': '3:11:25 PM',
+      }, {
+        'type': 'received',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:12:36 PM',
+      }, {
+        'type': 'received',
+        'message': 'All the Lorem Ipsum generators on the',
+        'sentAt': '3:12:45 PM',
+      }, {
+        'type': 'sent',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:13:04 PM',
+      }, {
+        'type': 'received',
+        'message': 'It is a long established fact',
+        'sentAt': '3:13:28 PM',
+      }, {
+        'type': 'sent',
+        'message': 'The standard chunk of Lorem Ipsum used since the 1500s',
+        'sentAt': '3:15:45 PM',
+      }
+    ]
+  }, {
+    'id': 5,
+    'conversationData': [
+      {
+        'type': 'sent',
+        'message': 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
+        'sentAt': '3:07:52 PM',
+      }, {
+        'type': 'sent',
+        'message': 'It is a long established fact',
+        'sentAt': '3:08:35 PM',
+      }, {
+        'type': 'received',
+        'message': 'I must explain to you how all this mistaken idea of denouncing ',
+        'sentAt': '3:10:28 PM',
+      }, {
+        'type': 'sent',
+        'message': 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested',
+        'sentAt': '3:11:25 PM',
+      }, {
+        'type': 'received',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:12:36 PM',
+      }, {
+        'type': 'received',
+        'message': 'It is a long established fact',
+        'sentAt': '3:13:28 PM',
+      }, {
+        'type': 'sent',
+        'message': 'The standard chunk of Lorem Ipsum used since the 1500s',
+        'sentAt': '3:15:45 PM',
+      }
+    ]
+  },
+  {
+    'id': 6,
+    'conversationData': [
+      {
+        'type': 'sent',
+        'message': 'It is a long established fact',
+        'sentAt': '3:08:35 PM',
+      }, {
+        'type': 'received',
+        'message': 'I must explain to you how all this mistaken idea of denouncing ',
+        'sentAt': '3:10:28 PM',
+      }, {
+        'type': 'sent',
+        'message': 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested',
+        'sentAt': '3:11:25 PM',
+      }, {
+        'type': 'received',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:12:36 PM',
+      }, {
+        'type': 'received',
+        'message': 'It is a long established fact',
+        'sentAt': '3:13:28 PM',
+      }, {
+        'type': 'sent',
+        'message': 'The standard chunk of Lorem Ipsum used since the 1500s',
+        'sentAt': '3:15:45 PM',
+      }
+    ]
+  }, {
+    'id': 7,
+    'conversationData': [
+
+      {
+        'type': 'received',
+        'message': 'English versions from the 1914 translation by H. Rackham',
+        'sentAt': '3:05:47 PM',
+      },
+      {
+        'type': 'sent',
+        'message': 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
+        'sentAt': '3:07:52 PM',
+      }, {
+        'type': 'sent',
+        'message': 'It is a long established fact',
+        'sentAt': '3:08:35 PM',
+      }, {
+        'type': 'received',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:12:36 PM',
+      }, {
+        'type': 'received',
+        'message': 'All the Lorem Ipsum generators on the',
+        'sentAt': '3:12:45 PM',
+      }, {
+        'type': 'sent',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:13:04 PM',
+      }, {
+        'type': 'received',
+        'message': 'It is a long established fact',
+        'sentAt': '3:13:28 PM',
+      },
+    ]
+  },
+  {
+    'id': 8,
+    'conversationData': [
+      {
+        'type': 'sent',
+        'message': 'English versions from the 1914 translation by H. Rackham',
+        'sentAt': '3:03:28 PM',
+      },
+      {
+        'type': 'sent',
+        'message': 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
+        'sentAt': '3:07:52 PM',
+      }, {
+        'type': 'sent',
+        'message': 'It is a long established fact',
+        'sentAt': '3:08:35 PM',
+      }, {
+        'type': 'received',
+        'message': 'I must explain to you how all this mistaken idea of denouncing ',
+        'sentAt': '3:10:28 PM',
+      }, {
+        'type': 'received',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:12:36 PM',
+      }, {
+        'type': 'received',
+        'message': 'All the Lorem Ipsum generators on the',
+        'sentAt': '3:12:45 PM',
+      }, {
+        'type': 'received',
+        'message': 'It is a long established fact',
+        'sentAt': '3:13:28 PM',
+      }, {
+        'type': 'sent',
+        'message': 'The standard chunk of Lorem Ipsum used since the 1500s',
+        'sentAt': '3:15:45 PM',
+      }
+    ]
+  },
+  {
+    'id': 9,
+    'conversationData': [
+
+      {
+        'type': 'received',
+        'message': 'English versions from the 1914 translation by H. Rackham',
+        'sentAt': '3:05:47 PM',
+      },
+      {
+        'type': 'sent',
+        'message': 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
+        'sentAt': '3:07:52 PM',
+      },
+      {
+        'type': 'received',
+        'message': 'I must explain to you how all this mistaken idea of denouncing ',
+        'sentAt': '3:10:28 PM',
+      },
+      {
+        'type': 'received',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:12:36 PM',
+      },
+      {
+        'type': 'sent',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:13:04 PM',
+      },
+      {
+        'type': 'received',
+        'message': 'It is a long established fact',
+        'sentAt': '3:13:28 PM',
+      },
+      {
+        'type': 'sent',
+        'message': 'The standard chunk of Lorem Ipsum used since the 1500s',
+        'sentAt': '3:15:45 PM',
+      }
+    ]
+  },
+  {
+    'id': 10,
+    'conversationData': [
+      {
+        'type': 'sent',
+        'message': 'English versions from the 1914 translation by H. Rackham',
+        'sentAt': '3:03:28 PM',
+      }, {
+        'type': 'received',
+        'message': 'English versions from the 1914 translation by H. Rackham',
+        'sentAt': '3:05:47 PM',
+      }, {
+        'type': 'sent',
+        'message': 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem',
+        'sentAt': '3:07:52 PM',
+      }, {
+        'type': 'sent',
+        'message': 'It is a long established fact',
+        'sentAt': '3:08:35 PM',
+      }, {
+        'type': 'received',
+        'message': 'I must explain to you how all this mistaken idea of denouncing ',
+        'sentAt': '3:10:28 PM',
+      }, {
+        'type': 'sent',
+        'message': 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested',
+        'sentAt': '3:11:25 PM',
+      }, {
+        'type': 'received',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:12:36 PM',
+      }, {
+        'type': 'received',
+        'message': 'All the Lorem Ipsum generators on the',
+        'sentAt': '3:12:45 PM',
+      }, {
+        'type': 'sent',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:13:04 PM',
+      }, {
+        'type': 'received',
+        'message': 'It is a long established fact',
+        'sentAt': '3:13:28 PM',
+      }, {
+        'type': 'sent',
+        'message': 'The standard chunk of Lorem Ipsum used since the 1500s',
+        'sentAt': '3:15:45 PM',
+      }
+    ]
+  },
+  {
+    'id': 11,
+    'conversationData': [
+      {
+        'type': 'received',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:12:36 PM',
+      }, {
+        'type': 'received',
+        'message': 'All the Lorem Ipsum generators on the',
+        'sentAt': '3:12:45 PM',
+      }, {
+        'type': 'sent',
+        'message': 'There are many variations of passages of ',
+        'sentAt': '3:13:04 PM',
+      },
+    ]
+  }
+
+]
+
 
 class Messages extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      messageList : [
-        {
-          'id': '15453ba60d3baa5daaf',
-          'from': {
-            'name': 'Domnic Harris',
-            'avatar': 'https://via.placeholder.com/150x150',
-            'email': 'domnicharris@example.com'
-          },
-          'to': [
-            {
-              'name': 'me',
-              'email': 'robert.johnson@example.com'
-            }, {
-              'name': 'me',
-              'email': 'robert.johnson@example.com'
-            }
-          ],
-          'subject': 'Fusce a libero pellentesque',
-          'message': 'Maecenas sem arcu, scelerisque in odio vel, porttitor dignissim purus. Sed vehicula commodo porta. Etiam nec dictum mauris. Ut imperdiet maximus orci vitae ornare. Nullam et libero sit amet tellus ultricies rutrum et sit amet nisl. Pellentesque condimentum diam sed hendrerit facilisis. Suspendisse bibendum convallis quam, sit amet rutrum nisi pulvinar et. Nunc placerat, diam at scelerisque viverra, mi velit auctor nibh, at rhoncus erat ex vitae felis. Integer sed ante eget est rutrum ultrices ut non ipsum.',
-          'read': true,
-          'starred': false,
-          'important': false,
-          'time': '4 Dec',
-          'hasAttachments': false,
-          'labels': [
-            3,
-            2
-          ],
-          'selected': false,
-          'folder': 0
-        },
-        {
-          'id': '15453a06c08fb021776',
-          'from': {
-            'name': 'Garry Sobars',
-            'avatar': 'https://via.placeholder.com/150x150',
-            'email': 'danielleobrien@example.com'
-          },
-          'to': [
-            {
-              'name': 'me',
-              'email': 'robert.johnson@example.com'
-            }
-          ],
-          'subject': 'Nullam id ex at augue pharetra vestibulum eget id mauris.',
-          'message': 'Cras bibendum tortor tortor, eu luctus risus gravida ut. Suspendisse nisi tortor, consequat at pellentesque quis, dapibus vel risus. Praesent aliquam sit amet diam quis luctus. Nulla facilisi. Maecenas id molestie tortor. Nulla eget pretium nulla. Etiam consequat dictum velit, at egestas lacus laoreet ac. Ut facilisis massa vel mi fringilla, non blandit eros dictum. Integer in tellus vitae nisi tincidunt pulvinar. Maecenas ac ante ut felis feugiat ornare id a quam. Quisque feugiat ante quis ornare placerat.',
-          'time': '4 Dec',
-          'read': true,
-          'starred': true,
-          'important': false,
-          'hasAttachments': false,
-          'labels': [
-            1,
-            3
-          ],
-          'selected': false,
-          'folder': 0
-        },
-        {
-          'id': '1541ca7af66da284177',
-          'from': {
-            'name': 'Stella Brown',
-            'avatar': '',
-            'email': 'stellgrown@example.com'
-          },
-          'to': [
-            {
-              'name': 'me',
-              'email': 'robert.johnson@example.com'
-            }
-          ],
-          'subject': 'Vivamus venenatis tempus ipsum, id finibus libero aliquet convallis.',
-          'message': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lorem diam, pulvinar id nisl non, ultrices maximus nibh. Suspendisse ut justo velit. Nullam ac ultrices risus, quis auctor orci. Vestibulum volutpat nisi et neque porta ullamcorper. Maecenas porttitor porta erat ac suscipit. Sed cursus leo ut elementum fringilla. Maecenas semper viverra erat, vel ullamcorper dui efficitur in. Vestibulum placerat imperdiet tellus, et tincidunt eros posuere eget. Proin sit amet facilisis libero. Nulla eget est ut erat aliquet rhoncus. Quisque ac urna vitae dui hendrerit sollicitudin vel id sem.  In eget ante sapien. Quisque consequat velit non ante finibus, vel placerat erat ultricies. Aliquam bibendum justo erat, ultrices vehicula dolor elementum a. Mauris eu nisl feugiat ligula molestie eleifend.\n Aliquam efficitur venenatis velit ac porta. Vivamus vitae pulvinar tellus. Donec odio enim, auctor eget nibh mattis, ultricies dignissim lacus. Phasellus non tincidunt dui. Nulla eu arcu lorem.  Donec non hendrerit augue, lobortis sollicitudin odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis sit amet euismod enim, eget vestibulum justo. Fusce a placerat lectus, eget feugiat purus. Cras risus ante, faucibus eget justo commodo, volutpat tempor ante. Donec sit amet leo venenatis, gravida quam sit amet, blandit dui. In quam ante, elementum ut faucibus nec, tristique vitae dui.  \n \n Praesent vel erat at enim placerat luctus vel ut ipsum. In congue tempor mi, non ornare lectus condimentum at. Aenean libero diam, finibus eget sapien et, tristique fermentum lorem.  ',
-          'time': '3 Dec',
-          'read': true,
-          'starred': false,
-          'important': false,
-          'hasAttachments': false,
-          'labels': [],
-          'selected': false,
-          'folder': 0
-        },
-        {
-          'id': '154297167e781781745',
-          'from': {
-            'name': 'Steve Jonson',
-            'avatar': '',
-            'email': 'stevejonson@example.com'
-          },
-          'to': [
-            {
-              'name': 'me',
-              'email': 'robert.johnson@example.com'
-            }
-          ],
-          'subject': 'Donec ut ante tristique, gravida justo vitae',
-          'message': 'dictum at ligula vitae, posuere sagittis augue. Nam vitae eros quis felis consectetur egestas vitae vitae massa. Vestibulum tincidunt nisi neque, eu ullamcorper risus aliquet vel. Nunc ut lorem dapibus, interdum nulla vel, euismod elit. Fusce a mollis erat, non egestas dui. Fusce eu rutrum orci. Aliquam hendrerit metus sit amet interdum iaculis. Morbi eget nibh ut nibh convallis fermentum vitae ac mauris. Phasellus ligula purus, eleifend vel massa ut, interdum pulvinar sapien. Nullam a ex nec elit condimentum mattis. Nullam sit amet dictum neque, vel sagittis eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. ',
-          'time': '3 Dec',
-          'read': true,
-          'starred': false,
-          'important': false,
-          'hasAttachments': false,
-          'labels': [],
-          'selected': false,
-          'folder': 0
-        },
-        {
-          'id': '15427f4c1b7f3953234',
-          'from': {
-            'name': 'Ira Shorter',
-            'avatar': '',
-            'email': 'irashorter@example.com'
-          },
-          'to': [
-            {
-              'name': 'me',
-              'email': 'robert.johnson@example.com'
-            }
-          ],
-          'subject': 'Commits that need to be pushed lorem ipsum dolor sit amet',
-          'message': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lorem diam, pulvinar id nisl non, ultrices maximus nibh. Suspendisse ut justo velit. Nullam ac ultrices risus, quis auctor orci. Vestibulum volutpat nisi et neque porta ullamcorper. Maecenas porttitor porta erat ac suscipit. Sed cursus leo ut elementum fringilla. Maecenas semper viverra erat, vel ullamcorper dui efficitur in. Vestibulum placerat imperdiet tellus, et tincidunt eros posuere eget. Proin sit amet facilisis libero. Nulla eget est ut erat aliquet rhoncus. Quisque ac urna vitae dui hendrerit sollicitudin vel id sem.  In eget ante sapien. Quisque consequat velit non ante finibus, vel placerat erat ultricies. Aliquam bibendum justo erat, ultrices vehicula dolor elementum a. Mauris eu nisl feugiat ligula molestie eleifend.\n Aliquam efficitur venenatis velit ac porta. Vivamus vitae pulvinar tellus. Donec odio enim, auctor eget nibh mattis, ultricies dignissim lacus. Phasellus non tincidunt dui. Nulla eu arcu lorem.  Donec non hendrerit augue, lobortis sollicitudin odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis sit amet euismod enim, eget vestibulum justo. Fusce a placerat lectus, eget feugiat purus. Cras risus ante, faucibus eget justo commodo, volutpat tempor ante. Donec sit amet leo venenatis, gravida quam sit amet, blandit dui. In quam ante, elementum ut faucibus nec, tristique vitae dui.  \n \n Praesent vel erat at enim placerat luctus vel ut ipsum. In congue tempor mi, non ornare lectus condimentum at. Aenean libero diam, finibus eget sapien et, tristique fermentum lorem.  ',
-          'time': '2 Dec',
-          'read': true,
-          'starred': false,
-          'important': false,
-          'hasAttachments': false,
-          'labels': [],
-          'selected': false,
-          'folder': 3
-        },
-        {
-          'id': '15459251a6d6b397565',
-          'from': {
-            'name': 'Alex Dolgove',
-            'avatar': 'https://via.placeholder.com/150x150',
-            'email': 'alexdolgove@example.com'
-          },
-          'to': [
-            {
-              'name': 'me',
-              'email': 'robert.johnson@example.com'
-            }
-          ],
-          'subject': 'Ut tincidunt massa non elementum fermentum..',
-          'message': 'Nullam vel ipsum eget odio viverra pellentesque. Nulla auctor eu felis eget vulputate. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque quam nisi, pulvinar vitae nulla sed, blandit auctor lacus. Vestibulum et semper lorem. Suspendisse interdum est neque, ut tempus eros ultricies et. Proin ultricies elit ac est egestas pharetra. Praesent id mollis enim. Suspendisse quis arcu nec lacus molestie pharetra sit amet in mauris.',
-          'time': '2 Dec',
-          'read': false,
-          'starred': false,
-          'important': true,
-          'hasAttachments': true,
-          'attachments': [
-            {
-              'type': 'image',
-              'fileName': 'bike',
-              'preview': 'https://via.placeholder.com/500x330',
-              'url': '',
-              'size': '1.1Mb'
-            },
-            {
-              'type': 'image',
-              'fileName': 'burgers',
-              'preview': 'https://via.placeholder.com/500x330',
-              'url': '',
-              'size': '380kb'
-            },
-            {
-              'type': 'image',
-              'fileName': 'camera',
-              'preview': 'https://via.placeholder.com/600x400',
-              'url': 'https://via.placeholder.com/600x400',
-              'size': '17Mb'
-            }
-          ],
-          'labels': [
-            1
-          ],
-          'selected': false,
-          'folder': 0
-        },
-        {
-          'id': '154588a0864d2881124',
-          'from': {
-            'name': 'Domnic Brown',
-            'avatar': 'https://via.placeholder.com/150x150',
-            'email': 'domnicbrown@example.com'
-          },
-          'to': [
-            {
-              'name': 'me',
-              'email': 'robert.johnson@example.com'
-            }
-          ],
-          'subject': 'Fusce eu rutrum orci. Aliquam hendrerit metus sit amet interdum ',
-          'message': 'Phasellus ligula purus, eleifend vel massa ut, interdum pulvinar sapien. Nullam a ex nec elit condimentum mattis. Nullam sit amet dictum neque, vel sagittis eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas..',
-          'time': '1 Dec',
-          'read': false,
-          'starred': false,
-          'important': false,
-          'hasAttachments': false,
-          'labels': [],
-          'selected': false,
-          'folder': 0
-        },
-        {
-          'id': '154537435d5b32bf11a',
-          'from': {
-            'name': 'Brian Lara',
-            'avatar': '',
-            'email': 'brianlara@example.com'
-          },
-          'to': [
-            {
-              'name': 'me',
-              'email': 'robert.johnson@example.com'
-            }
-          ],
-          'subject': 'Quisque felis nisi, iaculis at lacinia et.',
-          'message': 'Aenean facilisis, lorem eget interdum tristique, velit odio tempus orci, sed molestie felis ipsum dignissim leo. Praesent volutpat convallis molestie. Praesent eu massa gravida, semper lacus id, blandit turpis. Nullam posuere sodales dignissim. Nunc commodo dui sit amet posuere lobortis. Aliquam placerat mi at felis laoreet, non aliquam odio varius. Nulla ultrices leo vel metus finibus, tempor feugiat velit mattis. Donec et commodo nisl, sit amet dignissim mi. Ut ullamcorper lacus sed magna pretium commodo. Sed dictum auctor sem vitae tincidunt. Morbi ut justo sit amet tortor tincidunt aliquet. Aenean at est in lorem pulvinar fermentum.',
-          'time': '1 Dec',
-          'read': true,
-          'starred': false,
-          'important': false,
-          'hasAttachments': false,
-          'labels': [],
-          'selected': false,
-          'folder': 0
-        },
-        {
-          'id': '1544e43dcdae6ebf876',
-          'from': {
-            'name': 'Jeson Born',
-            'avatar': 'https://via.placeholder.com/150x150',
-            'email': 'jesonborn@example.com'
-          },
-          'to': [
-            {
-              'name': 'me',
-              'email': 'robert.johnson@example.com'
-            }
-          ],
-          'subject': 'The standard Lorem Ipsum passage',
-          'message': 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided.\n But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse painsAt vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. ',
-          'time': '30 Nov',
-          'read': true,
-          'starred': false,
-          'important': true,
-          'hasAttachments': false,
-          'labels': [
-            2
-          ],
-          'selected': false,
-          'folder': 0
-        },
-        {
-          'id': '1543ee3a5b43e0f9f45',
-          'from': {
-            'name': 'Domnic White',
-            'avatar': '',
-            'email': 'domnicwhite@example.com'
-          },
-          'to': [
-            {
-              'name': 'me',
-              'email': 'robert.johnson@example.com'
-            }
-          ],
-          'subject': 'Cras bibendum tortor tortor.',
-          'message': 'Cras bibendum tortor tortor, eu luctus risus gravida ut. Suspendisse nisi tortor, consequat at pellentesque quis, dapibus vel risus. Praesent aliquam sit amet diam quis luctus. Nulla facilisi. Maecenas id molestie tortor. Nulla eget pretium nulla. Etiam consequat dictum velit, at egestas lacus laoreet ac. Ut facilisis massa vel mi fringilla, non blandit eros dictum. Integer in tellus vitae nisi tincidunt pulvinar. Maecenas ac ante ut felis feugiat ornare id a quam. Quisque feugiat ante quis ornare placerat.',
-          'time': '30 Nov',
-          'read': true,
-          'starred': false,
-          'important': false,
-          'hasAttachments': false,
-          'labels': [],
-          'selected': false,
-          'folder': 0
-        },
-        {
-          'id': '1543cc4515df3146112',
-          'from': {
-            'name': 'Jimmy Jo',
-            'avatar': 'https://via.placeholder.com/150x150',
-            'email': 'jimmy.jo@example.com'
-          },
-          'to': [
-            {
-              'name': 'me',
-              'email': 'robert.johnson@example.com'
-            }
-          ],
-          'subject': 'Contrary to popular belief. ',
-          'message': 'ontrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.\n This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32',
-          'time': '29 Nov',
-          'read': true,
-          'starred': false,
-          'important': false,
-          'hasAttachments': false,
-          'labels': [],
-          'selected': false,
-          'folder': 0
-        },
-        {
-          'id': '154398a4770d7aaf9a2',
-          'from': {
-            'name': 'John Smith',
-            'avatar': 'https://via.placeholder.com/150x150',
-            'email': 'johnsmith@example.com'
-          },
-          'to': [
-            {
-              'name': 'me',
-              'email': 'robert.johnson@example.com'
-            }
-          ],
-          'subject': 'Ut elementum rhoncus nisl.',
-          'message': ['Suspendisse congue ipsum tincidunt justo dictum, sit amet finibus lectus egestas. Proin fermentum nec risus vitae accumsan. Vivamus non ligula eu urna mattis feugiat. Pellentesque ex felis, commodo sed sem a, pharetra semper purus. Curabitur in quam rhoncus, blandit eros tempor, sodales metus. Pellentesque vel luctus ex. Quisque blandit nisl at tincidunt viverra. Phasellus elementum faucibus leo ac molestie.'],
-          'time': '1 Dec',
-          'read': true,
-          'starred': false,
-          'important': false,
-          'hasAttachments': false,
-          'labels': [],
-          'selected': false,
-          'folder': 0
-        },
-        {
-          'id': '15438351f87dcd68567',
-          'from': {
-            'name': 'Jonny Brown',
-            'avatar': '',
-            'email': 'jonnnybrown@example.com'
-          },
-          'to': [
-            {
-              'name': 'me',
-              'email': 'robert.johnson@example.com'
-            }
-          ],
-          'subject': 'Integer nec tempus eros.',
-          'message': 'Vestibulum ornare orci hendrerit elit egestas, nec consectetur mi lobortis. Mauris porttitor dolor in neque aliquam, in sollicitudin enim consequat. Fusce pharetra venenatis fermentum.\n \n Maecenas semper nisi quis lectus dictum, vel fermentum purus malesuada. Nunc tincidunt sit amet nunc sit amet eleifend. Sed tellus risus, sagittis id magna in, commodo feugiat risus. Donec commodo pretium dolor non hendrerit. Nullam id leo et quam cursus vestibulum. Ut id aliquet diam, id varius libero. Ut et felis et est eleifend dignissim vitae condimentum ex. Ut a ullamcorper ante, ac laoreet erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-          'time': '28 Nov',
-          'read': true,
-          'starred': false,
-          'important': false,
-          'hasAttachments': false,
-          'labels': [0],
-          'selected': false,
-          'folder': 0
-        },
-        {
-          'id': '1542d75d929a603125',
-          'from': {
-            'name': 'Rahim Kadir',
-            'avatar': '',
-            'email': 'rahimkadir@example.com'
-          },
-          'to': [
-            {
-              'name': 'me',
-              'email': 'robert.johnson@example.com'
-            }
-          ],
-          'subject': 'Praesent tortor odio, laoreet.',
-          'message': 'Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed id eros sit amet lorem viverra tincidunt eget id dolor. Morbi egestas bibendum ipsum at efficitur. Suspendisse at mauris justo. Curabitur elementum ante et lacus blandit, quis faucibus lorem pellentesque. Duis et auctor quam, sed lacinia ante. Nam placerat lacus eu mollis lobortis. Sed placerat, ipsum eu vestibulum gravida, magna sapien feugiat felis, non varius leo mauris vitae ligula. Suspendisse tincidunt nec enim eu porttitor.',
-          'time': '27 Nov',
-          'read': true,
-          'starred': false,
-          'important': false,
-          'hasAttachments': false,
-          'labels': [],
-          'selected': false,
-          'folder': 0
-        },
-        {
-          'id': '154204e45a59b168453',
-          'from': {
-            'name': 'Kadir',
-            'avatar': 'https://via.placeholder.com/150x150',
-            'email': 'kadirm@example.com'
-          },
-          'to': [
-            {
-              'name': 'me',
-              'email': 'robert.johnson@example.com'
-            }
-          ],
-          'subject': 'Many desktop publishing packages',
-          'message': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lorem diam, pulvinar id nisl non, ultrices maximus nibh. Suspendisse ut justo velit. Nullam ac ultrices risus, quis auctor orci. Vestibulum volutpat nisi et neque porta ullamcorper. Maecenas porttitor porta erat ac suscipit. Sed cursus leo ut elementum fringilla. Maecenas semper viverra erat, vel ullamcorper dui efficitur in. Vestibulum placerat imperdiet tellus, et tincidunt eros posuere eget. Proin sit amet facilisis libero. Nulla eget est ut erat aliquet rhoncus. Quisque ac urna vitae dui hendrerit sollicitudin vel id sem.  In eget ante sapien. Quisque consequat velit non ante finibus, vel placerat erat ultricies. Aliquam bibendum justo erat, ultrices vehicula dolor elementum a.  \n \n Mauris eu nisl feugiat ligula molestie eleifend. Aliquam efficitur venenatis velit ac porta. Vivamus vitae pulvinar tellus. Donec odio enim, auctor eget nibh mattis, ultricies dignissim lacus.\n Phasellus non tincidunt dui. Nulla eu arcu lorem.  Donec non hendrerit augue, lobortis sollicitudin odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis sit amet euismod enim, eget vestibulum justo. Fusce a placerat lectus, eget feugiat purus. Cras risus ante, faucibus eget justo commodo, volutpat tempor ante. Donec sit amet leo venenatis, gravida quam sit amet, blandit dui. In quam ante, elementum ut faucibus nec, tristique vitae dui. Praesent vel erat at enim placerat luctus vel ut ipsum. \n \n In congue tempor mi, non ornare lectus condimentum at. Aenean libero diam, finibus eget sapien et, tristique fermentum lorem.  ',
-          'time': '26 Nov',
-          'read': true,
-          'starred': false,
-          'important': false,
-          'hasAttachments': false,
-          'labels': [0],
-          'selected': false,
-          'folder': 3
-        },
-        {
-          'id': '1541dd1e05dfc439216',
-          'from': {
-            'name': 'Stella Johnson',
-            'avatar': 'https://via.placeholder.com/150x150',
-            'email': 'stella-johnson@example.com'
-          },
-          'to': [
-            {
-              'name': 'me',
-              'email': 'robert.johnson@example.com'
-            }
-          ],
-          'subject': 'Section 1.10.32 of "de',
-          'message': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lorem diam, pulvinar id nisl non, ultrices maximus nibh. Suspendisse ut justo velit. Nullam ac ultrices risus, quis auctor orci. Vestibulum volutpat nisi et neque porta ullamcorper. Maecenas porttitor porta erat ac suscipit. Sed cursus leo ut elementum fringilla. \n \n Maecenas semper viverra erat, vel ullamcorper dui efficitur in. Vestibulum placerat imperdiet tellus, et tincidunt eros posuere eget. Proin sit amet facilisis libero. Nulla eget est ut erat aliquet rhoncus. Quisque ac urna vitae dui hendrerit sollicitudin vel id sem.  In eget ante sapien. Quisque consequat velit non ante finibus, vel placerat erat ultricies. Aliquam bibendum justo erat, ultrices vehicula dolor elementum a. Mauris eu nisl feugiat ligula molestie eleifend. Aliquam efficitur venenatis velit ac porta. Vivamus vitae pulvinar tellus. Donec odio enim, auctor eget nibh mattis, ultricies dignissim lacus.\n Phasellus non tincidunt dui. Nulla eu arcu lorem.  Donec non hendrerit augue, lobortis sollicitudin odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis sit amet euismod enim, eget vestibulum justo. Fusce a placerat lectus, eget feugiat purus. Cras risus ante, faucibus eget justo commodo, volutpat tempor ante. Donec sit amet leo venenatis, gravida quam sit amet, blandit dui. In quam ante, elementum ut faucibus nec, tristique vitae dui. Praesent vel erat at enim placerat luctus vel ut ipsum. In congue tempor mi, non ornare lectus condimentum at. Aenean libero diam, finibus eget sapien et, tristique fermentum lorem.  ',
-          'time': '25 Nov',
-          'read': true,
-          'starred': false,
-          'important': false,
-          'hasAttachments': false,
-          'labels': [],
-          'selected': false,
-          'folder': 3
-        },
-        {
-          'id': '1541dd1e05dfc439217',
-          'from': {
-            'name': 'Steve Smith',
-            'avatar': 'https://via.placeholder.com/150x150',
-            'email': 'stevesmith@example.com'
-          },
-          'to': [
-            {
-              'name': 'me',
-              'email': 'robert.johnson@example.com'
-            }
-          ],
-          'subject': 'Integer nec tempus eros.',
-          'message': 'Curabitur id rutrum ex. Morbi tempus libero eget mauris ultricies venenatis. Curabitur eget pellentesque lorem. Morbi in tempor sem, vel posuere odio. Vivamus sit amet efficitur tortor. Fusce in tortor non lorem blandit eleifend quis eu risus. Donec lobortis ex justo, sed suscipit dolor posuere eget.',
-          'time': '24 Nov',
-          'read': true,
-          'starred': false,
-          'important': false,
-          'hasAttachments': false,
-          'labels': [],
-          'selected': false,
-          'folder': 3
-        }
-      ],
-      searchMessage: ''
+  filterContact = (userName) => {
+    if (userName === '') {
+      return users.filter(user => !user.recent);
     }
-  }
-
-  onChange = (evt) => {
-    this.setState({
-      searchMessage: evt.target.value
-    })
-  }
-
-  filterMessageList = () =>{
-    const {messageList, searchMessage} = this.state;
-    if (!searchMessage) {
-      return messageList;
+    return users.filter((user) =>
+      !user.recent && user.name.toLowerCase().indexOf(userName.toLowerCase()) > -1
+    );
+  };
+  filterUsers = (userName) => {
+    if (userName === '') {
+      return users.filter(user => user.recent);
     }
-    let filteredData = messageList;
-    if (searchMessage) {
-      filteredData = filteredData.filter(x => {
-        return x.from.name.toLowerCase().includes(searchMessage.toLowerCase())
-      })
-    }
-    return filteredData;
-  }
+    return users.filter((user) =>
+      user.recent && user.name.toLowerCase().indexOf(userName.toLowerCase()) > -1
+    );
+  };
+  Communication = () => {
+    const {message, selectedUser, conversation} = this.state;
+    const {conversationData} = conversation;
+    return <div className="gx-chat-main">
+      <div className="gx-chat-main-header">
+        <span className="gx-d-block gx-d-lg-none gx-chat-btn"><i className="gx-icon-btn icon icon-chat"
+                                                                 onClick={this.onToggleDrawer.bind(this)}/></span>
+        <div className="gx-chat-main-header-info">
 
+          <div className="gx-chat-avatar gx-mr-2">
+            <div className="gx-status-pos">
+              <Avatar src={selectedUser.thumb}
+                      className="gx-rounded-circle gx-size-60"
+                      alt=""/>
 
+              <span className={`gx-status gx-${selectedUser.status}`}/>
+            </div>
+          </div>
 
-  render() {
-    return(
-      <div className="message">
-        <div className="gx-module-logo"><i className="icon icon-email gx-mr-4"/><span><span>Messages</span></span></div>
-        <div className="gx-chat-search-wrapper mb-10 mt-10">
-          <div className={`gx-search-bar gx-chat-search-bar gx-lt-icon-search-bar-lg `}>
+          <div className="gx-chat-contact-name">
+            {selectedUser.name}
+          </div>
+        </div>
+
+      </div>
+
+      <CustomScrollbars className="gx-chat-list-scroll scroll-bar-nav">
+        <Conversation conversationData={conversationData}
+                      selectedUser={selectedUser}/>
+      </CustomScrollbars>
+
+      <div className="gx-chat-main-footer">
+        <div className="gx-flex-row gx-align-items-center" style={{maxHeight: 51}}>
+          <div className="gx-col">
             <div className="gx-form-group">
-              <input className="ant-input" type="search" placeholder="search message" onChange={this.onChange}
-                     value={this.state.searchMessage}/>
-              <span className="gx-search-icon gx-pointer"><i className="icon icon-search"/></span>
+                            <textarea
+                              id="required" className="gx-border-0 ant-input gx-chat-textarea"
+                              onKeyUp={this._handleKeyPress.bind(this)}
+                              onChange={this.updateMessageValue.bind(this)}
+                              value={message}
+                              placeholder="Type and hit enter to send message"
+                            />
+            </div>
+          </div>
+          <i className="gx-icon-btn icon icon-sent" onClick={this.submitComment.bind(this)}/>
+        </div>
+      </div>
+    </div>
+  };
+
+  AppUsersInfo = () => {
+    return <div className="gx-chat-sidenav-main">
+      <div className="gx-bg-grey-light gx-chat-sidenav-header">
+
+        <div className="gx-chat-user-hd gx-mb-0">
+          <i className="gx-icon-btn icon icon-arrow-left" onClick={() => {
+            this.setState({userState: 1});
+          }}/>
+
+        </div>
+        <div className="gx-chat-user gx-chat-user-center">
+          <div className="gx-chat-avatar gx-mx-auto">
+            <Avatar src='https://via.placeholder.com/150x150'
+                    className="gx-size-60" alt="John Doe"/>
+          </div>
+
+          <div className="gx-user-name h4 gx-my-2">Robert Johnson</div>
+
+        </div>
+      </div>
+      <div className="gx-chat-sidenav-content">
+
+        <CustomScrollbars className="gx-chat-sidenav-scroll">
+          <div className="gx-p-4">
+            <form>
+              <div className="gx-form-group gx-mt-4">
+                <label>Mood</label>
+
+                <Input
+                  fullWidth
+                  id="exampleTextarea"
+                  multiline
+                  rows={3}
+                  onKeyUp={this._handleKeyPress.bind(this)}
+                  onChange={this.updateMessageValue.bind(this)}
+                  defaultValue="it's a status....not your diary..."
+                  placeholder="Status"
+                  margin="none"/>
+
+              </div>
+            </form>
+          </div>
+        </CustomScrollbars>
+
+      </div>
+    </div>
+  };
+  ChatUsers = () => {
+    return <div className="gx-chat-sidenav-main">
+
+      <div className="gx-chat-sidenav-header">
+
+        <div className="gx-chat-user-hd">
+
+          <div className="gx-chat-avatar gx-mr-3" onClick={() => {
+            this.setState({
+              userState: 2
+            });
+          }}>
+            <div className="gx-status-pos">
+              <Avatar id="avatar-button" src='https://via.placeholder.com/150x150'
+                      className="gx-size-50"
+                      alt=""/>
+              <span className="gx-status gx-online"/>
+            </div>
+          </div>
+
+          <div className="gx-module-user-info gx-flex-column gx-justify-content-center">
+            <div className="gx-module-title">
+              <h5 className="gx-mb-0">Robert Johnson</h5>
+            </div>
+            <div className="gx-module-user-detail">
+              <span className="gx-text-grey gx-link">robert@example.com</span>
             </div>
           </div>
         </div>
-        {
-          this.filterMessageList().map((mail, index) =>
-            <div className="gx-module-list-item gx-mail-cell" key={index}>
-              <div className="gx-module-list-icon">
-                <div className="gx-ml-2">
-                  {mail.from.avatar === '' ?
-                    <Avatar className="gx-avatar gx-bg-blue gx-size-40"> {mail.from.name.charAt(0).toUpperCase()}</Avatar> :
-                    <Avatar className="gx-size-40" alt="Alice Freeman"
-                            src={mail.from.avatar}/>
-                  }
-                </div>
-              </div>
 
-              <div className="gx-mail-list-info">
+        <div className="gx-chat-search-wrapper">
 
-                <div className="gx-module-list-content">
-                  <div className="gx-mail-user-des">
+          <SearchBox styleName="gx-chat-search-bar gx-lt-icon-search-bar-lg"
+                     placeholder="Search or start new chat"
+                     onChange={this.updateSearchChatUser.bind(this)}
+                     value={this.state.searchChatUser}/>
 
-                    <span className="gx-sender-name">{mail.from.name}</span>
+        </div>
+      </div>
 
-                    {/*<span className="gx-toolbar-separator">&nbsp;</span>*/}
+      <div className="gx-chat-sidenav-content">
+        {/*<AppBar position="static" className="no-shadow chat-tabs-header">*/}
+        <Tabs className="gx-tabs-half" defaultActiveKey="1">
+          <TabPane label={<IntlMessages id="chat.chatUser"/>} tab={<IntlMessages id="chat.chatUser"/>} key="1">
+            <CustomScrollbars className="gx-chat-sidenav-scroll-tab-1 scroll-bar-nav">
+              {this.state.chatUsers.length === 0 ?
+                <div className="gx-p-5">{this.state.userNotFound}</div>
+                :
+                <ChatUserList chatUsers={this.state.chatUsers}
+                              selectedSectionId={this.state.selectedSectionId}
+                              onSelectUser={this.onSelectUser.bind(this)}/>
+              }
+            </CustomScrollbars>
+          </TabPane>
+          <TabPane label={<IntlMessages id="chat.contacts"/>} tab={<IntlMessages id="chat.contacts"/>} key="2">
+            <CustomScrollbars className="gx-chat-sidenav-scroll-tab-2 scroll-bar-nav">
+              {
+                this.state.contactList.length === 0 ?
+                  <div className="gx-p-5">{this.state.userNotFound}</div>
+                  :
+                  <ContactList contactList={this.state.contactList}
+                               selectedSectionId={this.state.selectedSectionId}
+                               onSelectUser={this.onSelectUser.bind(this)}/>
+              }
+            </CustomScrollbars>
+          </TabPane>
+        </Tabs>
 
-                  {/*  <span className="gx-d-inline-block gx-text-truncate gx-send-subject">{mail.subject}</span>*/}
 
-                  {/*  {mail.hasAttachments &&
+      </div>
+    </div>
+  };
+  _handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      this.submitComment();
+    }
+  };
 
-                    <i className="icon icon-attachment"/>}*/}
+  handleChange = (event, value) => {
+    this.setState({selectedTabIndex: value});
+  };
 
-                    <div className="gx-time">{mail.time}</div>
+  handleChangeIndex = index => {
+    this.setState({selectedTabIndex: index});
+  };
+  onSelectUser = (user) => {
+    this.setState({
+      loader: true,
+      selectedSectionId: user.id,
+      drawerState: this.props.drawerState,
+      selectedUser: user,
+      conversation: this.state.conversationList.find((data) => data.id === user.id)
+    });
+    setTimeout(() => {
+      this.setState({loader: false});
+    }, 1500);
+  };
+  showCommunication = () => {
+    return (
+      <div className="gx-chat-box">
+        {this.state.selectedUser === null ?
+          <div className="gx-comment-box">
+            <div className="gx-fs-80"><i className="icon icon-chat gx-text-muted"/></div>
+            <h1 className="gx-text-muted">{<IntlMessages id="chat.selectUserChat"/>}</h1>
+            <Button className="gx-d-block gx-d-lg-none" type="primary"
+                    onClick={this.onToggleDrawer.bind(this)}>{<IntlMessages
+              id="chat.selectContactChat"/>}</Button>
 
-                  </div>
+          </div>
+          : this.Communication()}
+      </div>)
+  };
 
+  constructor() {
+    super();
+    this.state = {
+      loader: false,
+      userNotFound: 'No user found',
+      drawerState: false,
+      selectedSectionId: '',
+      selectedTabIndex: 1,
+      userState: 1,
+      searchChatUser: '',
+      contactList: users.filter((user) => !user.recent),
+      selectedUser: null,
+      message: '',
+      chatUsers: users.filter((user) => user.recent),
+      conversationList: conversationList,
+      conversation: null
+    }
+  }
 
-                  <div className="gx-message">
-                    <p className="gx-text-truncate"> {mail.message}</p>
+  submitComment() {
+    if (this.state.message !== '') {
+      const updatedConversation = this.state.conversation.conversationData.concat({
+        'type': 'sent',
+        'message': this.state.message,
+        'sentAt': Moment().format('hh:mm:ss A'),
+      });
+      this.setState({
+        conversation: {
+          ...this.state.conversation, conversationData: updatedConversation
+        },
+        message: '',
+        conversationList: this.state.conversationList.map(conversationData => {
+          if (conversationData.id === this.state.conversation.id) {
+            return {...this.state.conversation, conversationData: updatedConversation};
+          } else {
+            return conversationData;
+          }
+        })
+      });
+    }
+  }
 
-                  </div>
-                </div>
+  updateMessageValue(evt) {
+    this.setState({
+      message: evt.target.value
+    });
+  }
 
-              </div>
+  updateSearchChatUser(evt) {
+    this.setState({
+      searchChatUser: evt.target.value,
+      contactList: this.filterContact(evt.target.value),
+      chatUsers: this.filterUsers(evt.target.value)
+    });
+  }
 
+  onToggleDrawer() {
+    this.setState({
+      drawerState: !this.state.drawerState
+    });
+  }
+
+  render() {
+    const {loader, userState, drawerState} = this.state;
+    return (
+      <div className="gx-main-content">
+        <div className="gx-app-module gx-chat-module">
+          <div className="gx-chat-module-box">
+            <div className="gx-d-block gx-d-lg-none">
+              <Drawer
+                placement="left"
+                closable={false}
+                visible={drawerState}
+                onClose={this.onToggleDrawer.bind(this)}>
+                {userState === 1 ? this.ChatUsers() : this.AppUsersInfo()}
+              </Drawer>
             </div>
-          )
-        }
+            <div className="gx-chat-sidenav gx-d-none gx-d-lg-flex">
+              {userState === 1 ? this.ChatUsers() : this.AppUsersInfo()}
+            </div>
+            {loader ?
+              <div className="gx-loader-view">
+                <CircularProgress/>
+              </div> : this.showCommunication()
+            }
+          </div>
+        </div>
       </div>
     )
   }
 }
-
 export default Messages

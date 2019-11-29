@@ -9,6 +9,7 @@ class LenderProfile extends Component {
       <Row className="profile">
         <Col md={12} sm={24} lg={12} xl={12} xs={24}>
           <Card className='gx-card-widget'>
+            <h2 className="text-center">Lender Profile</h2>
             <Row className="align-items-center">
               <Col md={12} sm={24} lg={12} xl={12} xs={24}>
                 <div className="text-center">
@@ -27,10 +28,10 @@ class LenderProfile extends Component {
             </Row>
           </Card>
         </Col>
-        <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+        <Col md={12} sm={24} lg={12} xl={12} xs={24} className="time-height">
           <Card className='gx-card-widget'>
             <div className="text-center">
-              <h4><i className="icon icon-schedule"/>&nbsp; Local Time: 3:30 PM</h4>
+              <h2><i className="icon icon-schedule"/>&nbsp; Local Time: 3:30 PM</h2>
             </div>
             <Row className="align-items-center">
               <Col md={24} sm={24} lg={24} xl={24} xs={24} className="text-center">
@@ -38,7 +39,7 @@ class LenderProfile extends Component {
                 <Button type="primary" icon="mail">Message</Button>
               </Col>
               <Col md={24} sm={24} lg={24} xl={24} xs={24} className="text-center rotate-icon">
-                <Button type="danger" icon="phone">Call Now</Button>
+                <Button type="danger" icon="phone" style={{width: 218}}>Call Now</Button>
               </Col>
               <Col md={24} sm={24} lg={24} xl={24} xs={24} className="text-center">
                 <p>Accepting Calls: <b> Monday, Wednesday, Friday</b></p>
@@ -49,7 +50,7 @@ class LenderProfile extends Component {
         </Col>
         <Col md={12} sm={24} lg={12} xl={12} xs={24}>
           <Card className='gx-card-widget'>
-            <h4 className="text-center">Borrower Details</h4>
+            <h2 className="text-center">Borrower Details</h2>
             <Row className="align-items-center">
               <Col md={12} sm={24} lg={24} xl={12} xs={24}>
                 <h4>Borrower </h4>
@@ -68,9 +69,9 @@ class LenderProfile extends Component {
             </Row>
           </Card>
         </Col>
-        <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+        <Col md={12} sm={24} lg={12} xl={12} xs={24} className="lender-loan">
           <Card className='gx-card-widget'>
-            <h4 className="text-center">Loan Details</h4>
+            <h2 className="text-center">Loan Details</h2>
             <Row className="align-items-center">
               <Col md={12} sm={24} lg={24} xl={12} xs={24}>
                 <h4>Borrower </h4>

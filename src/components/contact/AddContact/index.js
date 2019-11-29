@@ -7,14 +7,13 @@ class AddContact extends React.Component {
   constructor(props) {
     super(props);
 
-    const {id, thumb, name, email, phone, designation, selected, starred, frequently} = props.contact;
+    const {id, thumb, name, nmls, companyName, selected, starred, frequently} = props.contact;
     this.state = {
       id,
       thumb,
       name,
-      email,
-      phone,
-      designation,
+      nmls,
+      companyName,
       selected,
       starred,
       frequently
@@ -23,7 +22,7 @@ class AddContact extends React.Component {
 
   render() {
     const {onSaveContact, onContactClose, open, contact} = this.props;
-    const {id, name, email, phone, designation, selected, starred, frequently} = this.state;
+    const {id, name, nmls, companyName, selected, starred, frequently} = this.state;
     let {thumb} = this.state;
     if (!thumb) {
       thumb = require('assets/images/placeholder.jpg');
@@ -44,9 +43,8 @@ class AddContact extends React.Component {
               'id': id,
               'name': name,
               'thumb': thumb,
-              'email': email,
-              'phone': phone,
-              'designation': designation,
+              'nmls': nmls,
+              'companyName': companyName,
               'selected': selected,
               'starred': starred,
               'frequently': frequently
@@ -55,9 +53,8 @@ class AddContact extends React.Component {
             'id': id + 1,
             'name': '',
             'thumb': '',
-            'email': '',
-            'phone': '',
-            'designation': '',
+            'nmls': '',
+            'companyName': '',
           })
 
         }}
@@ -79,27 +76,27 @@ class AddContact extends React.Component {
             </div>
             <div className="gx-form-group">
               <Input
-                placeholder="Email"
-                onChange={(event) => this.setState({email: event.target.value})}
-                value={email}
+                placeholder="NMLS"
+                onChange={(event) => this.setState({nmls: event.target.value})}
+                value={nmls}
                 margin="normal"/>
             </div>
             <div className="gx-form-group">
               <Input
-                placeholder="Phone"
-                onChange={(event) => this.setState({phone: event.target.value})}
-                value={phone}
+                placeholder="Company Name"
+                onChange={(event) => this.setState({companyName: event.target.value})}
+                value={companyName}
                 margin="normal"
               />
             </div>
-            <div className="gx-form-group">
+            {/*<div className="gx-form-group">
               <Input
                 placeholder="Designation"
                 onChange={(event) => this.setState({designation: event.target.value})}
                 value={designation}
                 autosize={{minRows: 2, maxRows: 6}}
                 margin="normal"/>
-            </div>
+            </div>*/}
           </div>
         </div>
       </Modal>

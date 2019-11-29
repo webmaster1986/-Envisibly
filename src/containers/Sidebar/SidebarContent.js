@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Menu} from "antd";
 import {Link} from "react-router-dom";
-import CustomScrollbars from "util/CustomScrollbars";
+import CustomScrollbars from "../../util/CustomScrollbars";
 import SidebarLogo from "./SidebarLogo";
 import Auxiliary from "util/Auxiliary";
 import {
@@ -36,21 +36,21 @@ class SidebarContent extends Component {
 
         <SidebarLogo/>
         <div className="gx-sidebar-content">
-          <CustomScrollbars className="gx-layout-sider-scrollbar">
+          <CustomScrollbars className="gx-layout-sider-scrollbar scroll-bar-nav ">
             <Menu
               defaultOpenKeys={[defaultOpenKeys]}
               selectedKeys={[selectedKeys]}
               theme={themeType === THEME_TYPE_LITE ? 'lite' : 'dark'}
               mode="inline">
               <Menu.Item key="dashboard">
-                <Link to="/dashboard"><i className="icon icon-widgets"/>
+                <Link to="/dashboard"><i className="icon icon-home"/>
                   <IntlMessages id="Dashboard"/></Link>
               </Menu.Item>
               <Menu.Item key="contacts">
-                <Link to="/contacts"><i className="icon icon-user"/>
+                <Link to="/contacts"><i className="icon icon-contacts"/>
                   <IntlMessages id="Contacts"/></Link>
               </Menu.Item>
-              <Menu.Item key="Messages">
+              <Menu.Item key="messages">
                 <Link to="/messages"><i className="icon icon-email"/>
                   <IntlMessages id="Messages"/></Link>
               </Menu.Item>

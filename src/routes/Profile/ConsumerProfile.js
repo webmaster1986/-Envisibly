@@ -9,6 +9,7 @@ class ConsumerProfile extends Component {
       <Row className="profile">
         <Col md={12} sm={24} lg={12} xl={12} xs={24}>
           <Card className='gx-card-widget'>
+            <h2 className="text-center">Consumer Profile</h2>
             <Row className="align-items-center">
               <Col md={12} sm={24} lg={12} xl={12} xs={24}>
                 <div className="text-center">
@@ -30,10 +31,10 @@ class ConsumerProfile extends Component {
             </Row>
           </Card>
         </Col>
-        <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+        <Col md={12} sm={24} lg={12} xl={12} xs={24} className="time-height">
           <Card className='gx-card-widget'>
             <div className="text-center">
-               <h4><i className="icon icon-schedule"/>&nbsp; Local Time: 3:30 PM</h4>
+               <h2><i className="icon icon-schedule"/>&nbsp; Local Time: 3:30 PM</h2>
             </div>
             <Row className="align-items-center">
               <Col md={24} sm={24} lg={24} xl={24} xs={24} className="text-center">
@@ -41,7 +42,7 @@ class ConsumerProfile extends Component {
                 <Button type="primary" icon="mail">Message</Button>
               </Col>
               <Col md={24} sm={24} lg={24} xl={24} xs={24} className="text-center rotate-icon">
-                <Button type="danger" icon="phone">Call Now</Button>
+                <Button type="danger" icon="phone" style={{width: 218}}>Call Now</Button>
               </Col>
               <Col md={24} sm={24} lg={24} xl={24} xs={24} className="text-center">
                <p>Office Hours: <b>Monday - Friday 8am - 5pm</b></p>
@@ -49,9 +50,9 @@ class ConsumerProfile extends Component {
             </Row>
           </Card>
         </Col>
-        <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+        <Col md={12} sm={24} lg={12} xl={12} xs={24} >
           <Card className='gx-card-widget'>
-            <h4 className="text-center">Loan Officer Details</h4>
+            <h2 className="text-center">Loan Officer Details</h2>
             <Row className="align-items-center">
               <Col md={12} sm={24} lg={24} xl={12} xs={24}>
                 <h4>Loan Officer</h4>
@@ -68,9 +69,9 @@ class ConsumerProfile extends Component {
             </Row>
           </Card>
         </Col>
-        <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+        <Col md={12} sm={24} lg={12} xl={12} xs={24}className="loan-officer-details">
           <Card className='gx-card-widget'>
-            <h4 className="text-center">Loan Officer Details</h4>
+            <h2 className="text-center">Loan Officer Details</h2>
             <Row className="align-items-center">
               <Col md={24} sm={24} lg={24} xl={24} xs={24}>
                 <p>My name is Jeremy Pilchman. Ive been

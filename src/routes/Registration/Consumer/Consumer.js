@@ -20,6 +20,7 @@ class Consumer extends React.Component {
       propertyType: '',
       propertyOccupancy: '',
       InputCode: '',
+      LoanAmount: ''
     }
   }
 
@@ -43,6 +44,12 @@ class Consumer extends React.Component {
     this.props.history.push('/signin');
   }
 
+  updateState = (LoanAmount) => {
+    this.setState({
+      LoanAmount
+    })
+  }
+
   render() {
     const { current, BorrowerPhone } = this.state;
     return (
@@ -60,7 +67,7 @@ class Consumer extends React.Component {
                   </Steps>
                   <div className="steps-content">
                     {current === 0 && <Borrower onChange={this.onChange} state={this.state} next={this.next} current={current} prev={this.prev}/>}
-                    {current === 1 && <Property onChange={this.onChange} state={this.state} next={this.next} current={current} prev={this.prev}/>}
+                    {current === 1 && <Property onChange={this.onChange} state={this.state} next={this.next} current={current} prev={this.prev}  updateState={this.updateState}/>}
                     {current === 2 && <ConfirmAndFinish onChange={this.onChange} state={this.state} prev={this.prev} current={current}/>}
                   </div>
                 </Col>
