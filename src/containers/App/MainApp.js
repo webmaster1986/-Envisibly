@@ -108,7 +108,8 @@ export class MainApp extends Component {
             <App match={match}/>
             <Footer>
               <div className="gx-layout-footer-content">
-               {mobileView ?  <TabBarBottom activeTab={this.props.location.pathname}/> : footerText}
+               {/* mobileView ?  <TabBarBottom activeTab={this.props.location.pathname}/> : */}
+               {footerText}
               </div>
             </Footer>
           </Content>
