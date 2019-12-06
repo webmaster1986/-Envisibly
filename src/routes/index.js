@@ -13,6 +13,8 @@ const App = ({match}) => (
       <Route path={`${match.url}calender`} component={asyncComponent(() => import('../routes/Calendar/CalendarComponent'))}/>
       <Route path={`${match.url}consumer-profile`} component={asyncComponent(() => import('../routes/Profile/ConsumerProfile'))}/>
       <Route path={`${match.url}lender-profile`} component={asyncComponent(() => import('../routes/Profile/LenderProfile'))}/>
+      <Route path={`${match.url}my-profile-consumer`} component={asyncComponent(() => import('../routes/MyProfile/MyProfileConsumer'))}/>
+      <Route path={`${match.url}my-profile-lender`} component={asyncComponent(() => import('../routes/MyProfile/MyProfileLender'))}/>
     </Switch>
   </div>
 );

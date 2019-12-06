@@ -14,6 +14,7 @@ import {
 } from "../../constants/ThemeSetting";
 import {userSignOut} from "appRedux/actions/Auth";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 const {Header} = Layout;
 
@@ -33,8 +34,9 @@ class Topbar extends Component {
       <ul className="gx-user-popover">
         <li>My Account</li>
         <li>Connections</li>
-        <li onClick={() => this.props.userSignOut()}>Logout
-        </li>
+        <li><Link style={{color: '#545454'}} to={'/my-profile-consumer'}>My Profile Consumer</Link></li>
+        <li><Link style={{color: '#545454'}} to={'/my-profile-lender'}>My Profile Lender</Link></li>
+        <li onClick={() => this.props.userSignOut()}>Logout</li>
       </ul>
     );
     return (
