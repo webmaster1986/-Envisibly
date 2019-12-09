@@ -53,23 +53,26 @@ class Topbar extends Component {
           {/*<Link to="/" className="gx-d-block gx-d-lg-none gx-pointer">
             <img alt="" src={require("assets/images/w-logo.png")}/></Link>*/}
             <img alt="" src={require("assets/images/EnvisiblyLogo.png")} className="custom-img"/>
+          <h1 className="text-center">LENDER VIEW</h1>
           <ul className="gx-header-notifications gx-ml-auto">
-            <Auxiliary>
+            {/*<Auxiliary>
               <li className="gx-notify">
               <div className="gx-customizer-item">
                 <Switch checked={themeType === THEME_TYPE_DARK} onChange={this.onThemeTypeChange} />
               </div>
             </li>
-            </Auxiliary>
+            </Auxiliary>*/}
               <Auxiliary>
                 <li className="gx-notify">
-                  <Popover overlayClassName="gx-popover-horizantal" placement="bottomRight" content={<AppNotification/>}
-                           trigger="click">
-                    <span className="gx-pointer gx-d-block"><i className="icon icon-notification"/></span>
+                  <Popover overlayClassName="gx-popover-horizantal" placement="bottomRight" content={<AppNotification/>} trigger="click">
+                     <span className="gx-pointer gx-status-pos gx-d-block">
+                    <i className="icon icon-notification"/>
+                    <span className="gx-status gx-status-rtl gx-small gx-orange"/>
+                  </span>
                   </Popover>
                 </li>
 
-                <li className="gx-notify">
+               {/* <li className="gx-notify">
                   <Popover overlayClassName="gx-popover-horizantal" placement="bottomRight"
                            content={<MailNotification/>} trigger="click">
                   <span className="gx-pointer gx-status-pos gx-d-block">
@@ -77,7 +80,7 @@ class Topbar extends Component {
                     <span className="gx-status gx-status-rtl gx-small gx-orange"/>
                   </span>
                   </Popover>
-                </li>
+                </li>*/}
               </Auxiliary>
               <Auxiliary>
                 <li className="gx-notify">

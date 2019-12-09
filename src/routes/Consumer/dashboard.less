@@ -1,0 +1,65 @@
+@import "../../styles/variables";
+.dashboard {
+  .custom-icon {
+    margin-left: 10px;
+    font-size: 18px;
+    color: @color-primary;
+  }
+  .message-height {
+     .gx-card-widget .ant-card-body {
+       min-height: 426px;
+     }
+     .gx-popover-scroll {
+       width: 100% !important;
+       min-height: 340px;
+     }
+   }
+
+  .contact-height {
+    .gx-card-widget .ant-card-body {
+      min-height: 238px;
+    }
+  }
+
+
+  .contact-card {
+    img {
+      max-width: 105px;
+      margin: 0 auto;
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .dashboard {
+    .message-height {
+      .gx-popover-scroll {
+        width: 100% !important;
+        min-height: unset;
+      }
+    }
+    .contact-card {
+      img {
+        max-width: 65px;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 920px) {
+  body {
+    .img-size-120 {
+      width: 120px !important;
+    }
+    .d-flex {
+      display: unset !important;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .gx-card-widget .ant-card-body {
+    padding: 5px 10px;
+  }
+}

@@ -43,20 +43,32 @@ class SidebarContent extends Component {
               theme={themeType === THEME_TYPE_LITE ? 'lite' : 'dark'}
               mode="inline">
               <Menu.Item key="dashboard">
-                <Link to="/dashboard"><i className="icon icon-home"/>
+                <Link to="/lender/dashboard"><i className="icon icon-home"/>
                   <IntlMessages id="Dashboard"/></Link>
               </Menu.Item>
               <Menu.Item key="contacts">
-                <Link to="/contacts"><i className="icon icon-contacts"/>
+                <Link to="/lender/contacts"><i className="icon icon-contacts"/>
                   <IntlMessages id="Contacts"/></Link>
               </Menu.Item>
               <Menu.Item key="messages">
-                <Link to="/messages"><i className="icon icon-email"/>
+                <Link to="/lender/messages"><i className="icon icon-email"/>
                   <IntlMessages id="Messages"/></Link>
               </Menu.Item>
               <Menu.Item key="calender">
                 <Link to="/calender"><i className="icon icon-calendar"/>
                   <IntlMessages id="Calender"/></Link>
+              </Menu.Item>
+              <Menu.Item key="callSchedule">
+                <Link to="/lender/call-schedule"><i className="icon icon-copy"/>
+                  <IntlMessages id="Call Schedule"/></Link>
+              </Menu.Item>
+              <Menu.Item key="callSchedule">
+                <Link to="/knowledge-base"><i className="icon icon-map-simple"/>
+                  <IntlMessages id="Knowledge Base"/></Link>
+              </Menu.Item>
+              <Menu.Item key="callSchedule">
+                <Link to="/about-us"><i className="icon icon-timeline-left-align"/>
+                  <IntlMessages id="About Us"/></Link>
               </Menu.Item>
               {/*<Menu.Item key="file">
                 <Link to="/sample"><i className="icon icon-files"/>

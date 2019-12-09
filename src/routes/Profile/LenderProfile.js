@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import {Card, Col, Row, Switch, Button} from 'antd'
+import {Card, Col, Row, Switch, Button, Tag} from 'antd'
 import './profile.less';
 
 
@@ -88,12 +88,17 @@ class LenderProfile extends Component {
               <Col md={24} sm={24} lg={24} xl={24} xs={24} className="text-center">
                 <p className="mt-10">Loan Types : May be interested in</p>
               </Col>
-              <Col md={24} sm={24} lg={24} xl={24} xs={24} className="text-center">
-                <div className="d-flex text-center">
-                  <div className="custom-tag">&nbsp;</div>
-                  <div className="custom-tag">&nbsp;</div>
-                  <div className="custom-tag">&nbsp;</div>
+              <Col md={24} sm={24} lg={24} xl={24} xs={24} className="text-center mt-10">
+                <div className="gx-task-item-content-center">
+                  <Tag className="gx-bg-grey-not gx-text-grey-not gx-mr-0 gx-mb-0 gx-rounded-xxl gx-order-sm-5 mr-5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Tag>
+                  <Tag className="gx-bg-grey-not gx-text-grey-not gx-mr-0 gx-mb-0 gx-rounded-xxl gx-order-sm-5 mr-5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Tag>
+                  <Tag className="gx-bg-grey-not gx-text-grey-not gx-mr-0 gx-mb-0 gx-rounded-xxl gx-order-sm-5 mr-5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Tag>
                 </div>
+               {/* <div className="d-flex text-center">
+                  <div className="custom-tag">&nbsp;</div>
+                  <div className="custom-tag">&nbsp;</div>
+                  <div className="custom-tag">&nbsp;</div>
+                </div>*/}
 
               </Col>
             </Row>

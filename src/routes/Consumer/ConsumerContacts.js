@@ -14,225 +14,225 @@ const contactList = [
     'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'California',
+    'designation': 'Wells Fargo ',
     'selected': false,
     'starred': false,
     'frequently': true,
   }, {
-  'id': 1457690401,
-  'name': 'Garry Sobars',
-  'thumb': 'https://via.placeholder.com/150x150',
+    'id': 1457690401,
+    'name': 'Garry Sobars',
+    'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
     'phone': '+1-215-745-7529',
-  'designation': 'Arizona',
-  'selected': false,
-  'starred': false,
-  'frequently': true,
-},
+    'designation': 'Mortgage Life',
+    'selected': false,
+    'starred': false,
+    'frequently': true,
+  },
   {
     'id': 1457690402,
     'name': 'Alex Dolgove',
     'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'Florida',
+    'designation': 'Wells Fargo ',
     'selected': false,
     'starred': false,
     'frequently': true,
   }, {
-  'id': 1457690403,
-  'name': 'Domnic Brown',
-  'thumb': 'https://via.placeholder.com/150x150',
+    'id': 1457690403,
+    'name': 'Domnic Brown',
+    'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'Florida',
-  'selected': false,
-  'starred': false,
-  'frequently': true,
-}, {
-  'id': 1457690404,
-  'name': 'Kadir M',
-  'thumb': 'https://via.placeholder.com/150x150',
+    'designation': 'Mortgage Life',
+    'selected': false,
+    'starred': false,
+    'frequently': true,
+  }, {
+    'id': 1457690404,
+    'name': 'Kadir M',
+    'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'California',
-  'selected': false,
-  'starred': false,
-  'frequently': false,
-}, {
-  'id': 1457690405,
-  'name': 'John Smith',
-  'thumb': 'https://via.placeholder.com/150x150',
+    'designation': 'Wells Fargo ',
+    'selected': false,
+    'starred': false,
+    'frequently': false,
+  }, {
+    'id': 1457690405,
+    'name': 'John Smith',
+    'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'Florida',
-  'selected': false,
-  'starred': false,
-  'frequently': false,
-}, {
-  'id': 1457690406,
-  'name': 'Domnic Harris',
-  'thumb': 'https://via.placeholder.com/150x150',
+    'designation': 'Mortgage Life',
+    'selected': false,
+    'starred': false,
+    'frequently': false,
+  }, {
+    'id': 1457690406,
+    'name': 'Domnic Harris',
+    'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'California',
-  'selected': false,
-  'starred': true,
-  'frequently': false,
-}, {
-  'id': 1457690407,
-  'name': 'Jimmy Jo',
-  'thumb': 'https://via.placeholder.com/150x150',
+    'designation': 'Wells Fargo ',
+    'selected': false,
+    'starred': true,
+    'frequently': false,
+  }, {
+    'id': 1457690407,
+    'name': 'Jimmy Jo',
+    'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'Arizona',
-  'selected': false,
-  'starred': false,
-  'frequently': false,
-}, {
-  'id': 1457690408,
-  'name': 'Jimmy Jon',
-  'thumb': 'https://via.placeholder.com/150x150',
+    'designation': 'Mortgage Life',
+    'selected': false,
+    'starred': false,
+    'frequently': false,
+  }, {
+    'id': 1457690408,
+    'name': 'Jimmy Jon',
+    'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'Florida',
-  'selected': false,
-  'starred': true,
-  'frequently': false,
-}, {
-  'id': 1457690409,
-  'name': 'Jeson Born',
-  'thumb': 'https://via.placeholder.com/150x150',
+    'designation': 'Wells Fargo ',
+    'selected': false,
+    'starred': true,
+    'frequently': false,
+  }, {
+    'id': 1457690409,
+    'name': 'Jeson Born',
+    'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'Florida',
-  'selected': false,
-  'starred': false,
-  'frequently': false,
-}, {
-  'id': 1457690410,
-  'name': 'Steve Smith',
-  'thumb': 'https://via.placeholder.com/150x150',
+    'designation': 'Mortgage Life',
+    'selected': false,
+    'starred': false,
+    'frequently': false,
+  }, {
+    'id': 1457690410,
+    'name': 'Steve Smith',
+    'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'California',
-  'selected': false,
-  'starred': false,
-  'frequently': false,
-},
+    'designation': 'Wells Fargo ',
+    'selected': false,
+    'starred': false,
+    'frequently': false,
+  },
   {
     'id': 1457690500,
     'name': 'Stella Johnson',
     'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'Arizona',
+    'designation': 'Mortgage Life',
     'selected': false,
     'starred': false,
     'frequently': true,
   }, {
-  'id': 1457690501,
-  'name': 'Garry Sobars',
-  'thumb': 'https://via.placeholder.com/150x150',
+    'id': 1457690501,
+    'name': 'Garry Sobars',
+    'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'California',
-  'selected': false,
-  'starred': false,
-  'frequently': true,
-},
+    'designation': 'Mortgage Life',
+    'selected': false,
+    'starred': false,
+    'frequently': true,
+  },
   {
     'id': 1457690502,
     'name': 'Alex Dolgove',
     'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'Florida',
+    'designation': 'Wells Fargo ',
     'selected': false,
     'starred': false,
     'frequently': true,
   }, {
-  'id': 1457690503,
-  'name': 'Domnic Brown',
-  'thumb': 'https://via.placeholder.com/150x150',
+    'id': 1457690503,
+    'name': 'Domnic Brown',
+    'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'Arizona',
-  'selected': false,
-  'starred': false,
-  'frequently': true,
-}, {
-  'id': 1457690404,
-  'name': 'Kadir M',
-  'thumb': 'https://via.placeholder.com/150x150',
+    'designation': 'ABC Company',
+    'selected': false,
+    'starred': false,
+    'frequently': true,
+  }, {
+    'id': 1457690404,
+    'name': 'Kadir M',
+    'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'Florida',
-  'selected': false,
-  'starred': false,
-  'frequently': false,
-}, {
-  'id': 1457690505,
-  'name': 'John Smith',
-  'thumb': 'https://via.placeholder.com/150x150',
+    'designation': 'Wells Fargo ',
+    'selected': false,
+    'starred': false,
+    'frequently': false,
+  }, {
+    'id': 1457690505,
+    'name': 'John Smith',
+    'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'Arizona',
-  'selected': false,
-  'starred': false,
-  'frequently': false,
-}, {
-  'id': 1457690506,
-  'name': 'Domnic Harris',
-  'thumb': 'https://via.placeholder.com/150x150',
+    'designation': 'ABC Company',
+    'selected': false,
+    'starred': false,
+    'frequently': false,
+  }, {
+    'id': 1457690506,
+    'name': 'Domnic Harris',
+    'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'Florida',
-  'selected': false,
-  'starred': true,
-  'frequently': false,
-}, {
-  'id': 1457690507,
-  'name': 'Jimmy Jo',
-  'thumb': 'https://via.placeholder.com/150x150',
+    'designation': 'Wells Fargo ',
+    'selected': false,
+    'starred': true,
+    'frequently': false,
+  }, {
+    'id': 1457690507,
+    'name': 'Jimmy Jo',
+    'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'Arizona',
-  'selected': false,
-  'starred': false,
-  'frequently': false,
-}, {
-  'id': 1457690508,
-  'name': 'Jimmy Jon',
-  'thumb': 'https://via.placeholder.com/150x150',
+    'designation': 'ABC Company',
+    'selected': false,
+    'starred': false,
+    'frequently': false,
+  }, {
+    'id': 1457690508,
+    'name': 'Jimmy Jon',
+    'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'Florida',
-  'selected': false,
-  'starred': true,
-  'frequently': false,
-}, {
-  'id': 1457690509,
-  'name': 'Jeson Born',
-  'thumb': 'https://via.placeholder.com/150x150',
+    'designation': 'Mortgage Life',
+    'selected': false,
+    'starred': true,
+    'frequently': false,
+  }, {
+    'id': 1457690509,
+    'name': 'Jeson Born',
+    'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'Arizona',
-  'selected': false,
-  'starred': false,
-  'frequently': false,
-}, {
-  'id': 1457690510,
-  'name': 'Steve Smith',
-  'thumb': 'https://via.placeholder.com/150x150',
+    'designation': 'ABC Company',
+    'selected': false,
+    'starred': false,
+    'frequently': false,
+  }, {
+    'id': 1457690510,
+    'name': 'Steve Smith',
+    'thumb': 'https://via.placeholder.com/150x150',
     'nmls': '123456',
     'companyName': 'Apple inc',
-    'designation': 'California',
-  'selected': false,
-  'starred': false,
-  'frequently': false,
-}
+    'designation': 'Wells Fargo ',
+    'selected': false,
+    'starred': false,
+    'frequently': false,
+  }
 
 ]
 const filterOptions = [
@@ -252,7 +252,7 @@ const filterOptions = [
     icon: 'star'
   }
 ];
-class Contacts extends Component {
+class ConsumerContacts extends Component {
 
   constructor() {
     super();
@@ -288,13 +288,13 @@ class Contacts extends Component {
 
       <div className="gx-module-side-content">
         <CustomScrollbars className="gx-module-side-scroll scroll-bar-nav">
-          <div className="gx-module-add-task">
+          {/*<div className="gx-module-add-task">
             <Button className="gx-btn-block ant-btn" type="primary" aria-label="add"
                     onClick={this.onAddContact}>
               <i className="icon icon-add gx-mr-2"/>
               <span>Add New Contact</span>
             </Button>
-          </div>
+          </div>*/}
           <div className="gx-module-side-nav">
             <ul className="gx-module-nav">
               {filterOptions.map(option => <li key={option.id} className="gx-nav-item">
@@ -540,7 +540,7 @@ class Contacts extends Component {
             </div>
             <div className="gx-module-box-content">
 
-              {/*<div className="gx-module-box-topbar">
+              <div className="gx-module-box-topbar">
                 <Checkbox color="primary" className="gx-icon-btn"
                           indeterminate={selectedContacts > 0 && selectedContacts < contactList.length}
                           checked={selectedContacts > 0}
@@ -551,7 +551,7 @@ class Contacts extends Component {
                 {selectedContacts > 0 &&
                 <i className="gx-icon-btn icon icon-trash" onClick={this.onDeleteSelectedContact.bind(this)}/>}
 
-              </div>*/}
+              </div>
               <CustomScrollbars className="gx-module-content-scroll scroll-bar-nav">
                 {contactList.length === 0 ?
                   <div className="gx-h-100 gx-d-flex gx-align-items-center gx-justify-content-center">
@@ -591,4 +591,4 @@ class Contacts extends Component {
 
 }
 
-export default Contacts;
+export default ConsumerContacts;
