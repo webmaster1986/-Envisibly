@@ -14,7 +14,7 @@ import {
 } from "../../constants/ThemeSetting";
 import {userSignOut} from "appRedux/actions/Auth";
 import {connect} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 
 const {Header} = Layout;
 
@@ -22,6 +22,7 @@ class Topbar extends Component {
 
   state = {
     searchText: '',
+    isLender : this.props.location.pathname,
   };
 
   onThemeTypeChange = (isDark) => {
@@ -30,6 +31,7 @@ class Topbar extends Component {
 
   render() {
     const {locale, width, navCollapsed, navStyle, themeType} = this.props;
+    const {isLender} = this.state;
     const userMenuOptions = (
       <ul className="gx-user-popover">
         <li>My Account</li>
@@ -53,8 +55,9 @@ class Topbar extends Component {
           {/*<Link to="/" className="gx-d-block gx-d-lg-none gx-pointer">
             <img alt="" src={require("assets/images/w-logo.png")}/></Link>*/}
             <img alt="" src={require("assets/images/EnvisiblyLogo.png")} className="custom-img"/>
-          <h1 className="text-center">LENDER VIEW</h1>
-          <h1 className="text-center">CONSUMER VIEW</h1>
+          {
+            isLender.includes('/lender') ?  <h1 className="header-text">LENDER VIEW</h1> :  <h1 className="header-text">CONSUMER VIEW</h1>
+          }
           <ul className="gx-header-notifications gx-ml-auto">
             {/*<Auxiliary>
               <li className="gx-notify">
@@ -102,4 +105,4 @@ const mapStateToProps = ({settings}) => {
   return {locale, navStyle, navCollapsed, width, themeType}
 };
 
-export default connect(mapStateToProps, {toggleCollapsedSideNav, switchLanguage, setThemeType, userSignOut})(Topbar);
+export default connect(mapStateToProps, {toggleCollapsedSideNav, switchLanguage, setThemeType, userSignOut}) (withRouter(Topbar));
