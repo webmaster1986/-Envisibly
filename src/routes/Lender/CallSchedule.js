@@ -1,9 +1,33 @@
 import React,{Component} from "react";
 import {Button, Card, Col, Dropdown, Menu, Row, Select, Table} from 'antd'
 import './callschedule.less'
-import {Link} from "react-router-dom";
+import moment from "moment";
 
 class CallSchedule extends Component {
+  state = {
+    date: moment()
+  }
+
+  onNextDay = () => {
+    const new_date = moment(this.state.date, "ddd DD/MM/YYYY").add({days:1,});
+    this.setState({
+      date: new_date
+    })
+  }
+
+  onPrvDay = () => {
+    const new_date = moment(this.state.date, "ddd DD/MM/YYYY").subtract({days:1,});
+    this.setState({
+      date: new_date
+    })
+  }
+
+  onToDay = () => {
+    const new_date = moment();
+    this.setState({
+      date: new_date
+    })
+  }
 
   render() {
     const menu = (
@@ -25,7 +49,8 @@ class CallSchedule extends Component {
         </Menu.Item>
       </Menu>
     );
-    const columns = [{
+    const columns = [
+      {
       title: 'Name',
       dataIndex: 'name',
     }, {
@@ -35,7 +60,8 @@ class CallSchedule extends Component {
       title: 'Action',
       render: text => <Dropdown overlay={menu} placement="bottomCenter"><i className="icon icon-ellipse-h" style={{width: '22px', height: '22px', color: '#72bdb9'}}/></Dropdown>
     }];
-    const data = [{
+    const data = [
+      {
       key: '1',
       name: 'John Brown',
       location: 'California',
@@ -80,11 +106,11 @@ class CallSchedule extends Component {
                       <Select.Option value={"12:00pm-4:00pm"}>12:00 PM - 4:00 PM</Select.Option>
                       <Select.Option value={"4:00pm-8:00pm"}>4:00 PM - 8:00 PM</Select.Option>
                     </Select>
-                    <span className="mr-10"><h3 > Monday 12/1/2019 </h3></span>
+                    <span><h3 className="mt-5" style={{minWidth: 220}}> {moment(this.state.date).format("dddd DD/MM/YYYY")}</h3></span>
                     <div>
-                      <Button>Back</Button>
-                      <Button>Today</Button>
-                      <Button>Next</Button>
+                      <Button onClick={this.onPrvDay}>Back</Button>
+                      <Button onClick={this.onToDay}>Today</Button>
+                      <Button onClick={this.onNextDay}>Next</Button>
                     </div>
                   </div>
 

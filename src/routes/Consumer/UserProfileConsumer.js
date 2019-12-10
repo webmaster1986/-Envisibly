@@ -90,78 +90,66 @@ class UserProfileConsumer extends Component {
                 <Row>
                   <Col md={12} sm={24} lg={12} xl={12} xs={24}>
                     <Card className='gx-card-widget contact-card'>
-                      <h2 className="h4 gx-mb-3 text-center">Borrower Information</h2>
+                      <h2 className="gx-mb-3 text-center">Borrower Information</h2>
                       <Form >
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-10">
                           <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                             <p>First Name :</p>
                           </Col>
                           <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                            <Form.Item>
                                 <Input autoFocus={true} placeholder="Borrower First Name" name="borrowerFirstName"/>
-                            </Form.Item>
                           </Col>
                         </Row>
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-10">
                           <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                             <p>Last Name :</p>
                           </Col>
                           <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                            <Form.Item>
                                 <Input placeholder="Borrower Last Name" name="borrowerLastName"/>
-                            </Form.Item>
                           </Col>
                         </Row>
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-10">
                           <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                             <p>Phone :</p>
                           </Col>
                           <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                            <Form.Item>
                                 <MaskedInput mask="(111) 111-1111" placeholder="Borrower Phone #" name="borrowerPhone"/>
-                            </Form.Item>
                           </Col>
                         </Row>
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-10">
                           <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                             <p>ZIP Code :</p>
                           </Col>
                           <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                            <Form.Item>
                                 <MaskedInput mask="11111" placeholder="Borrower ZIP Code" name="borrowerZIPCode"/>
-                            </Form.Item>
                           </Col>
                         </Row>
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-10">
                           <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                             <p>Credit Quality :</p>
                           </Col>
                           <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                            <Form.Item>
-                                <Select placeholder="Borrower Credit Quality" className={'show-placeholder'} name="borrowerCreditQuality" style={{width: 195}}>
+                                <Select placeholder="Borrower Credit Quality" className={'show-placeholder'} name="borrowerCreditQuality" style={{width: "100%"}}>
                                   <Option value="1">Fair (FICO 580 - 669) </Option>
                                   <Option value="2">Good (FICO 670 - 739) </Option>
                                   <Option value="3">Very Good (FICO 740 - 799) </Option>
                                   <Option value="4">Excellent (FICO 800 - 850) </Option>
                                 </Select>
-                            </Form.Item>
                           </Col>
                         </Row>
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-10">
                           <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                             <p>Language :</p>
                           </Col>
                           <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                            <Form.Item>
-                                <Select placeholder="Preferred Spoken Language" className={'show-placeholder'} name="preferredSpokenLanguage" style={{width: 195}}>
-                                  <Option value="1">English </Option>
-                                  <Option value="2">Spanish</Option>
-                                  <Option value="3">Chinese</Option>
-                                  <Option value="4">French</Option>
-                                  <Option value="5">Tagalog</Option>
-                                  <Option value="6">Vietnamese</Option>
-                                </Select>
-                            </Form.Item>
+                              <Select placeholder="Preferred Spoken Language" className={'show-placeholder'} name="preferredSpokenLanguage" style={{width: "100%"}}>
+                                <Option value="1">English </Option>
+                                <Option value="2">Spanish</Option>
+                                <Option value="3">Chinese</Option>
+                                <Option value="4">French</Option>
+                                <Option value="5">Tagalog</Option>
+                                <Option value="6">Vietnamese</Option>
+                              </Select>
                           </Col>
                         </Row>
                       </Form>
@@ -169,83 +157,72 @@ class UserProfileConsumer extends Component {
                   </Col>
                   <Col md={12} sm={24} lg={12} xl={12} xs={24}>
                     <Card className='gx-card-widget contact-card'>
-                      <h2 className="h4 gx-mb-3 text-center">Property Information</h2>
+                      <h2 className="gx-mb-3 text-center">Property Information</h2>
                       <Form>
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-10">
                           <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                             <p>Select One :</p>
                           </Col>
                           <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                            <Form.Item>
                               <Radio.Group>
                                 <Radio.Button value="Refinance">Refinance</Radio.Button>
                                 <Radio.Button value="Purchase">Purchase</Radio.Button>
                               </Radio.Group>
-                            </Form.Item>
                           </Col>
                         </Row>
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-10">
                           <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                             <p>ZIP Code :</p>
                           </Col>
                           <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                            <Form.Item>
                                 <MaskedInput mask="11111" placeholder="Property ZIP Code" name="ZIPCode"/>
-                            </Form.Item>
                           </Col>
                         </Row>
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-10">
                           <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                             <p>Loan Amount :</p>
                           </Col>
                           <Col md={19} sm={24} lg={24} xl={19} xs={24} className="custom-prefix">
-                            <Form.Item>
-                                <Input style={{width: 195}}
+                                <Input style={{width: '100%'}}
                                   name={'LoanAmount'}
                                   placeholder='Loan Amount Requested'
                                   prefix="$"
                                 />
-                            </Form.Item>
                           </Col>
                         </Row>
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-10">
                           <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                             <p>Property Type :</p>
                           </Col>
                           <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                            <Form.Item>
-                                <Select placeholder="Property Type" className={'show-placeholder'} style={{width: 195}}>
+                                <Select placeholder="Property Type" className={'show-placeholder'} style={{width: '100%'}}>
                                   <Option value="1">Single Family Residence</Option>
                                   <Option value="2">Condominium</Option>
                                   <Option value="3">Townhome</Option>
                                   <Option value="4">PUD</Option>
                                   <Option value="5">Other</Option>
                                 </Select>
-                            </Form.Item>
                           </Col>
                         </Row>
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-10">
                           <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                             <p>Property Occupancy :</p>
                           </Col>
                           <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                            <Form.Item>
-                                <Select placeholder="Occupancy Status" className={'show-placeholder'} style={{width: 195}}>
+                                <Select placeholder="Occupancy Status" className={'show-placeholder'} style={{width: '100%'}}>
                                   <Option value="1">Primary Residence</Option>
                                   <Option value="2"> Second Home</Option>
                                   <Option value="3">Condominium</Option>
                                   <Option value="4">Investment</Option>
                                 </Select>
-                            </Form.Item>
                           </Col>
                         </Row>
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-10">
                           <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                             <p>Mortgage Types :</p>
                           </Col>
                           <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                            <Form.Item>
-                                <Select  mode="multiple" placeholder="OPTIONAL: Select All That May Apply" style={{width: 195}}>
+                                <Select  mode="multiple" placeholder="OPTIONAL: Select All That May Apply" style={{width: '100%'}}>
                                   <Option value="1">Cash Out</Option>
                                   <Option value="2">FHA</Option>
                                   <Option value="3">VA</Option>
@@ -254,7 +231,6 @@ class UserProfileConsumer extends Component {
                                   <Option value="6">15 Year Term</Option>
                                   <Option value="7"> Interest Only</Option>
                                 </Select>
-                            </Form.Item>
                           </Col>
                         </Row>
                       </Form>
@@ -267,38 +243,33 @@ class UserProfileConsumer extends Component {
                   <Col md={24} sm={24} lg={24} xl={24} xs={24}>
                     <Card className='gx-card-widget contact-card'>
                       <Form >
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-10">
                           <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                             <p>Phone :</p>
                           </Col>
                           <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                            <Form.Item>
                               <MaskedInput mask="(111) 111-1111" placeholder="Borrower Phone #" name="borrowerPhone"/>
-                            </Form.Item>
                           </Col>
                         </Row>
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-10">
                           <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                             <p>Credit Quality :</p>
                           </Col>
                           <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                            <Form.Item>
-                              <Select placeholder="Borrower Credit Quality" className={'show-placeholder'} name="borrowerCreditQuality" style={{width: 195}}>
+                              <Select placeholder="Borrower Credit Quality" className={'show-placeholder'} name="borrowerCreditQuality" style={{width: '100%'}}>
                                 <Option value="1">Fair (FICO 580 - 669) </Option>
                                 <Option value="2">Good (FICO 670 - 739) </Option>
                                 <Option value="3">Very Good (FICO 740 - 799) </Option>
                                 <Option value="4">Excellent (FICO 800 - 850) </Option>
                               </Select>
-                            </Form.Item>
                           </Col>
                         </Row>
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-10">
                           <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                             <p>Language :</p>
                           </Col>
                           <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                            <Form.Item>
-                              <Select placeholder="Preferred Spoken Language" className={'show-placeholder'} name="preferredSpokenLanguage" style={{width: 195}}>
+                              <Select placeholder="Preferred Spoken Language" className={'show-placeholder'} name="preferredSpokenLanguage" style={{width: '100%'}}>
                                 <Option value="1">English </Option>
                                 <Option value="2">Spanish</Option>
                                 <Option value="3">Chinese</Option>
@@ -306,7 +277,6 @@ class UserProfileConsumer extends Component {
                                 <Option value="5">Tagalog</Option>
                                 <Option value="6">Vietnamese</Option>
                               </Select>
-                            </Form.Item>
                           </Col>
                         </Row>
                         <Row className="align-items-center">
@@ -317,34 +287,28 @@ class UserProfileConsumer extends Component {
                       </Form>
                       {
                         this.state.addCoBorrower &&  <Form >
-                          <Row className="align-items-center">
+                          <Row className="align-items-center mb-10">
                             <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                               <p>First Name :</p>
                             </Col>
                             <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                              <Form.Item>
                                 <Input autoFocus={true} placeholder="Borrower First Name" name="borrowerFirstName"/>
-                              </Form.Item>
                             </Col>
                           </Row>
-                          <Row className="align-items-center">
+                          <Row className="align-items-center mb-10">
                             <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                               <p>Last Name :</p>
                             </Col>
                             <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                              <Form.Item>
                                 <Input placeholder="Borrower Last Name" name="borrowerLastName"/>
-                              </Form.Item>
                             </Col>
                           </Row>
-                          <Row className="align-items-center">
+                          <Row className="align-items-center mb-10">
                             <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                               <p>ZIP Code :</p>
                             </Col>
                             <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                              <Form.Item>
                                 <MaskedInput mask="11111" placeholder="Borrower ZIP Code" name="borrowerZIPCode"/>
-                              </Form.Item>
                             </Col>
                           </Row>
                         </Form>
@@ -356,36 +320,30 @@ class UserProfileConsumer extends Component {
                 <Row>
                   <Col md={24} sm={24} lg={24} xl={24} xs={24}>
                     <Card className='gx-card-widget contact-card'>
-                      <h2 className="h4 gx-mb-3 text-center">Change Password</h2>
+                      <h2 className="gx-mb-3 text-center">Change Password</h2>
                       <Form >
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-10">
                           <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                             <p>Current Password :</p>
                           </Col>
                           <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                            <Form.Item>
                               <Input type="password" placeholder="Current Password" />
-                            </Form.Item>
                           </Col>
                         </Row>
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-10">
                           <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                             <p>New Password :</p>
                           </Col>
                           <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                            <Form.Item>
                               <Input type="password" placeholder="New Password" />
-                            </Form.Item>
                           </Col>
                         </Row>
-                        <Row className="align-items-center">
+                        <Row className="align-items-center mb-10">
                           <Col md={5} sm={24} lg={24} xl={5} xs={24}>
                             <p>Confirm Password :</p>
                           </Col>
                           <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                            <Form.Item>
                               <Input type="password" placeholder="Confirm Password" />
-                            </Form.Item>
                           </Col>
                         </Row>
                       </Form>

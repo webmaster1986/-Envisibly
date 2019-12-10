@@ -117,4 +117,4 @@ class ContactCell extends React.Component {
   }
 }
 
-export default withRouter (ContactCell);
+export default withRouter (SortableElement(ContactCell));

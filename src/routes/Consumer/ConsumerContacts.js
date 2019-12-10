@@ -1,12 +1,14 @@
 import React,{Component} from 'react';
-import {Button, Checkbox, Drawer, message} from "antd";
+import {Checkbox, Col, Drawer, message, Row} from "antd";
 import CustomScrollbars from "util/CustomScrollbars";
-import ContactList from "../../../src/components/contact/ContactList";
 import AppModuleHeader from "../../../src/components/AppModuleHeader/index";
 import AddContact from "../../../src/components/contact/AddContact";
 import IntlMessages from "util/IntlMessages";
+import {arrayMove, SortableContainer} from "react-sortable-hoc";
+import ContactCell from "../../components/contact/ContactList/ContactCell";
 
 let contactId = 723812738;
+
 const contactList = [
   {
     'id': 1457690400,
@@ -234,7 +236,8 @@ const contactList = [
     'frequently': false,
   }
 
-]
+];
+
 const filterOptions = [
   {
     id: 1,
@@ -252,6 +255,7 @@ const filterOptions = [
     icon: 'star'
   }
 ];
+
 class ConsumerContacts extends Component {
 
   constructor() {
@@ -506,9 +510,25 @@ class ConsumerContacts extends Component {
       drawerState: !this.state.drawerState
     });
   }
+  onSortEnd = ({oldIndex, newIndex}) => {
+    this.setState({
+      contactList: arrayMove(this.state.contactList, oldIndex, newIndex),
+    });
+  };
 
   render() {
     const {user, contactList, addContactState, drawerState, selectedContacts, alertMessage, showMessage, noContentFoundMessage} = this.state;
+    const Contacts = SortableContainer(({contactList, addFavourite, onContactSelect, onDeleteContact, onSaveContact}) => {
+      return (
+        <Row>
+          <Col span={24}>
+            {contactList.map((contact, index) => (
+              <ContactCell key={index} index={index} contact={contact} addFavourite={addFavourite} onContactSelect={onContactSelect} onDeleteContact={onDeleteContact} onSaveContact={onSaveContact}/>
+            ))}
+          </Col>
+        </Row>
+      );
+    });
     return (
       <div className="gx-main-content">
         <div className="gx-app-module">
@@ -557,11 +577,13 @@ class ConsumerContacts extends Component {
                   <div className="gx-h-100 gx-d-flex gx-align-items-center gx-justify-content-center">
                     {noContentFoundMessage}
                   </div>
-                  : <ContactList contactList={contactList}
-                                 addFavourite={this.addFavourite.bind(this)}
-                                 onContactSelect={this.onContactSelect.bind(this)}
-                                 onDeleteContact={this.onDeleteContact.bind(this)}
-                                 onSaveContact={this.onSaveContact.bind(this)}/>
+                  : <Contacts contactList={contactList}
+                              addFavourite={this.addFavourite}
+                              onContactSelect={this.onContactSelect}
+                              onDeleteContact={this.onDeleteContact}
+                              onSaveContact={this.onSaveContact}
+                              onSortEnd={this.onSortEnd} useDragHandle={true}
+                  />
                 }
 
 

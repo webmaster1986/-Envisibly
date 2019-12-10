@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Card, Col, Form, Input, Row,} from "antd";
-const TextArea = Input
+const {TextArea} = Input
 class AboutUs extends Component{
   render() {
     return(
@@ -8,7 +8,7 @@ class AboutUs extends Component{
         <Row>
           <Col md={18} sm={24} lg={18} xl={18} xs={24}>
             <Card className='gx-card-widget contact-card'>
-              <h2 className="h4 gx-mb-3 text-center">Our Story</h2>
+              <h2 className="gx-mb-3 text-center">Our Story</h2>
               <Row className="align-items-center">
                 <Col md={24} sm={24} lg={24} xl={24} xs={24}>
                   <p>
@@ -43,46 +43,38 @@ class AboutUs extends Component{
         <Row>
           <Col md={24} sm={24} lg={24} xl={24} xs={24}>
             <Card className='gx-card-widget contact-card'>
-              <h2 className="h4 gx-mb-3 text-center">Contact Us</h2>
+              <h2 className="gx-mb-3 text-center">Contact Us</h2>
               <Form>
-                <Row>
+                <Row className="mb-10">
                   <Col md={2} sm={24} lg={2} xl={2} xs={24}>
                     <span>Name</span>
                   </Col>
                   <Col md={22} sm={24} lg={22} xl={22} xs={24}>
-                    <Form.Item>
                     <Input placeholder="Name" style={{width: "100%"}}/>
-                    </Form.Item>
                   </Col>
                 </Row>
-                <Row>
+                <Row className="mb-10">
                   <Col md={2} sm={24} lg={2} xl={2} xs={24}>
                     <span>Email</span>
                   </Col>
                   <Col md={22} sm={24} lg={22} xl={22} xs={24}>
-                    <Form.Item>
                     <Input placeholder="Email" style={{width: "100%"}}/>
-                    </Form.Item>
                   </Col>
                 </Row>
-                <Row>
+                <Row className="mb-10">
                   <Col md={2} sm={24} lg={2} xl={2} xs={24}>
                     <span>Phone</span>
                   </Col>
                   <Col md={22} sm={24} lg={22} xl={22} xs={24}>
-                    <Form.Item>
                     <Input placeholder="Phone" style={{width: "100%"}}/>
-                    </Form.Item>
                   </Col>
                 </Row>
-                <Row>
+                <Row className="mb-10">
                   <Col md={2} sm={24} lg={2} xl={2} xs={24}>
                     <span>message</span>
                   </Col>
                   <Col md={22} sm={24} lg={22} xl={22} xs={24}>
-                    <Form.Item>
                     <TextArea rows={5} placeholder="Message" style={{width: "100%"}}/>
-                    </Form.Item>
                   </Col>
                 </Row>
               </Form>
@@ -92,12 +84,12 @@ class AboutUs extends Component{
         <Row>
           <Col md={12} sm={24} lg={12} xl={12} xs={24}>
             <Card className='gx-card-widget contact-card'>
-              <h2 className="h4 gx-mb-3 text-center">Twitter Posts</h2>
+              <h2 className="gx-mb-3 text-center">Twitter Posts</h2>
             </Card>
           </Col>
           <Col md={12} sm={24} lg={12} xl={12} xs={24}>
             <Card className='gx-card-widget contact-card'>
-              <h2 className="h4 gx-mb-3 text-center">Facebook Posts</h2>
+              <h2 className="gx-mb-3 text-center">Facebook Posts</h2>
             </Card>
           </Col>
         </Row>

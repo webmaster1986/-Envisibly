@@ -9,7 +9,7 @@ class KnowledgeBase extends Component{
         <Row>
           <Col md={18} sm={24} lg={18} xl={18} xs={24}>
             <Card className='gx-card-widget contact-card'>
-              <h2 className="h4 gx-mb-3 text-center">Most Helpful FAQ’s</h2>
+              <h2 className="gx-mb-3 text-center">Most Helpful FAQ’s</h2>
               <Row className="align-items-center">
                 <Col md={24} sm={24} lg={24} xl={24} xs={24}>
                     <Collapse accordion>
@@ -35,10 +35,10 @@ class KnowledgeBase extends Component{
           </Col>
           <Col md={6} sm={24} lg={6} xl={6} xs={24}>
             <Card className='gx-card-widget contact-card'>
-              <h2 className="h4 gx-mb-3">Most Helpful Videos</h2>
-              <h2 className="h4 gx-mb-3">How to use application</h2>
-              <h2 className="h4 gx-mb-3">How to delete match</h2>
-              <h2 className="h4 gx-mb-3">How to close account</h2>
+              <h2 className="gx-mb-3">Most Helpful Videos</h2>
+              <h2 className="gx-mb-3">How to use application</h2>
+              <h2 className="gx-mb-3">How to delete match</h2>
+              <h2 className="gx-mb-3">How to close account</h2>
             </Card>
           </Col>
         </Row>

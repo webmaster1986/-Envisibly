@@ -34,8 +34,8 @@ class Topbar extends Component {
       <ul className="gx-user-popover">
         <li>My Account</li>
         <li>Connections</li>
-        <li><Link style={{color: '#545454'}} to={'/my-profile-consumer'}>My Profile Consumer</Link></li>
-        <li><Link style={{color: '#545454'}} to={'/my-profile-lender'}>My Profile Lender</Link></li>
+      {/*  <li><Link style={{color: '#545454'}} to={'/my-profile-consumer'}>My Profile Consumer</Link></li>
+        <li><Link style={{color: '#545454'}} to={'/my-profile-lender'}>My Profile Lender</Link></li>*/}
         <li onClick={() => this.props.userSignOut()}>Logout</li>
       </ul>
     );
@@ -54,6 +54,7 @@ class Topbar extends Component {
             <img alt="" src={require("assets/images/w-logo.png")}/></Link>*/}
             <img alt="" src={require("assets/images/EnvisiblyLogo.png")} className="custom-img"/>
           <h1 className="text-center">LENDER VIEW</h1>
+          <h1 className="text-center">CONSUMER VIEW</h1>
           <ul className="gx-header-notifications gx-ml-auto">
             {/*<Auxiliary>
               <li className="gx-notify">

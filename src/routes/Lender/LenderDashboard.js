@@ -407,7 +407,7 @@ class LenderDashboard extends Component {
         <Row>
           <Col md={12} sm={24} lg={12} xl={12} xs={24} className="message-height">
             <Card className='gx-card-widget contact-card'>
-              <h2 className="h4 gx-mb-3 text-center">My Customers</h2>
+              <h2 className="gx-mb-3 text-center">My Customers</h2>
               <Row className="align-items-center">
                 <Col md={6} sm={24} lg={6} xl={6} xs={12}>
                   <Link to={"/lender-profile"}>
@@ -458,7 +458,7 @@ class LenderDashboard extends Component {
           </Col>
           <Col md={12} sm={24} lg={12} xl={12} xs={24} className="message-height">
             <Card className='gx-card-widget'>
-              <h2 className="h4 gx-mb-3 text-center">My Messages</h2>
+              <h2 className="gx-mb-3 text-center">My Messages</h2>
               <Row>
                 <CustomScrollbars className="gx-popover-scroll scroll-bar-nav" >
                   {
