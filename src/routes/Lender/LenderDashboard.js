@@ -410,7 +410,7 @@ class LenderDashboard extends Component {
               <h2 className="gx-mb-3 text-center">My Customers</h2>
               <Row className="align-items-center">
                 <Col md={6} sm={24} lg={6} xl={6} xs={12}>
-                  <Link to={"/lender-profile"}>
+                  <Link to={"/consumer-profile"}>
                     <div className="text-center">
                       <div className="d-flex">
                         <Badge status="success" />
@@ -422,7 +422,7 @@ class LenderDashboard extends Component {
                   </Link>
                 </Col>
                 <Col md={6} sm={12} lg={6} xl={6} xs={12}>
-                  <Link to={"/lender-profile"}>
+                  <Link to={"/consumer-profile"}>
                     <div className="text-center">
                       <div className="d-flex">
                         <Badge status="default" />

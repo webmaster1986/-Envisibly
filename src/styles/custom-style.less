@@ -86,6 +86,7 @@ body {
   .ant-btn-danger, .ant-btn-danger:not([disabled]):not(.disabled):active, .ant-btn-danger:not([disabled]):not(.disabled).active, .ant-btn-danger:hover, .ant-btn-danger:focus {
     background-color: @color-secondary !important;
     border-color: @color-secondary !important;
+    color: #ffffff !important;
   }
 
   .gx-btn-primary:not([disabled]):not(.disabled):active, a.gx-btn-primary:not([disabled]):not(.disabled):active, .btn-primary:not([disabled]):not(.disabled):active, .gx-btn-primary:not([disabled]):not(.disabled).active, a.gx-btn-primary:not([disabled]):not(.disabled).active, .btn-primary:not([disabled]):not(.disabled).active {
@@ -191,6 +192,35 @@ body {
     margin: 0 667px;
     color: #0076ba
   }
+
+  .profile-btn{
+    .ant-btn.active{
+      border-color: @color-primary;
+      color: @color-primary;
+    }
+    .ant-btn:hover{
+      border-color: @color-primary;
+      color: @color-primary;
+    }
+  }
+
+  .call-schedule-profile{
+    .gx-card-widget .ant-card-body {
+      height: 208px;
+    }
+  }
+  .lender-profile{
+    .gx-card-widget .ant-card-body {
+      height: 353px;
+    }
+  }
+  .lender-profile-edit{
+    .gx-card-widget .ant-card-body {
+      height: 356px;
+    }
+  }
+
+
 }
 
 

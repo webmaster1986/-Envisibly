@@ -1,14 +1,27 @@
 import React, {Component} from "react";
-import {Card, Col, Row, Tabs, Switch, Form, Input, Select, Radio, Checkbox} from 'antd'
+import {Card, Col, Row, Switch, Input, Select, Button} from 'antd'
 import {Link} from "react-router-dom";
 import MaskedInput from "antd-mask-input";
-const TabPane = Tabs.TabPane;
+import {maskCurrency} from "../../util/Utils";
 const { Option } = Select;
 
 class UserProfileConsumer extends Component {
 
   state ={
-    addCoBorrower: false
+    addCoBorrower: false,
+    isEditUser: false,
+    Name: 'Joe Smith ',
+    Phone: '(765) 543-5432 ',
+    State: 'California',
+    CreditQuality: 'Good (FICO 670-739)',
+    PreferredLanguage: 'English',
+    Days: ['Monday', 'Wednesday', 'Friday', 'Saturday'],
+    Hours: ['8:00 AM - 12:00 PM', '4:00 PM - 8:00 PM'],
+    MortgageType: 'Refinance',
+    PropertyType: 'Single Family Residence',
+    LoanAmount: '150,000',
+    PropertyOccupancy: 'Primary Residence',
+    MortgageTypes: ['Cash Out', 'ARM']
   }
 
   onCheckBoxChange = (event) => {
@@ -16,344 +29,582 @@ class UserProfileConsumer extends Component {
       addCoBorrower: event.target.checked
     })
   }
+
+  onEditUser = () => {
+    this.setState({
+      isEditUser: true
+    })
+  }
+
+  onUser = () => {
+    this.setState({
+      isEditUser: false
+    })
+  }
+
+  onChange = (event) => {
+    this.setState({
+      [event.target.name] : event.target.value
+    })
+  }
+
+  onLoanChange = (value) => {
+    if(value){
+      setTimeout(() => this.setState({ LoanAmount: maskCurrency(value) }), 1);
+      const amount =  maskCurrency(value)
+      this.setState({
+        LoanAmount: amount
+      })
+    }
+  };
+
   render() {
+    const {Name, CreditQuality, Days, Hours, LoanAmount, MortgageType, MortgageTypes, Phone, PreferredLanguage, PropertyOccupancy, PropertyType, State} = this.state;
     return (
       <div>
         <Row>
-        <Col md={24} sm={24} lg={24} xl={24} xs={24}>
-          <Card className='gx-card-widget contact-card'>
-            <Tabs defaultActiveKey="1">
-              <TabPane tab="User" key="1">
-                <Row>
-                  <Col md={8} sm={24} lg={8} xl={8} xs={24}>
-                    <div className="text-center">
-                      <h5 className="mt-10">Joe Smith </h5>
-                      <img src={require("assets/images/Profile.png")} style={{ width: 120}}/><br/>
-                      <Link to={"/"}>Upload Avatar link</Link>
-                    </div>
-                  </Col>
-                  <Col md={16} sm={24} lg={16} xl={16} xs={24}>
-                    <Card className='gx-card-widget contact-card'>
-                      <Row>
-                        <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+          <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+            <Card className='gx-card-widget contact-card'>
+              <Row className="align-items-center">
+                <Col md={4} sm={24} lg={4} xl={4} xs={24}>
+                  <div className="text-center">
+                    <img src={require("assets/images/Profile.png")} style={{width: 120}}/><br/>
+                    <Link to={"/"}>Upload Avatar</Link>
+                  </div>
+                </Col>
+                <Col md={20} sm={24} lg={20} xl={20} xs={24}>
+                  <div className="text-center profile-btn">
+                    <Button onClick={this.onUser} className={!this.state.isEditUser ? 'active' : ''}>User</Button>
+                    <Button onClick={this.onEditUser} className={this.state.isEditUser ? 'active' : ''}>Edit User</Button>
+                  </div>
+                </Col>
+              </Row>
+              {
+                !this.state.isEditUser ?
+                  <>
+                    <Row className="mt-20">
+                      <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+                        <Card className='gx-card-widget contact-card'>
+                          <h2 className="text-center">Quick Actions</h2>
                           <Row>
-                            <Col md={8} sm={24} lg={8} xl={8} xs={24}/>
-                            <Col md={4} sm={24} lg={4} xl={4} xs={24}>
-                              <div className="mb-20">
-                                <h4>Push Notifications</h4>
-                              </div>
+                            <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+                              <Row>
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <div className="mb-20">
+                                    <h4>Push Notifications</h4>
+                                  </div>
+                                </Col>
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <div className="mb-20">
+                                    <Switch defaultChecked/>
+                                  </div>
+                                </Col>
+                              </Row>
                             </Col>
-                            <Col md={4} sm={24} lg={4} xl={4} xs={24}>
-                              <div className="mb-20">
-                              <Switch defaultChecked/>
-                              </div>
+                            <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+                              <Row>
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <div className="mb-20">
+                                    <h4>Stealth Mode</h4>
+                                  </div>
+                                </Col>
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <div className="mb-20">
+                                    <Switch/>
+                                  </div>
+                                </Col>
+                              </Row>
                             </Col>
-                            <Col md={8} sm={24} lg={8} xl={8} xs={24}/>
+                            <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+                              <Row>
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <div className="mb-20">
+                                    <h4>Dark Background</h4>
+                                  </div>
+                                </Col>
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <div className="mb-20">
+                                    <Switch/>
+                                  </div>
+                                </Col>
+                              </Row>
+                            </Col>
                           </Row>
-                        </Col>
-                        <Col md={24} sm={24} lg={24} xl={24} xs={24}>
-                          <Row>
-                            <Col md={8} sm={24} lg={8} xl={8} xs={24}/>
-                            <Col md={4} sm={24} lg={4} xl={4} xs={24}>
-                              <div className="mb-20">
-                              <h4>Stealth Mode</h4>
-                              </div>
-                            </Col>
-                            <Col md={4} sm={24} lg={4} xl={4} xs={24}>
-                              <div className="mb-20">
-                              <Switch/>
-                              </div>
-                            </Col>
-                            <Col md={8} sm={24} lg={8} xl={8} xs={24}/>
-                          </Row>
-                        </Col>
-                        <Col md={24} sm={24} lg={24} xl={24} xs={24}>
-                          <Row>
-                            <Col md={8} sm={24} lg={8} xl={8} xs={24}/>
-                            <Col md={4} sm={24} lg={4} xl={4} xs={24}>
-                              <div className="mb-20">
-                              <h4>Dark Background</h4>
-                              </div>
-                            </Col>
-                            <Col md={4} sm={24} lg={4} xl={4} xs={24}>
-                              <div className="mb-20">
-                              <Switch/>
-                              </div>
-                            </Col>
-                            <Col md={8} sm={24} lg={8} xl={8} xs={24}/>
-                          </Row>
-                        </Col>
-                      </Row>
-                    </Card>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md={12} sm={24} lg={12} xl={12} xs={24}>
-                    <Card className='gx-card-widget contact-card'>
-                      <h2 className="gx-mb-3 text-center">Borrower Information</h2>
-                      <Form >
-                        <Row className="align-items-center mb-10">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <p>First Name :</p>
-                          </Col>
-                          <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                                <Input autoFocus={true} placeholder="Borrower First Name" name="borrowerFirstName"/>
-                          </Col>
-                        </Row>
-                        <Row className="align-items-center mb-10">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <p>Last Name :</p>
-                          </Col>
-                          <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                                <Input placeholder="Borrower Last Name" name="borrowerLastName"/>
-                          </Col>
-                        </Row>
-                        <Row className="align-items-center mb-10">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <p>Phone :</p>
-                          </Col>
-                          <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                                <MaskedInput mask="(111) 111-1111" placeholder="Borrower Phone #" name="borrowerPhone"/>
-                          </Col>
-                        </Row>
-                        <Row className="align-items-center mb-10">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <p>ZIP Code :</p>
-                          </Col>
-                          <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                                <MaskedInput mask="11111" placeholder="Borrower ZIP Code" name="borrowerZIPCode"/>
-                          </Col>
-                        </Row>
-                        <Row className="align-items-center mb-10">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <p>Credit Quality :</p>
-                          </Col>
-                          <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                                <Select placeholder="Borrower Credit Quality" className={'show-placeholder'} name="borrowerCreditQuality" style={{width: "100%"}}>
-                                  <Option value="1">Fair (FICO 580 - 669) </Option>
-                                  <Option value="2">Good (FICO 670 - 739) </Option>
-                                  <Option value="3">Very Good (FICO 740 - 799) </Option>
-                                  <Option value="4">Excellent (FICO 800 - 850) </Option>
-                                </Select>
-                          </Col>
-                        </Row>
-                        <Row className="align-items-center mb-10">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <p>Language :</p>
-                          </Col>
-                          <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                              <Select placeholder="Preferred Spoken Language" className={'show-placeholder'} name="preferredSpokenLanguage" style={{width: "100%"}}>
-                                <Option value="1">English </Option>
-                                <Option value="2">Spanish</Option>
-                                <Option value="3">Chinese</Option>
-                                <Option value="4">French</Option>
-                                <Option value="5">Tagalog</Option>
-                                <Option value="6">Vietnamese</Option>
-                              </Select>
-                          </Col>
-                        </Row>
-                      </Form>
-                    </Card>
-                  </Col>
-                  <Col md={12} sm={24} lg={12} xl={12} xs={24}>
-                    <Card className='gx-card-widget contact-card'>
-                      <h2 className="gx-mb-3 text-center">Property Information</h2>
-                      <Form>
-                        <Row className="align-items-center mb-10">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <p>Select One :</p>
-                          </Col>
-                          <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                              <Radio.Group>
-                                <Radio.Button value="Refinance">Refinance</Radio.Button>
-                                <Radio.Button value="Purchase">Purchase</Radio.Button>
-                              </Radio.Group>
-                          </Col>
-                        </Row>
-                        <Row className="align-items-center mb-10">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <p>ZIP Code :</p>
-                          </Col>
-                          <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                                <MaskedInput mask="11111" placeholder="Property ZIP Code" name="ZIPCode"/>
-                          </Col>
-                        </Row>
-                        <Row className="align-items-center mb-10">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <p>Loan Amount :</p>
-                          </Col>
-                          <Col md={19} sm={24} lg={24} xl={19} xs={24} className="custom-prefix">
-                                <Input style={{width: '100%'}}
-                                  name={'LoanAmount'}
-                                  placeholder='Loan Amount Requested'
-                                  prefix="$"
-                                />
-                          </Col>
-                        </Row>
-                        <Row className="align-items-center mb-10">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <p>Property Type :</p>
-                          </Col>
-                          <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                                <Select placeholder="Property Type" className={'show-placeholder'} style={{width: '100%'}}>
-                                  <Option value="1">Single Family Residence</Option>
-                                  <Option value="2">Condominium</Option>
-                                  <Option value="3">Townhome</Option>
-                                  <Option value="4">PUD</Option>
-                                  <Option value="5">Other</Option>
-                                </Select>
-                          </Col>
-                        </Row>
-                        <Row className="align-items-center mb-10">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <p>Property Occupancy :</p>
-                          </Col>
-                          <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                                <Select placeholder="Occupancy Status" className={'show-placeholder'} style={{width: '100%'}}>
-                                  <Option value="1">Primary Residence</Option>
-                                  <Option value="2"> Second Home</Option>
-                                  <Option value="3">Condominium</Option>
-                                  <Option value="4">Investment</Option>
-                                </Select>
-                          </Col>
-                        </Row>
-                        <Row className="align-items-center mb-10">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <p>Mortgage Types :</p>
-                          </Col>
-                          <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                                <Select  mode="multiple" placeholder="OPTIONAL: Select All That May Apply" style={{width: '100%'}}>
-                                  <Option value="1">Cash Out</Option>
-                                  <Option value="2">FHA</Option>
-                                  <Option value="3">VA</Option>
-                                  <Option value="4">Reverse</Option>
-                                  <Option value="5">ARM</Option>
-                                  <Option value="6">15 Year Term</Option>
-                                  <Option value="7"> Interest Only</Option>
-                                </Select>
-                          </Col>
-                        </Row>
-                      </Form>
-                    </Card>
-                  </Col>
-                </Row>
-              </TabPane>
-              <TabPane tab="Edit" key="2">
-                <Row>
-                  <Col md={24} sm={24} lg={24} xl={24} xs={24}>
-                    <Card className='gx-card-widget contact-card'>
-                      <Form >
-                        <Row className="align-items-center mb-10">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <p>Phone :</p>
-                          </Col>
-                          <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                              <MaskedInput mask="(111) 111-1111" placeholder="Borrower Phone #" name="borrowerPhone"/>
-                          </Col>
-                        </Row>
-                        <Row className="align-items-center mb-10">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <p>Credit Quality :</p>
-                          </Col>
-                          <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                              <Select placeholder="Borrower Credit Quality" className={'show-placeholder'} name="borrowerCreditQuality" style={{width: '100%'}}>
-                                <Option value="1">Fair (FICO 580 - 669) </Option>
-                                <Option value="2">Good (FICO 670 - 739) </Option>
-                                <Option value="3">Very Good (FICO 740 - 799) </Option>
-                                <Option value="4">Excellent (FICO 800 - 850) </Option>
-                              </Select>
-                          </Col>
-                        </Row>
-                        <Row className="align-items-center mb-10">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <p>Language :</p>
-                          </Col>
-                          <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                              <Select placeholder="Preferred Spoken Language" className={'show-placeholder'} name="preferredSpokenLanguage" style={{width: '100%'}}>
-                                <Option value="1">English </Option>
-                                <Option value="2">Spanish</Option>
-                                <Option value="3">Chinese</Option>
-                                <Option value="4">French</Option>
-                                <Option value="5">Tagalog</Option>
-                                <Option value="6">Vietnamese</Option>
-                              </Select>
-                          </Col>
-                        </Row>
-                        <Row className="align-items-center">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <Checkbox onChange={this.onCheckBoxChange}>Add Co-borrower</Checkbox>
-                          </Col>
-                        </Row>
-                      </Form>
-                      {
-                        this.state.addCoBorrower &&  <Form >
+                        </Card>
+                      </Col>
+                      <Col md={12} sm={24} lg={12} xl={12} xs={24} className="call-schedule-profile">
+                        <Card className='gx-card-widget contact-card'>
+                          <h2 className="text-center">Call Schedule</h2>
                           <Row className="align-items-center mb-10">
-                            <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                              <p>First Name :</p>
+                            <Col md={3} sm={24} lg={3} xl={3} xs={24}>
+                              <p><b>Days :</b></p>
                             </Col>
-                            <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                                <Input autoFocus={true} placeholder="Borrower First Name" name="borrowerFirstName"/>
+                            <Col md={21} sm={24} lg={21} xl={21} xs={24}>
+                              <p>{Days.join(', ')}</p>
                             </Col>
                           </Row>
                           <Row className="align-items-center mb-10">
-                            <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                              <p>Last Name :</p>
+                            <Col md={3} sm={24} lg={3} xl={3} xs={24}>
+                              <p><b>Hours :</b></p>
                             </Col>
-                            <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                                <Input placeholder="Borrower Last Name" name="borrowerLastName"/>
+                            <Col md={21} sm={24} lg={21} xl={21} xs={24}>
+                            <p>{Hours.join(', ')}</p>
+                            </Col>
+                          </Row>
+                        </Card>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+                        <Card className='gx-card-widget contact-card'>
+                          <h2 className="text-center">Borrower Information</h2>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>Name :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <p> {Name} </p>
                             </Col>
                           </Row>
                           <Row className="align-items-center mb-10">
-                            <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                              <p>ZIP Code :</p>
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>Phone :</b></p>
                             </Col>
-                            <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                                <MaskedInput mask="11111" placeholder="Borrower ZIP Code" name="borrowerZIPCode"/>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <p>{Phone}</p>
                             </Col>
                           </Row>
-                        </Form>
-                      }
-
-                    </Card>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md={24} sm={24} lg={24} xl={24} xs={24}>
-                    <Card className='gx-card-widget contact-card'>
-                      <h2 className="gx-mb-3 text-center">Change Password</h2>
-                      <Form >
-                        <Row className="align-items-center mb-10">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <p>Current Password :</p>
-                          </Col>
-                          <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                              <Input type="password" placeholder="Current Password" />
-                          </Col>
-                        </Row>
-                        <Row className="align-items-center mb-10">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <p>New Password :</p>
-                          </Col>
-                          <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                              <Input type="password" placeholder="New Password" />
-                          </Col>
-                        </Row>
-                        <Row className="align-items-center mb-10">
-                          <Col md={5} sm={24} lg={24} xl={5} xs={24}>
-                            <p>Confirm Password :</p>
-                          </Col>
-                          <Col md={19} sm={24} lg={24} xl={19} xs={24}>
-                              <Input type="password" placeholder="Confirm Password" />
-                          </Col>
-                        </Row>
-                      </Form>
-                    </Card>
-                  </Col>
-                </Row>
-              </TabPane>
-            </Tabs>
-          </Card>
-        </Col>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>State :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <p>{State}</p>
+                            </Col>
+                          </Row>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>Credit Quality :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <p>{CreditQuality}</p>
+                            </Col>
+                          </Row>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>Preferred Language :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <p>{PreferredLanguage}</p>
+                            </Col>
+                          </Row>
+                        </Card>
+                      </Col>
+                      <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+                        <Card className='gx-card-widget contact-card'>
+                          <h2 className="text-center">Co-borrower Information</h2>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>Name :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <p> {Name} </p>
+                            </Col>
+                          </Row>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>Phone :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <p>{Phone}</p>
+                            </Col>
+                          </Row>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>State :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <p>{State}</p>
+                            </Col>
+                          </Row>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>Credit Quality :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <p>{CreditQuality}</p>
+                            </Col>
+                          </Row>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>Preferred Language :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <p>{PreferredLanguage}</p>
+                            </Col>
+                          </Row>
+                        </Card>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+                        <Card className='gx-card-widget contact-card'>
+                          <h2 className="text-center">Property Information</h2>
+                          <Row>
+                            <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+                              <Row className="align-items-center mb-10">
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <p><b>Mortgage Type :</b></p>
+                                </Col>
+                                <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                                  <p>{MortgageType}</p>
+                                </Col>
+                              </Row>
+                              <Row className="align-items-center mb-10">
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <p><b>State :</b></p>
+                                </Col>
+                                <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                                  <p>{State}</p>
+                                </Col>
+                              </Row>
+                              <Row className="align-items-center mb-10">
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <p><b>Loan Amount :</b></p>
+                                </Col>
+                                <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                                  <p>${LoanAmount}</p>
+                                </Col>
+                              </Row>
+                            </Col>
+                            <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+                              <Row className="align-items-center mb-10">
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <p><b>Property Type :</b></p>
+                                </Col>
+                                <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                                  <p>{PropertyType}</p>
+                                </Col>
+                              </Row>
+                              <Row className="align-items-center mb-10">
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <p><b>Property Occupancy :</b></p>
+                                </Col>
+                                <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                                  <p>{PropertyOccupancy}</p>
+                                </Col>
+                              </Row>
+                              <Row className="align-items-center mb-10">
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <p><b>Mortgage Types :</b></p>
+                                </Col>
+                                <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                                  <p>{MortgageTypes.join(', ')}</p>
+                                </Col>
+                              </Row>
+                            </Col>
+                          </Row>
+                        </Card>
+                      </Col>
+                    </Row>
+                  </> :
+                  <>
+                    <Row className="mt-20">
+                      <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+                        <Card className='gx-card-widget contact-card'>
+                          <h2 className="text-center">Quick Actions</h2>
+                          <Row>
+                            <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+                              <Row>
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <div className="mb-20">
+                                    <h4>Push Notifications</h4>
+                                  </div>
+                                </Col>
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <div className="mb-20">
+                                    <Switch defaultChecked/>
+                                  </div>
+                                </Col>
+                              </Row>
+                            </Col>
+                            <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+                              <Row>
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <div className="mb-20">
+                                    <h4>Stealth Mode</h4>
+                                  </div>
+                                </Col>
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <div className="mb-20">
+                                    <Switch/>
+                                  </div>
+                                </Col>
+                              </Row>
+                            </Col>
+                            <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+                              <Row>
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <div className="mb-20">
+                                    <h4>Dark Background</h4>
+                                  </div>
+                                </Col>
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <div className="mb-20">
+                                    <Switch/>
+                                  </div>
+                                </Col>
+                              </Row>
+                            </Col>
+                          </Row>
+                        </Card>
+                      </Col>
+                      <Col md={12} sm={24} lg={12} xl={12} xs={24} className="call-schedule-profile">
+                        <Card className='gx-card-widget contact-card'>
+                          <h2 className="text-center">Call Schedule</h2>
+                          <Row className="align-items-center mb-10">
+                            <Col md={3} sm={24} lg={3} xl={3} xs={24}>
+                              <p><b>Days :</b></p>
+                            </Col>
+                            <Col md={21} sm={24} lg={21} xl={21} xs={24}>
+                              <Select mode={'multiple'} onChange={(value) => this.onChange({target:{name:'Days', value}})} style={{width: "100%"}} value={Days}>
+                                <Option value="Any Day">Any Day </Option>
+                                <Option value="Monday">Monday</Option>
+                                <Option value="Tuesday">Tuesday</Option>
+                                <Option value="Wednesday">Wednesday</Option>
+                                <Option value="Thursday">Thursday</Option>
+                                <Option value="Friday">Friday</Option>
+                                <Option value="Saturday">Saturday</Option>
+                                <Option value="Sunday">Sunday</Option>
+                              </Select>
+                            </Col>
+                          </Row>
+                          <Row className="align-items-center mb-10">
+                            <Col md={3} sm={24} lg={3} xl={3} xs={24}>
+                              <p><b>Hours :</b></p>
+                            </Col>
+                            <Col md={21} sm={24} lg={21} xl={21} xs={24}>
+                              <Select mode={'multiple'} onChange={(value) => this.onChange({target:{name:'Hours', value}})} style={{width: "100%"}} value={Hours}>
+                                <Option value="Any Day">Any Day </Option>
+                                <Option value="8:00 AM - 12:00 PM">8:00 AM - 12:00 PM </Option>
+                                <Option value="12:00 PM - 4:00 PM">12:00 PM - 4:00 PM</Option>
+                                <Option value="4:00 PM - 8:00 PM">4:00 PM - 8:00 PM</Option>
+                              </Select>
+                            </Col>
+                          </Row>
+                        </Card>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+                        <Card className='gx-card-widget contact-card'>
+                          <h2 className="text-center">Borrower Information</h2>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>Name :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <p> {Name} </p>
+                            </Col>
+                          </Row>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>Phone :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <MaskedInput mask={'(111) 111-1111'} value={Phone} name="Phone" onChange={this.onChange}/>
+                            </Col>
+                          </Row>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>State :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <p>{State}</p>
+                            </Col>
+                          </Row>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>Credit Quality :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                             <Select onChange={(value) => this.onChange({target:{name:'CreditQuality', value}})} style={{width: "100%"}} value={CreditQuality}>
+                               <Option value="Fair (FICO 580 - 669)">Fair (FICO 580 - 669) </Option>
+                               <Option value="Good (FICO 670-739)">Good (FICO 670 - 739) </Option>
+                               <Option value="Very Good (FICO 740 - 799)">Very Good (FICO 740 - 799) </Option>
+                               <Option value="Excellent (FICO 800 - 850)">Excellent (FICO 800 - 850) </Option>
+                             </Select>
+                            </Col>
+                          </Row>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>Preferred Language :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <Select  onChange={(value) => this.onChange({target:{name:'PreferredLanguage', value}})} style={{width: "100%"}} value={PreferredLanguage}>
+                                <Option value="English">English </Option>
+                                <Option value="Spanish">Spanish</Option>
+                                <Option value="Chinese">Chinese</Option>
+                                <Option value="French">French</Option>
+                                <Option value="Tagalog">Tagalog</Option>
+                                <Option value="Vietnamese">Vietnamese</Option>
+                              </Select>
+                            </Col>
+                          </Row>
+                        </Card>
+                      </Col>
+                      <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+                        <Card className='gx-card-widget contact-card'>
+                          <h2 className="text-center">Co-borrower Information</h2>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>Name :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <Input value={Name} name="Name" onChange={this.onChange}/>
+                            </Col>
+                          </Row>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>Phone :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <MaskedInput mask={'(111) 111-1111'} value={Phone} name="Phone" onChange={this.onChange}/>
+                            </Col>
+                          </Row>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>State :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <Input value={State} name="State" onChange={this.onChange}/>
+                            </Col>
+                          </Row>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>Credit Quality :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <Select onChange={(value) => this.onChange({target:{name:'CreditQuality', value}})} style={{width: "100%"}} value={CreditQuality}>
+                                <Option value="Fair (FICO 580 - 669)">Fair (FICO 580 - 669) </Option>
+                                <Option value="Good (FICO 670-739)">Good (FICO 670 - 739) </Option>
+                                <Option value="Very Good (FICO 740 - 799)">Very Good (FICO 740 - 799) </Option>
+                                <Option value="Excellent (FICO 800 - 850)">Excellent (FICO 800 - 850) </Option>
+                              </Select>
+                            </Col>
+                          </Row>
+                          <Row className="align-items-center mb-10">
+                            <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                              <p><b>Preferred Language :</b></p>
+                            </Col>
+                            <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                              <Select  onChange={(value) => this.onChange({target:{name:'PreferredLanguage', value}})} style={{width: "100%"}} value={PreferredLanguage}>
+                                <Option value="English">English </Option>
+                                <Option value="Spanish">Spanish</Option>
+                                <Option value="Chinese">Chinese</Option>
+                                <Option value="French">French</Option>
+                                <Option value="Tagalog">Tagalog</Option>
+                                <Option value="Vietnamese">Vietnamese</Option>
+                              </Select>
+                            </Col>
+                          </Row>
+                        </Card>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+                        <Card className='gx-card-widget contact-card'>
+                          <h2 className="text-center">Property Information</h2>
+                          <Row>
+                            <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+                              <Row className="align-items-center mb-10">
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <p><b>Mortgage Type :</b></p>
+                                </Col>
+                                <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                                  <Select onChange={(value) => this.onChange({target:{name:'MortgageType', value}})} style={{width: "100%"}} value={MortgageType}>
+                                    <Option value="Cash Out">Cash Out</Option>
+                                    <Option value="FHA">FHA</Option>
+                                    <Option value="VA">VA</Option>
+                                    <Option value="Reverse">Reverse</Option>
+                                    <Option value="ARM">ARM</Option>
+                                    <Option value="15 Year Term">15 Year Term</Option>
+                                    <Option value="Interest Only"> Interest Only</Option>
+                                  </Select>
+                                </Col>
+                              </Row>
+                              <Row className="align-items-center mb-10">
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <p><b>State :</b></p>
+                                </Col>
+                                <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                                  <p>{State}</p>
+                                </Col>
+                              </Row>
+                              <Row className="align-items-center mb-10">
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <p><b>Loan Amount :</b></p>
+                                </Col>
+                                <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                                 <Input name={'LoanAmount'}
+                                        onChange={(e) => this.onLoanChange(e.target.value)} placeholder='Loan Amount Requested'
+                                        prefix="$"/>
+                                </Col>
+                              </Row>
+                            </Col>
+                            <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+                              <Row className="align-items-center mb-10">
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <p><b>Property Type :</b></p>
+                                </Col>
+                                <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                                  <Select onChange={(value) => this.onChange({target:{name:'PropertyType', value}})} style={{width: "100%"}} value={PropertyType}>
+                                    <Option value="Single Family Residence">Single Family Residence</Option>
+                                    <Option value="Condominium">Condominium</Option>
+                                    <Option value="Townhome">Townhome</Option>
+                                    <Option value="PUD">PUD</Option>
+                                    <Option value="Other">Other</Option>
+                                  </Select>
+                                </Col>
+                              </Row>
+                              <Row className="align-items-center mb-10">
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <p><b>Property Occupancy :</b></p>
+                                </Col>
+                                <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                                  <Select onChange={(value) => this.onChange({target:{name:'PropertyOccupancy', value}})} style={{width: "100%"}} value={PropertyOccupancy}>
+                                    <Option value="Primary Residence">Primary Residence</Option>
+                                    <Option value="Second Home"> Second Home</Option>
+                                    <Option value="Condominium">Condominium</Option>
+                                    <Option value="Investment">Investment</Option>
+                                  </Select>
+                                </Col>
+                              </Row>
+                              <Row className="align-items-center mb-10">
+                                <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                                  <p><b>Mortgage Types :</b></p>
+                                </Col>
+                                <Col md={18} sm={24} lg={18} xl={18} xs={24}>
+                                  <Select  mode="multiple" onChange={(value) => this.onChange({target:{name:'MortgageTypes', value}})} style={{width: "100%"}} value={MortgageTypes}>
+                                    <Option value="Cash Out">Cash Out</Option>
+                                    <Option value="FHA">FHA</Option>
+                                    <Option value="VA">VA</Option>
+                                    <Option value="Reverse">Reverse</Option>
+                                    <Option value="ARM">ARM</Option>
+                                    <Option value="15 Year Term">15 Year Term</Option>
+                                    <Option value="Interest Only"> Interest Only</Option>
+                                  </Select>
+                                </Col>
+                              </Row>
+                            </Col>
+                          </Row>
+                        </Card>
+                      </Col>
+                    </Row>
+                  </>
+              }
+            </Card>
+          </Col>
         </Row>
       </div>
     );

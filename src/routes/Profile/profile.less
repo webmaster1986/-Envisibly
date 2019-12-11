@@ -1,11 +1,10 @@
+@import "../../styles/variables";
+
 .profile{
   .rotate-icon {
     .ant-btn .anticon {
       transform: rotate(90deg);
     }
-  }
-  p {
-    margin-bottom: 0 !important;
   }
   .custom-tag {
     border: 1px solid;
@@ -22,7 +21,12 @@
   }
   .lender-loan{
     .gx-card-widget .ant-card-body {
-      height: 283px;
+      height: 353px;
+    }
+  }
+  .lender-switch{
+    .gx-card-widget .ant-card-body {
+      height: 217px;
     }
   }
 
@@ -44,6 +48,14 @@
     border: 1px solid #000000;
   }
 
+  .ant-btn{
+    border-color: @color-primary;
+    color: @color-primary;
+  }
+  .ant-btn:hover{
+    border-color: @color-primary;
+    color: @color-primary;
+  }
 
 
 }

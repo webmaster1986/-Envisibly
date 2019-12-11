@@ -7,9 +7,9 @@ class LenderProfile extends Component {
   render() {
     return(
       <Row className="profile">
-        <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+        <Col  md={24} sm={24} lg={24} xl={24} xs={24}>
           <Card className='gx-card-widget'>
-            <h2 className="text-center">Lender Profile</h2>
+            <h2 className="text-center">Consumer Details</h2>
             <Row className="align-items-center">
               <Col md={12} sm={24} lg={12} xl={12} xs={24}>
                 <div className="text-center">
@@ -19,87 +19,178 @@ class LenderProfile extends Component {
                 </div>
               </Col>
               <Col md={12} sm={24} lg={12} xl={12} xs={24}>
-                <div className="text-center">
-                  <img src={require("assets/images/Profile.png")} className="gx-size-100"/>
-                  <h5 className="mt-10">Susan Smith</h5>
-                  <h5>California</h5>
-                </div>
+                <Card className='gx-card-widget'>
+                  <div className="text-center">
+                    <h2><i className="icon icon-schedule"/>&nbsp; Local Time: 3:30 PM</h2>
+                  </div>
+                  <Row className="align-items-center">
+                    <Col md={24} sm={24} lg={24} xl={24} xs={24} className="text-center">
+                      <Button type="primary" icon="mail">Message</Button>
+                      <Button type="primary" icon="tablet">Notes</Button>
+                    </Col>
+                    <Col md={24} sm={24} lg={24} xl={24} xs={24} className="text-center rotate-icon">
+                      <Button type="danger" icon="phone" style={{width: 218}}>Call Now</Button>
+                    </Col>
+                    <Col md={7} sm={24} lg={7} xl={7} xs={24}/>
+                    <Col md={17} sm={24} lg={17} xl={17} xs={24}>
+                      <p><b>Accepting Calls :</b> Monday, Wednesday, Friday, Saturday</p>
+                      <p><b>Hours : </b>8:00 AM - 12:00 PM, 4:00 PM - 8:00 PM</p>
+                    </Col>
+                  </Row>
+                </Card>
               </Col>
             </Row>
-          </Card>
-        </Col>
-        <Col md={12} sm={24} lg={12} xl={12} xs={24} className="time-height">
-          <Card className='gx-card-widget'>
-            <div className="text-center">
-              <h2><i className="icon icon-schedule"/>&nbsp; Local Time: 3:30 PM</h2>
-            </div>
-            <Row className="align-items-center">
-              <Col md={24} sm={24} lg={24} xl={24} xs={24} className="text-center">
-                <Button type="primary" icon="tablet">Notes</Button>
-                <Button type="primary" icon="mail">Message</Button>
+            <Row>
+              <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+                <Card className='gx-card-widget contact-card'>
+                  <h2 className="text-center">Borrower Information</h2>
+                  <Row className="align-items-center mb-10">
+                    <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                      <p><b>Name :</b></p>
+                    </Col>
+                    <Col md={5} sm={24} lg={5} xl={5} xs={24}>
+                      <p> Joe Smith </p>
+                    </Col>
+                  </Row>
+                  <Row className="align-items-center mb-10">
+                    <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                      <p><b>Phone :</b></p>
+                    </Col>
+                    <Col md={5} sm={24} lg={5} xl={5} xs={24}>
+                      <p>(765) 543-5432 </p>
+                    </Col>
+                  </Row>
+                  <Row className="align-items-center mb-10">
+                    <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                      <p><b>State :</b></p>
+                    </Col>
+                    <Col md={5} sm={24} lg={5} xl={5} xs={24}>
+                      <p>California</p>
+                    </Col>
+                  </Row>
+                  <Row className="align-items-center mb-10">
+                    <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                      <p><b>Credit Quality :</b></p>
+                    </Col>
+                    <Col md={5} sm={24} lg={5} xl={5} xs={24}>
+                      <p>Good (FICO 670-739)</p>
+                    </Col>
+                  </Row>
+                  <Row className="align-items-center mb-10">
+                    <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                      <p><b>Preferred Language :</b></p>
+                    </Col>
+                    <Col md={5} sm={24} lg={5} xl={5} xs={24}>
+                      <p>English</p>
+                    </Col>
+                  </Row>
+                </Card>
               </Col>
-              <Col md={24} sm={24} lg={24} xl={24} xs={24} className="text-center rotate-icon">
-                <Button type="danger" icon="phone" style={{width: 218}}>Call Now</Button>
-              </Col>
-              <Col md={24} sm={24} lg={24} xl={24} xs={24} className="text-center">
-                <p>Accepting Calls: <b> Monday, Wednesday, Friday</b></p>
-                <p>Hours: <b> 12pm - 4pm</b></p>
+              <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+                <Card className='gx-card-widget contact-card'>
+                  <h2 className="text-center">Co-borrower Information</h2>
+                  <Row className="align-items-center mb-10">
+                    <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                      <p><b>Name :</b></p>
+                    </Col>
+                    <Col md={5} sm={24} lg={5} xl={5} xs={24}>
+                      <p> Joe Smith </p>
+                    </Col>
+                  </Row>
+                  <Row className="align-items-center mb-10">
+                    <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                      <p><b>Phone :</b></p>
+                    </Col>
+                    <Col md={5} sm={24} lg={5} xl={5} xs={24}>
+                      <p>(765) 543-5432 </p>
+                    </Col>
+                  </Row>
+                  <Row className="align-items-center mb-10">
+                    <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                      <p><b>State :</b></p>
+                    </Col>
+                    <Col md={5} sm={24} lg={5} xl={5} xs={24}>
+                      <p>California</p>
+                    </Col>
+                  </Row>
+                  <Row className="align-items-center mb-10">
+                    <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                      <p><b>Credit Quality :</b></p>
+                    </Col>
+                    <Col md={5} sm={24} lg={5} xl={5} xs={24}>
+                      <p>Good (FICO 670-739)</p>
+                    </Col>
+                  </Row>
+                  <Row className="align-items-center mb-10">
+                    <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                      <p><b>Preferred Language :</b></p>
+                    </Col>
+                    <Col md={5} sm={24} lg={5} xl={5} xs={24}>
+                      <p>English</p>
+                    </Col>
+                  </Row>
+                </Card>
               </Col>
             </Row>
-          </Card>
-        </Col>
-        <Col md={12} sm={24} lg={12} xl={12} xs={24}>
-          <Card className='gx-card-widget'>
-            <h2 className="text-center">Borrower Details</h2>
-            <Row className="align-items-center">
-              <Col md={12} sm={24} lg={24} xl={12} xs={24}>
-                <h4>Borrower </h4>
-                <div><p>Name: </p><b>Jack Smith</b></div>
-                <div className="mt-10"> <p>State: : </p><b>California  </b></div>
-                <div className="mt-10"><p>Credit Quality: </p><b>Excellent</b></div>
-                <div className="mt-10"><p>Preferred Language: </p><b>English</b></div>
-              </Col>
-              <Col md={12} sm={24} lg={24} xl={12} xs={24}>
-                <h4>Co-borrower</h4>
-                <div><p>Name: </p><b>Susan Smith </b></div>
-                <div className="mt-10"> <p>State: : </p><b>California  </b></div>
-                <div className="mt-10"><p>Credit Quality: </p><b>Good</b></div>
-                <div className="mt-10"><p>Preferred Language: </p><b>English</b></div>
-              </Col>
-            </Row>
-          </Card>
-        </Col>
-        <Col md={12} sm={24} lg={12} xl={12} xs={24} className="lender-loan">
-          <Card className='gx-card-widget'>
-            <h2 className="text-center">Loan Details</h2>
-            <Row className="align-items-center">
-              <Col md={12} sm={24} lg={24} xl={12} xs={24}>
-                <h4>Borrower </h4>
-                <div><p>Loan Type: </p><b>Refinance </b></div>
-                <div className="mt-10"> <p>State: : </p><b>California  </b></div>
-              </Col>
-              <Col md={12} sm={24} lg={24} xl={12} xs={24}>
-                <h4>Co-borrower</h4>
-                <div><p>Loan Amount : </p><b>$250,000 </b></div>
-                <div className="mt-10"><p>Preferred Language: </p><b>English</b></div>
-              </Col>
-            </Row>
-            <Row className="align-items-center">
-              <Col md={24} sm={24} lg={24} xl={24} xs={24} className="text-center">
-                <p className="mt-10">Loan Types : May be interested in</p>
-              </Col>
-              <Col md={24} sm={24} lg={24} xl={24} xs={24} className="text-center mt-10">
-                <div className="gx-task-item-content-center">
-                  <Tag className="gx-bg-grey-not gx-text-grey-not gx-mr-0 gx-mb-0 gx-rounded-xxl gx-order-sm-5 mr-5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Tag>
-                  <Tag className="gx-bg-grey-not gx-text-grey-not gx-mr-0 gx-mb-0 gx-rounded-xxl gx-order-sm-5 mr-5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Tag>
-                  <Tag className="gx-bg-grey-not gx-text-grey-not gx-mr-0 gx-mb-0 gx-rounded-xxl gx-order-sm-5 mr-5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Tag>
-                </div>
-               {/* <div className="d-flex text-center">
-                  <div className="custom-tag">&nbsp;</div>
-                  <div className="custom-tag">&nbsp;</div>
-                  <div className="custom-tag">&nbsp;</div>
-                </div>*/}
-
+            <Row>
+              <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+                <Card className='gx-card-widget contact-card'>
+                  <h2 className="text-center">Property Information</h2>
+                  <Row>
+                    <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+                      <Row className="align-items-center mb-10">
+                        <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                          <p><b>Mortgage Type :</b></p>
+                        </Col>
+                        <Col md={5} sm={24} lg={5} xl={5} xs={24}>
+                          <p>Refinance</p>
+                        </Col>
+                      </Row>
+                      <Row className="align-items-center mb-10">
+                        <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                          <p><b>State :</b></p>
+                        </Col>
+                        <Col md={5} sm={24} lg={5} xl={5} xs={24}>
+                          <p>California</p>
+                        </Col>
+                      </Row>
+                      <Row className="align-items-center mb-10">
+                        <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                          <p><b>Loan Amount :</b></p>
+                        </Col>
+                        <Col md={5} sm={24} lg={5} xl={5} xs={24}>
+                          <p>$150,000</p>
+                        </Col>
+                      </Row>
+                    </Col>
+                    <Col md={12} sm={24} lg={12} xl={12} xs={24}>
+                      <Row className="align-items-center mb-10">
+                        <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                          <p><b>Property Type :</b></p>
+                        </Col>
+                        <Col md={5} sm={24} lg={5} xl={5} xs={24}>
+                          <p>Single Family Residence</p>
+                        </Col>
+                      </Row>
+                      <Row className="align-items-center mb-10">
+                        <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                          <p><b>Property Occupancy :</b></p>
+                        </Col>
+                        <Col md={5} sm={24} lg={5} xl={5} xs={24}>
+                          <p>Primary Residence</p>
+                        </Col>
+                      </Row>
+                      <Row className="align-items-center mb-10">
+                        <Col md={6} sm={24} lg={6} xl={6} xs={24}>
+                          <p><b>Mortgage Types :</b></p>
+                        </Col>
+                        <Col md={5} sm={24} lg={5} xl={5} xs={24}>
+                          <p>Cash Out, ARM</p>
+                        </Col>
+                      </Row>
+                    </Col>
+                  </Row>
+                </Card>
               </Col>
             </Row>
           </Card>
