@@ -29,13 +29,21 @@ class Topbar extends Component {
     this.props.setThemeType(isDark ? THEME_TYPE_DARK : THEME_TYPE_LITE);
   };
 
+  onMyAccount = () => {
+    const {isLender} = this.state;
+    if(isLender.includes('/lender')){
+      this.props.history.push('/lender/user/profile')
+    } else {
+      this.props.history.push('/consumer/user/profile')
+    }
+  }
+
   render() {
     const {locale, width, navCollapsed, navStyle, themeType} = this.props;
     const {isLender} = this.state;
     const userMenuOptions = (
       <ul className="gx-user-popover">
-        <li>My Account</li>
-        <li>Connections</li>
+        <li onClick={this.onMyAccount}>My Account</li>
       {/*  <li><Link style={{color: '#545454'}} to={'/my-profile-consumer'}>My Profile Consumer</Link></li>
         <li><Link style={{color: '#545454'}} to={'/my-profile-lender'}>My Profile Lender</Link></li>*/}
         <li onClick={() => this.props.userSignOut()}>Logout</li>
