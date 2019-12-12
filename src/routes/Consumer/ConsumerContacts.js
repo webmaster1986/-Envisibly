@@ -561,6 +561,7 @@ class ConsumerContacts extends Component {
             <div className="gx-module-box-content">
 
               <div className="gx-module-box-topbar">
+                <div className="gx-draggable-icon mr-25"></div>
                 <Checkbox color="primary" className="gx-icon-btn"
                           indeterminate={selectedContacts > 0 && selectedContacts < contactList.length}
                           checked={selectedContacts > 0}
