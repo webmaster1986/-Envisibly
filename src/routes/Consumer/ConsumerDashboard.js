@@ -409,47 +409,37 @@ class ConsumerDashboard extends Component {
             <Card className='gx-card-widget contact-card'>
               <h2 className="h4 gx-mb-3 text-center">My Lenders</h2>
               <Row className="align-items-center">
-                <Col md={6} sm={24} lg={6} xl={6} xs={12}>
+                <Col md={8} sm={24} lg={8} xl={8} xs={12}>
                   <Link to={"/lender-profile"}>
                     <div className="text-center">
                       <div className="d-flex">
                         <Badge status="success" />
                         <img src={require("assets/images/Profile.png")} className="img-size-120 "/>
                       </div>
-                      <h5 className="mt-10">Joe Smith </h5>
+                      <h5>Joe Smith </h5>
                       <h5>Wells Fargo</h5>
                     </div>
                   </Link>
                 </Col>
-                <Col md={6} sm={12} lg={6} xl={6} xs={12}>
+                <Col md={8} sm={24} lg={8} xl={8} xs={12}>
                   <Link to={"/lender-profile"}>
                     <div className="text-center">
                       <div className="d-flex">
                         <Badge status="default" />
                         <img src={require("assets/images/Profile.png")} className="img-size-120"/>
                       </div>
-                      <h5 className="mt-10">Joe Smith </h5>
+                      <h5>Joe Smith </h5>
                       <h5>ABC Company</h5>
                     </div>
                   </Link>
                 </Col>
-                <Col md={6} sm={12} lg={6} xl={6} xs={12}>
+                <Col md={8} sm={24} lg={8} xl={8} xs={12}>
                   <div className="text-center">
                     <div className="d-flex">
                       <Badge status="default" />
                       <img src={require("assets/images/Profile.png")} className="img-size-120"/>
                     </div>
-                    <h5 className="mt-10">Joe Smith </h5>
-                    <h5>Mortgage Life</h5>
-                  </div>
-                </Col>
-                <Col md={6} sm={12} lg={6} xl={6} xs={12}>
-                  <div className="text-center">
-                    <div className="d-flex">
-                      <Badge status="default" />
-                      <img src={require("assets/images/Profile.png")} className="img-size-120"/>
-                    </div>
-                    <h5 className="mt-10">Joe Smith </h5>
+                    <h5>Joe Smith </h5>
                     <h5>Mortgage Life</h5>
                   </div>
                 </Col>

@@ -20,7 +20,9 @@ class Consumer extends React.Component {
       propertyType: '',
       propertyOccupancy: '',
       InputCode: '',
-      LoanAmount: ''
+      LoanAmount: '',
+      borrowerState: '',
+      propertyState: ''
     }
   }
 

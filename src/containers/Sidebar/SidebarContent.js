@@ -46,7 +46,7 @@ class SidebarContent extends Component {
               defaultOpenKeys={[pathname]}
               selectedKeys={[pathname]}
               theme={themeType === THEME_TYPE_LITE ? 'lite' : 'dark'}
-              mode="inline">
+              mode="inline" className="mt-25">
               <Menu.Item key={isLender.includes('/lender') ? "/lender/dashboard" : "/consumer/dashboard"}>
                 <Link to={isLender.includes('/lender') ? "/lender/dashboard" : "/consumer/dashboard"}><i className="icon icon-home"/>
                   <IntlMessages id="Dashboard"/></Link>

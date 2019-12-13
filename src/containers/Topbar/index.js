@@ -78,7 +78,7 @@ class Topbar extends Component {
                 <li className="gx-notify">
                   <Popover overlayClassName="gx-popover-horizantal" placement="bottomRight" content={<AppNotification/>} trigger="click">
                      <span className="gx-pointer gx-status-pos gx-d-block">
-                    <i className="icon icon-notification"/>
+                    <i className="icon icon-notification fs-25"/>
                     <span className="gx-status gx-status-rtl gx-small gx-orange"/>
                   </span>
                   </Popover>
@@ -97,7 +97,7 @@ class Topbar extends Component {
               <Auxiliary>
                 <li className="gx-notify">
                   <Popover overlayClassName="gx-popover-horizantal" placement="bottomRight" content={userMenuOptions} trigger="click">
-                    <span className="gx-pointer gx-d-block"> <i className="icon icon-user"/></span>
+                    <span className="gx-pointer gx-d-block"> <i className="icon icon-user fs-25"/></span>
                   </Popover>
                </li>
               </Auxiliary>

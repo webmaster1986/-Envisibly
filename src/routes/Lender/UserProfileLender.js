@@ -15,6 +15,7 @@ class UserProfileLender extends Component {
     Address: '123 Main Street',
     Days: ['Monday - Sunday'],
     Hours: ["8:00 AM - 8:00 PM"],
+    AboutMe: 'Tell your borrower a little about yourself and your company. How long have you been a loan officer? Why do you love what you do? NOTE: PHON NUMBERS, URL’S & EMAILS ARE NOT ALLOWED. ALL BIO’S WILL BE PROOF-READ BY STAFF. '
   };
 
   onEditUser = () => {
@@ -36,7 +37,7 @@ class UserProfileLender extends Component {
   }
 
   render() {
-    const {Name, Address, Days, Hours, MNLS, Phone, SpokenLanguages} = this.state;
+    const {Name, Address, Days, Hours, MNLS, Phone, SpokenLanguages, AboutMe} = this.state;
     return (
       <div>
         <Row>
@@ -251,16 +252,7 @@ class UserProfileLender extends Component {
                           <h2 className="text-center">About Me</h2>
                           <Row>
                             <Col md={24} sm={24} lg={24} xl={24} xs={24}>
-                              <Row className="align-items-center mb-10">
-                                <Col md={3} sm={24} lg={3} xl={3} xs={24}>
-                                  <p><b>Placeholder text:</b></p>
-                                </Col>
-                                <Col md={21} sm={24} lg={21} xl={21} xs={24}>
-                                  <p>Tell your borrower a little about yourself and your company. How
-                                    long have you been a loan officer? Why do you love what you do? NOTE: PHONE
-                                    NUMBERS, URL’S & EMAILS ARE NOT ALLOWED. ALL BIO’S WILL BE PROOF-READ BY STAFF. </p>
-                                </Col>
-                              </Row>
+                              <p>{AboutMe}</p>
                             </Col>
                           </Row>
                         </Card>
@@ -462,6 +454,18 @@ class UserProfileLender extends Component {
                             </Col>
                             <Col md={6} sm={24} lg={6} xl={6} xs={24}>
                               <p><b>Zip :</b> 34232</p>
+                            </Col>
+                          </Row>
+                        </Card>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+                        <Card className='gx-card-widget contact-card'>
+                          <h2 className="text-center">About Me</h2>
+                          <Row>
+                            <Col md={24} sm={24} lg={24} xl={24} xs={24}>
+                              <TextArea rows={5} name="AboutMe" value={AboutMe} onChange={this.onChange} placeholder={"Tell your borrower a little about yourself and your company. How long have you been a loan officer? Why do you love what you do? NOTE: PHONE NUMBERS, URL’S & EMAILS ARE NOT ALLOWED. ALL BIO’S WILL BE PROOF-READ BY STAFF."}/>
                             </Col>
                           </Row>
                         </Card>

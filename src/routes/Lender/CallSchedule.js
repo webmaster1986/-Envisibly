@@ -97,25 +97,26 @@ class CallSchedule extends Component {
             <Card className='gx-card-widget contact-card'>
               <h2 className="gx-mb-3 text-center">Daily Call Schedule</h2>
               <Row className="align-items-center">
-                <Col md={7} sm={24} lg={7} xl={7} xs={12}/>
-                <Col md={10} sm={24} lg={10} xl={10} xs={12}>
-                  <div className="d-flex">
-                    <Select style={{width: 200}} className="mr-10" defaultValue="allDay">
+                <Col md={6} sm={24} lg={6} xl={6} xs={24}/>
+                <Col md={4} sm={24} lg={4} xl={4} xs={24}>
+                    <Select style={{width: "100%"}} defaultValue="allDay">
                       <Select.Option value={"allDay"}>All Day</Select.Option>
                       <Select.Option value={"8:00am-12:00pm"}>8:00 AM - 12:00 PM</Select.Option>
                       <Select.Option value={"12:00pm-4:00pm"}>12:00 PM - 4:00 PM</Select.Option>
                       <Select.Option value={"4:00pm-8:00pm"}>4:00 PM - 8:00 PM</Select.Option>
                     </Select>
+                </Col>
+                <Col md={4} sm={24} lg={4} xl={4} xs={24}>
                     <span><h3 className="mt-5" style={{minWidth: 220}}> {moment(this.state.date).format("dddd DD/MM/YYYY")}</h3></span>
-                    <div>
+                </Col>
+                <Col md={4} sm={24} lg={4} xl={4} xs={24}>
+
                       <Button onClick={this.onPrvDay}>Back</Button>
                       <Button onClick={this.onToDay}>Today</Button>
                       <Button onClick={this.onNextDay}>Next</Button>
-                    </div>
-                  </div>
 
                 </Col>
-                <Col md={7} sm={24} lg={7} xl={7} xs={12}/>
+                <Col md={6} sm={24} lg={6} xl={6} xs={24}/>
               </Row>
               <Row className="align-items-center">
                 <Col md={24} sm={24} lg={24} xl={24} xs={24}>
